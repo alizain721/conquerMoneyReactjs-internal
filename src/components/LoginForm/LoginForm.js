@@ -117,6 +117,12 @@ function LoginForm(props) {
           Register
         </span>
       </div>
+      <div className="forgotMessage">
+        <span>Forgot password? </span>
+        <span className="forgotText" onClick={() => redirectToRegister()}>
+          Click here!
+        </span>
+      </div>
     </div>
   );
 }
