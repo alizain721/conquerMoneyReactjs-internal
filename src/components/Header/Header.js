@@ -10,10 +10,11 @@ function Header(props) {
   const title = capitalize(
     props.location.pathname.substring(1, props.location.pathname.length)
   );
+  const title2 = "Login";
   return (
     <nav className="navbar navbar-dark bg-primary">
       <div className="header">
-        <span className="h3">{props.title || title}</span>
+        <span className="h3">{props.title || title || title2}</span>
       </div>
     </nav>
   );
