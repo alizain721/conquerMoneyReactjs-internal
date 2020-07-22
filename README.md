@@ -1,4 +1,5 @@
 # ConquerMoneyReactjs
+
 <!--Rakshith Murukannappa-->
 <!--Mike Spadaro/test!!-->
 <!--Valentina Alzate-->
@@ -12,3 +13,4 @@
 4. login page will send data in the form of a JSON containing the "username" and "password"
 5. the only valid username/password combo currently on the database is "admin" "123"
 6. upon a successful login, the home page will be displayed
+   npm install react-loader-spinner --save

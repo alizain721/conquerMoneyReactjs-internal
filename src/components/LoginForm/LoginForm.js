@@ -5,11 +5,6 @@ import { API_BASE_URL } from "../../constants/apiContants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 
-function sleep(delay) {
-  var start = new Date().getTime();
-  while (new Date().getTime() < start + delay);
-}
-
 function LoginForm(props) {
   const [state, setState] = useState({
     username: "",
@@ -32,14 +27,16 @@ function LoginForm(props) {
     };
     axios
       .post(API_BASE_URL, payload) //(API_BASE_URL + "login", payload)
-      .then(function (response) {
+      .then((response) => {
         if (response.status === 200) {
           setState((prevState) => ({
             ...prevState,
             successMessage: "Login successful. Redirecting to home page..",
           }));
+          setTimeout(() => {
+            redirectToHome();
+          }, 1500);
 
-          redirectToHome();
           props.showError(null);
         } else if (response.status === 204) {
           props.showError("Username and password do not match");

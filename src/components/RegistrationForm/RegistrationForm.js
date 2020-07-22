@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./RegistrationForm.css";
-import { API_BASE_URL } from "../../constants/apiContants";
+import { API_REG_URL } from "../../constants/apiContants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 
 function RegistrationForm(props) {
   const [state, setState] = useState({
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -23,19 +24,24 @@ function RegistrationForm(props) {
     if (state.email.length && state.password.length) {
       props.showError(null);
       const payload = {
+        username: state.username,
         email: state.email,
         password: state.password,
       };
       axios
-        .post(API_BASE_URL + "register", payload)
+        .post(API_REG_URL, payload)
         .then(function (response) {
-          if (response.data.code === 200) {
+          if (response.status === 200) {
             setState((prevState) => ({
               ...prevState,
               successMessage:
                 "Registration successful. Redirecting to home page..",
             }));
-            redirectToHome();
+
+            setTimeout(() => {
+              redirectToHome();
+            }, 1500);
+
             props.showError(null);
           } else {
             props.showError("Some error ocurred");
