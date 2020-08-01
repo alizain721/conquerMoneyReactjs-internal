@@ -1,0 +1,169 @@
+.heading_card {
+  background: #027d85;
+  height: auto;
+}
+
+.available_balance {
+  color: #ffff;
+  padding-top: 2rem;
+}
+
+.credit_balance {
+  color: #ffff;
+  padding-top: 2rem;
+}
+
+.available_balance_tagline {
+  color: #ffff;
+}
+
+.available_credit_tagline {
+  color: #ffff;
+}
+
+.img-fluid {
+  border-top-left-radius: 15%;
+  border-top-right-radius: 15%;
+  border-bottom-left-radius: 15%;
+  border-bottom-right-radius: 15%;
+}
+.h2 {
+  padding: 20px;
+}
+.loginText {
+  padding-top: 120px;
+  font-size: 24px;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .available_balance {
+    font-size: 1.05rem;
+  }
+
+  .available_balance_tagline {
+    font-size: 0.6rem;
+  }
+
+  .credit_balance {
+    font-size: 1.05rem;
+  }
+
+  .available_credit_tagline {
+    font-size: 0.6rem;
+  }
+
+  .heading_card {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .available_balance {
+    font-size: 2rem;
+  }
+
+  .available_balance_tagline {
+    font-size: 1.5rem;
+  }
+
+  .credit_balance {
+    font-size: 2rem;
+  }
+
+  .available_credit_tagline {
+    font-size: 1.5rem;
+  }
+
+  .heading_card {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+}
+/* tablets/desktops and up ----------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .available_balance {
+    font-size: 2.5rem;
+  }
+
+  .available_balance_tagline {
+    font-size: 2rem;
+  }
+
+  .credit_balance {
+    font-size: 2.5rem;
+  }
+
+  .available_credit_tagline {
+    font-size: 2rem;
+  }
+
+  .heading_card {
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+  }
+}
+/* large desktops and up ----------- */
+@media screen and (min-width: 1200px) {
+  .available_balance {
+    font-size: 2.5rem;
+  }
+
+  .available_balance_tagline {
+    font-size: 2rem;
+  }
+
+  .credit_balance {
+    font-size: 2.5rem;
+  }
+
+  .available_credit_tagline {
+    font-size: 2rem;
+  }
+
+  .heading_card {
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+}
+
+.people-cards {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.people-cards2 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.people-cards3 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-primary.custom-btn {
+  background-color: #027d85;
+  color: #ffff;
+}
+
+.people-cards {
+  margin: 1rem;
+}
+
+/* Set a style for all buttons */
+.button1 {
+  background-color: #027d85;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  font-size: 14px;
+}
+
+/* Add a hover effect for buttons */
+.button1:hover {
+  opacity: 0.8;
+}

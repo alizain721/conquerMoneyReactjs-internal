@@ -7,6 +7,11 @@ function Home(props) {
     props.history.push("/login");
     props.updateTitle("Login");
   };
+
+  const redirectToDash = () => {
+    props.history.push("/dashboard");
+    props.updateTitle("Dashboard");
+  };
   return (
     <div className="mt-2">
       <div className="imgcontainer">
@@ -17,6 +22,9 @@ function Home(props) {
       </h1>
       <span className="homeText" onClick={() => redirectToLogin()}>
         Back to Login
+      </span>
+      <span className="dashboardText" onClick={() => redirectToDash()}>
+        Go to Dashboard
       </span>
     </div>
   );

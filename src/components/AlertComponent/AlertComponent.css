@@ -1,4 +1,9 @@
 .alertMessage {
-  min-width: 200px;
+  min-width: 150px;
+  justify-content: stretch;
+}
+.alert {
   justify-content: space-between;
+
+  resize: both;
 }

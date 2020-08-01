@@ -1,0 +1,95 @@
+@media screen and (max-width: 499px) {
+  .img-responsive {
+    width: 90%;
+  }
+
+  .name1 {
+    font-size: 0.8rem;
+  }
+  .name2 {
+    font-size: 0.8rem;
+  }
+  .name3 {
+    font-size: 0.8rem;
+  }
+  .location_1 {
+    font-size: 0.8rem;
+  }
+  .location_2 {
+    font-size: 0.8rem;
+  }
+  .location_3 {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 767px) {
+  .img-responsive {
+    width: 80%;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .img-responsive {
+    width: 65%;
+  }
+}
+
+/* tablets/desktops and up ----------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .img-responsive {
+    width: 55%;
+  }
+}
+
+/* large desktops and up ----------- */
+@media screen and (min-width: 1200px) {
+  .img-responsive {
+    width: 40%;
+  }
+  .name1 {
+    font-size: 2rem;
+  }
+  .name2 {
+    font-size: 2rem;
+  }
+  .name3 {
+    font-size: 2rem;
+  }
+  .selects {
+    font-size: 2rem;
+    text-align: justify;
+  }
+}
+.h2 {
+  padding: 20px;
+}
+.loginText {
+  padding-top: 120px;
+  font-size: 14px;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.selects {
+  float: right;
+  list-style: none;
+  margin: -15px 80px;
+}
+
+.selects li {
+  display: list-item;
+  margin: 15px;
+}
+
+.cardBodies {
+  background-color: white;
+  min-height: 450px;
+}
+
+.btn-primary {
+  margin-top: 60px;
+  max-width: 150px;
+}

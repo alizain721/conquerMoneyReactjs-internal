@@ -6,6 +6,7 @@
   color: #007bff;
   font-weight: bold;
   cursor: pointer;
+  padding-bottom: 0px;
 }
 
 .registerMessage {
@@ -16,6 +17,7 @@
 .forgotMessage {
   margin-top: 3vh;
   font-size: 14px;
+  padding-bottom: 0px;
 }
 
 h1 {

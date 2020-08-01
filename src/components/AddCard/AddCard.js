@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./RegistrationForm.css";
+import "./AddCard.css";
 import { API_REG_URL } from "../../constants/apiContants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
+import Cookie from "js-cookie";
+import { API_ADDCARD_URL } from "../../constants/apiContants";
 
-function RegistrationForm(props) {
+function AddCard(props) {
+  const token = Cookie.get("token") ? Cookie.get("token") : null;
+
   const [state, setState] = useState({
     username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    bankname: "",
+    cardname: "",
+
     successMessage: null,
   });
   const handleChange = (e) => {
@@ -21,25 +25,26 @@ function RegistrationForm(props) {
     }));
   };
   const sendDetailsToServer = () => {
-    if (state.email.length && state.password.length) {
+    if (state.bankname.length && state.cardname.length) {
       props.showError(null);
       const payload = {
         username: state.username,
-        email: state.email,
-        password: state.password,
+        bankname: state.bankname,
+        cardname: state.cardname,
+        token: token,
       };
       axios
-        .post(API_REG_URL, payload)
+        .post(API_ADDCARD_URL, payload)
         .then(function (response) {
           if (response.status === 200) {
             setState((prevState) => ({
               ...prevState,
               successMessage:
-                "Registration successful. Redirecting to home page..",
+                "Card Added Succesfully. Redirecting to Dashboard..",
             }));
 
             setTimeout(() => {
-              redirectToHome();
+              redirectToDash();
             }, 1500);
 
             props.showError(null);
@@ -58,17 +63,18 @@ function RegistrationForm(props) {
     props.updateTitle("Home");
     props.history.push("/home");
   };
+  const redirectToDash = () => {
+    props.updateTitle("Dashboard");
+    props.history.push("/dashboard");
+  };
   const redirectToLogin = () => {
     props.updateTitle("Login");
     props.history.push("/login");
   };
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    if (state.password === state.confirmPassword) {
-      sendDetailsToServer();
-    } else {
-      props.showError("Passwords do not match");
-    }
+
+    sendDetailsToServer();
   };
   return (
     <div className="regForm">
@@ -93,14 +99,14 @@ function RegistrationForm(props) {
         </div>
 
         <div className="container text-left">
-          <label htmlFor="exampleInputEmail1">Email Address</label>
+          <label htmlFor="exampleInputBankname1">Bank Name</label>
           <input
-            type="email"
+            type="bankname"
             className="form-control"
-            id="email"
+            id="bankname"
             aria-describedby="emailHelp"
-            placeholder="Enter email"
-            value={state.email}
+            placeholder="Enter Bank Name"
+            value={state.bankname}
             onChange={handleChange}
           />
           <small id="emailHelp" className="form-text text-muted">
@@ -108,33 +114,23 @@ function RegistrationForm(props) {
           </small>
         </div>
         <div className="container text-left">
-          <label htmlFor="exampleInputPassword1">Password</label>
+          <label htmlFor="exampleInputCardName1">Card Name</label>
           <input
-            type="password"
+            type="cardname"
             className="form-control"
-            id="password"
-            placeholder="Password"
-            value={state.password}
+            id="cardname"
+            placeholder="Enter Card Name"
+            value={state.cardname}
             onChange={handleChange}
           />
         </div>
-        <div className="container text-left">
-          <label htmlFor="exampleInputPassword1">Confirm Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="confirmPassword"
-            placeholder="Confirm Password"
-            value={state.confirmPassword}
-            onChange={handleChange}
-          />
-        </div>
+
         <button
           type="submit"
           className="btn btn-primary"
           onClick={handleSubmitClick}
         >
-          Sign Up
+          Add Card
         </button>
       </form>
       <div
@@ -154,4 +150,4 @@ function RegistrationForm(props) {
   );
 }
 
-export default withRouter(RegistrationForm);
+export default withRouter(AddCard);

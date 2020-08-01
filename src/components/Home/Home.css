@@ -5,3 +5,9 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+/* Avatar image */
+img.gameover {
+  width: 70%;
+  border-radius: 10%;
+}

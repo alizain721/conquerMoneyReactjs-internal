@@ -1,9 +1,9 @@
 import React from "react";
-import "./Header.css";
+import "./Toolbar.css";
 import { withRouter } from "react-router-dom";
-import UserIcon from "../../img/SpartanLogo.jpg";
+import avatar from "../../img/SpartanLogo.jpg";
 
-function Header(props) {
+function Toolbar(props) {
   const capitalize = (s) => {
     if (typeof s !== "string") return "";
     return s.charAt(0).toUpperCase() + s.slice(1);
@@ -11,13 +11,16 @@ function Header(props) {
   const title = capitalize(
     props.location.pathname.substring(1, props.location.pathname.length)
   );
-  const title2 = "Login";
+
   return (
     <nav className="navbar navbar-dark bg-primary">
       <div className="header">
-        <span className="h3">{props.title || title || title2}</span>
+        <span className="h3">{props.title || title}</span>
+        <h1>
+          <img src={avatar} alt="user_icon" className="user_icon" />
+        </h1>
       </div>
     </nav>
   );
 }
-export default withRouter(Header);
+export default withRouter(Toolbar);

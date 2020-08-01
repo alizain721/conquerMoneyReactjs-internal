@@ -4,13 +4,19 @@ import "./LoginForm.css";
 import { API_BASE_URL } from "../../constants/apiContants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
+import Header from "../Header/Header";
+
+import Cookie from "js-cookie";
 
 function LoginForm(props) {
+  const token = Cookie.get("token") ? Cookie.get("token") : null;
+
   const [state, setState] = useState({
     username: "",
     password: "",
     successMessage: null,
   });
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setState((prevState) => ({
@@ -29,12 +35,19 @@ function LoginForm(props) {
       .post(API_BASE_URL, payload) //(API_BASE_URL + "login", payload)
       .then((response) => {
         if (response.status === 200) {
+          var accessToken = response.data.accessToken;
+
+          console.log("token " + accessToken);
+
+          Cookie.set("token", accessToken);
+          console.log("cookie " + Cookie.get("token"));
+          console.log(token);
           setState((prevState) => ({
             ...prevState,
-            successMessage: "Login successful. Redirecting to home page..",
+            successMessage: "Login successful. Redirecting to dashboard..",
           }));
           setTimeout(() => {
-            redirectToHome();
+            redirectToDash();
           }, 1500);
 
           props.showError(null);
@@ -52,10 +65,15 @@ function LoginForm(props) {
     props.updateTitle("Home");
     props.history.push("/home");
   };
+  const redirectToDash = () => {
+    props.updateTitle("Dashboard");
+    props.history.push("/dashboard");
+  };
   const redirectToRegister = () => {
     props.history.push("/register");
-    props.updateTitle("Register");
+    props.updateTitle("Sign Up");
   };
+
   return (
     <div className="loginPage">
       <form>

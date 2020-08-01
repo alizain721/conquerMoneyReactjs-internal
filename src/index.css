@@ -143,12 +143,6 @@ img.avatar {
   border-radius: 20%;
 }
 
-/* Avatar image */
-img.gameover {
-  width: 70%;
-  border-radius: 10%;
-}
-
 /* Add padding to containers */
 .container {
   padding: 16px;

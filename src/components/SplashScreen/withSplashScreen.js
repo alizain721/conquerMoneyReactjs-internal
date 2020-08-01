@@ -25,9 +25,7 @@ function LoadingMessage() {
 }
 
 function testFunction() {
-  if (1 == 1) {
-    return;
-  }
+  return;
 }
 
 function withSplashScreen(WrappedComponent) {
