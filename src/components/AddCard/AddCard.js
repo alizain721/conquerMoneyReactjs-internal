@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./AddCard.css";
-import { API_REG_URL } from "../../constants/apiContants";
+import { API_REG_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 import Cookie from "js-cookie";
-import { API_ADDCARD_URL } from "../../constants/apiContants";
+import { API_ADDCARD_URL } from "../../constants/apiConstants";
 
 function AddCard(props) {
   const token = Cookie.get("token") ? Cookie.get("token") : null;
+  //const fakeToken = "test";
 
   const [state, setState] = useState({
     username: "",
@@ -48,6 +49,13 @@ function AddCard(props) {
             }, 1500);
 
             props.showError(null);
+          } else if (response.status === 204) {
+            props.showError(
+              "Token has expired you are being redirected to login..."
+            );
+            setTimeout(() => {
+              redirectToLogin();
+            }, 1500);
           } else {
             props.showError("Some error ocurred");
           }

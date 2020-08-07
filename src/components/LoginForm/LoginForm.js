@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./LoginForm.css";
-import { API_BASE_URL } from "../../constants/apiContants";
+import { API_BASE_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 import Header from "../Header/Header";
@@ -26,40 +26,44 @@ function LoginForm(props) {
   };
 
   const handleSubmitClick = (e) => {
-    e.preventDefault();
-    const payload = {
-      username: state.username,
-      password: state.password,
-    };
-    axios
-      .post(API_BASE_URL, payload) //(API_BASE_URL + "login", payload)
-      .then((response) => {
-        if (response.status === 200) {
-          var accessToken = response.data.accessToken;
+    if (state.username.length && state.password.length) {
+      e.preventDefault();
+      const payload = {
+        username: state.username,
+        password: state.password,
+      };
+      axios
+        .post(API_BASE_URL, payload) //(API_BASE_URL + "login", payload)
+        .then((response) => {
+          if (response.status === 200) {
+            var accessToken = response.data.accessToken;
 
-          console.log("token " + accessToken);
+            console.log("token " + accessToken);
 
-          Cookie.set("token", accessToken);
-          console.log("cookie " + Cookie.get("token"));
-          console.log(token);
-          setState((prevState) => ({
-            ...prevState,
-            successMessage: "Login successful. Redirecting to dashboard..",
-          }));
-          setTimeout(() => {
-            redirectToDash();
-          }, 1500);
+            Cookie.set("token", accessToken, { expires: 0.0104 }); //15 minutes
+            console.log("cookie " + Cookie.get("token"));
+            console.log(token);
+            setState((prevState) => ({
+              ...prevState,
+              successMessage: "Login successful. Redirecting to dashboard..",
+            }));
+            setTimeout(() => {
+              redirectToDash();
+            }, 1500);
 
-          props.showError(null);
-        } else if (response.status === 204) {
-          props.showError("Username and password do not match");
-        } else {
-          props.showError("Username does not exists");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+            props.showError(null);
+          } else if (response.status === 204) {
+            props.showError("Username and password do not match");
+          } else {
+            props.showError("Username does not exist");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      props.showError("Please enter valid username and password");
+    }
   };
   const redirectToHome = () => {
     props.updateTitle("Home");
@@ -72,6 +76,11 @@ function LoginForm(props) {
   const redirectToRegister = () => {
     props.history.push("/register");
     props.updateTitle("Sign Up");
+  };
+
+  const redirectToLogin = () => {
+    props.history.push("/login");
+    props.updateTitle("Login");
   };
 
   return (
@@ -110,7 +119,9 @@ function LoginForm(props) {
             onChange={handleChange}
           />
         </div>
+
         <div className="form-check"></div>
+
         <button
           type="submit"
           className="btn btn-primary"

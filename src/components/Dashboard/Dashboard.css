@@ -167,3 +167,13 @@
 .button1:hover {
   opacity: 0.8;
 }
+.accountListContainer {
+  margin: auto;
+  width: 20%;
+  border: 3px solid #027d85;
+  padding: 10px;
+}
+
+.accountListDiv {
+  text-align: left;
+}
