@@ -8,6 +8,7 @@ import { API_POPACCOUNTS_URL } from "../../constants/apiConstants";
 import { API_GENTILES_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import Tile from "../Tile/Tile.js";
+import Link from "../Plaid/Link.js";
 
 class Dashboard extends Component {
   state = {
@@ -148,7 +149,7 @@ class Dashboard extends Component {
           </div>
         ))}
         */}
-
+        <Link></Link>
         {this.state.tileList}
 
         {/*<Tile title={this.state.title} description={this.state.description} />*/}
