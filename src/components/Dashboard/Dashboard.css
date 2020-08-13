@@ -21,12 +21,6 @@
   color: #ffff;
 }
 
-.img-fluid {
-  border-top-left-radius: 15%;
-  border-top-right-radius: 15%;
-  border-bottom-left-radius: 15%;
-  border-bottom-right-radius: 15%;
-}
 .h2 {
   padding: 20px;
 }
@@ -59,6 +53,12 @@
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }
+
+  .people_cards {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    font-size: 0.6rem;
+  }
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991px) {
@@ -81,6 +81,13 @@
   .heading_card {
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
+  }
+
+  .people_cards {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    font-size: 1.5rem;
+    background-color: purple;
   }
 }
 /* tablets/desktops and up ----------- */
@@ -105,6 +112,12 @@
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
   }
+
+  .people_cards {
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    font-size: 2rem;
+  }
 }
 /* large desktops and up ----------- */
 @media screen and (min-width: 1200px) {
@@ -128,18 +141,12 @@
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
   }
-}
 
-.people-cards {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.people-cards2 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.people-cards3 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  .people_cards {
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    font-size: 2rem;
+  }
 }
 
 .btn-primary.custom-btn {
@@ -147,29 +154,9 @@
   color: #ffff;
 }
 
-.people-cards {
-  margin: 1rem;
-}
-
-/* Set a style for all buttons */
-.button1 {
-  background-color: #027d85;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 20%;
-  font-size: 14px;
-}
-
-/* Add a hover effect for buttons */
-.button1:hover {
-  opacity: 0.8;
-}
 .accountListContainer {
   margin: auto;
-  width: 20%;
+  width: 60%;
   border: 3px solid #027d85;
   padding: 10px;
 }

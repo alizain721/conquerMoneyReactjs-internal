@@ -4,7 +4,7 @@ import "./LoginForm.css";
 import { API_BASE_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
-import Header from "../Header/Header";
+import DisplayHeader from "../DisplayHeader/DisplayHeader.js";
 
 import Cookie from "js-cookie";
 
@@ -72,6 +72,7 @@ function LoginForm(props) {
   const redirectToDash = () => {
     props.updateTitle("Dashboard");
     props.history.push("/dashboard");
+    props.updateIsLoggedIn(true);
   };
   const redirectToRegister = () => {
     props.history.push("/register");

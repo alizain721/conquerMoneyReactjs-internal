@@ -1,0 +1,7 @@
+.img-fluid {
+  border-top-left-radius: 15%;
+  border-top-right-radius: 15%;
+  border-bottom-left-radius: 15%;
+  border-bottom-right-radius: 15%;
+  max-width: 120px;
+}

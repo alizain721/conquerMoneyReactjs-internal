@@ -1,5 +1,5 @@
 import "./PurchaseAnalysis.css";
-import React from "react";
+import React, { useEffect } from "react";
 import chase from "../../img/Chase.png";
 import discover from "../../img/Discover.png";
 import express from "../../img/Express.png";
