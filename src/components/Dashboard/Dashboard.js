@@ -153,7 +153,7 @@ class Dashboard extends Component {
         {this.state.tileList}
 
         {/*<Tile title={this.state.title} description={this.state.description} />*/}
-
+        {/*
         <button
           type="button"
           className="btn btn-primary custom-btn"
@@ -161,7 +161,7 @@ class Dashboard extends Component {
         >
           + Add Account
         </button>
-
+        */}
         <div className="accountListContainer">
           <div className="accountListDiv">{this.state.listItems}</div>
         </div>

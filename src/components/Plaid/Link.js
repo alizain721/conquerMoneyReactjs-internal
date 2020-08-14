@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { useState, Component } from "react";
 import { PlaidLink } from "react-plaid-link";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import "./Link.css";
+import Cookie from "js-cookie";
 
 class Link extends Component {
   constructor() {
@@ -10,16 +11,32 @@ class Link extends Component {
 
     this.state = {
       transactions: [],
+      public_token2: null,
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleOnSuccess = this.handleOnSuccess.bind(this);
   }
 
   handleOnSuccess(public_token, metadata) {
     // send token to client server
-    axios.post("http://localhost:8080/api/auth/get_access_token", {
-      public_token: public_token,
-    });
+    axios
+      .post("http://localhost:8080/api/auth/get_access_token", {
+        public_token: public_token,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("RESPONSE " + response.data.public_token);
+          this.setState({
+            public_token2: response.data.public_token,
+          });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    //console.log(public_token);
   }
 
   handleOnExit() {
@@ -27,9 +44,16 @@ class Link extends Component {
   }
 
   handleClick(res) {
-    axios.post("http://localhost:8080/api/auth/transactions").then((res) => {
-      console.log({ transactions: res.data });
-    });
+    const user_token = Cookie.get("token") ? Cookie.get("token") : null;
+    axios
+      .post("http://localhost:8080/api/auth/transactions", {
+        public_token: this.state.public_token2,
+        user_token: user_token,
+      })
+      .then((res) => {
+        console.log({ transactions: res.data });
+        console.log(this.state.public_token2);
+      });
   }
 
   render() {
