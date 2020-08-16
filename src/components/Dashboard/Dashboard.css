@@ -165,3 +165,7 @@
   text-align: left;
   padding: 10px;
 }
+
+.listButton {
+  max-width: 80px;
+}

@@ -60,6 +60,7 @@ class Dashboard extends Component {
             listItems: response.data.map((d) => (
               <li key={d.id}>
                 {d.accountname} {d.currentbalance}
+                {/*<button className="listButton">Delete</button>*/}
               </li>
             )),
           });

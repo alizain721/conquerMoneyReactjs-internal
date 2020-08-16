@@ -4,6 +4,11 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import "./Link.css";
 import Cookie from "js-cookie";
+import {
+  TRANS_URL,
+  GET_ACCESS_URL,
+  API_LOCALHOST_URL,
+} from "../../constants/apiConstants";
 
 class Link extends Component {
   constructor() {
@@ -21,7 +26,7 @@ class Link extends Component {
   handleOnSuccess(public_token, metadata) {
     // send token to client server
     axios
-      .post("http://localhost:8080/api/auth/get_access_token", {
+      .post(API_LOCALHOST_URL + GET_ACCESS_URL, {
         public_token: public_token,
       })
       .then((response) => {
@@ -46,7 +51,7 @@ class Link extends Component {
   handleClick(res) {
     const user_token = Cookie.get("token") ? Cookie.get("token") : null;
     axios
-      .post("http://localhost:8080/api/auth/transactions", {
+      .post(API_LOCALHOST_URL + TRANS_URL, {
         public_token: this.state.public_token2,
         user_token: user_token,
       })
