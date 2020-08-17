@@ -25,6 +25,7 @@ class Link extends Component {
 
   handleOnSuccess(public_token, metadata) {
     // send token to client server
+    console.log(public_token);
     axios
       .post(API_LOCALHOST_URL + GET_ACCESS_URL, {
         public_token: public_token,
@@ -69,7 +70,7 @@ class Link extends Component {
         </h3>
         <PlaidLink
           clientName="React Plaid Setup"
-          env="sandbox"
+          env="development"
           product={["auth", "transactions"]}
           publicKey="4407487a1d95a71cbbe3d3b5186c9b"
           onExit={this.handleOnExit}
