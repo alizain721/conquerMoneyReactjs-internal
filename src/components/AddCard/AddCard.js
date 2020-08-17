@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./AddCard.css";
-import { API_REG_URL } from "../../constants/apiConstants";
+import { API_REG_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 import Cookie from "js-cookie";
@@ -35,7 +35,7 @@ function AddCard(props) {
         token: token,
       };
       axios
-        .post(API_ADDCARD_URL, payload)
+        .post(API_URL + API_ADDCARD_URL, payload)
         .then(function (response) {
           if (response.status === 200) {
             setState((prevState) => ({

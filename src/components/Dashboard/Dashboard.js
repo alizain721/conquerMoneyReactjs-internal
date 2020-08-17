@@ -4,8 +4,12 @@ import React, { useState, Component } from "react";
 import avatar from "../../img/dash_pic.jpeg";
 import axios from "axios";
 import Cookie from "js-cookie";
-import { API_POPACCOUNTS_URL } from "../../constants/apiConstants";
-import { API_GENTILES_URL } from "../../constants/apiConstants";
+
+import {
+  API_GENTILES_URL,
+  API_POPACCOUNTS_URL,
+  API_URL,
+} from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import Tile from "../Tile/Tile.js";
 import Link from "../Plaid/Link.js";
@@ -40,6 +44,8 @@ class Dashboard extends Component {
     this.props.updateTitle("Login");
   }
 
+  deleteAccount(accountID) {}
+
   handleSubmit() {
     // handleSubmit = (event) => {
     this.props.showError(null);
@@ -49,7 +55,7 @@ class Dashboard extends Component {
       token: token,
     };
     axios
-      .post(API_POPACCOUNTS_URL, payload)
+      .post(API_URL + API_POPACCOUNTS_URL, payload)
       .then((response) => {
         if (response.status === 200) {
           // var accounts = response.data;
@@ -59,8 +65,14 @@ class Dashboard extends Component {
           this.setState({
             listItems: response.data.map((d) => (
               <li key={d.id}>
-                {d.accountname} {d.currentbalance}
-                {/*<button className="listButton">Delete</button>*/}
+                {d.accountname} {d.currentbalance} {""}
+                <button
+                  type="button"
+                  className="listButton"
+                  onClick={() => this.deleteAccount(d.accountID)}
+                >
+                  Delete
+                </button>
               </li>
             )),
           });
@@ -99,12 +111,17 @@ class Dashboard extends Component {
       token: token,
     };
     axios
-      .post(API_GENTILES_URL, payload)
+      .post(API_URL + API_GENTILES_URL, payload)
       .then((response) => {
         if (response.status === 200) {
           this.setState({
             tileList: response.data.map((d) => (
-              <Tile key={d.id} title={d.title} description={d.description} />
+              <Tile
+                key={d.id}
+                title={d.title}
+                description={d.description}
+                typeid={d.typeid}
+              />
             )),
           });
 

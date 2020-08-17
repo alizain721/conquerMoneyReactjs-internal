@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./RegistrationForm.css";
-import { API_REG_URL } from "../../constants/apiConstants";
+import { API_REG_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 
@@ -29,7 +29,7 @@ function RegistrationForm(props) {
         password: state.password,
       };
       axios
-        .post(API_REG_URL, payload)
+        .post(API_URL + API_REG_URL, payload)
         .then(function (response) {
           if (response.status === 200) {
             setState((prevState) => ({
