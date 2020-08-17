@@ -70,7 +70,7 @@ class Link extends Component {
         </h3>
         <PlaidLink
           clientName="React Plaid Setup"
-          env="development"
+          env="sandbox"
           product={["auth", "transactions"]}
           publicKey="4407487a1d95a71cbbe3d3b5186c9b"
           onExit={this.handleOnExit}

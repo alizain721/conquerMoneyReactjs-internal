@@ -168,6 +168,11 @@ class Dashboard extends Component {
         ))}
         */}
         <Link></Link>
+
+        <div className="accountListContainer">
+          <div className="accountListDiv">{this.state.listItems}</div>
+        </div>
+
         {this.state.tileList}
 
         {/*<Tile title={this.state.title} description={this.state.description} />*/}
@@ -180,9 +185,6 @@ class Dashboard extends Component {
           + Add Account
         </button>
         */}
-        <div className="accountListContainer">
-          <div className="accountListDiv">{this.state.listItems}</div>
-        </div>
 
         <div
           className="alert alert-success mt-2"
