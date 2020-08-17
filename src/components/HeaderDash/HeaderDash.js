@@ -5,7 +5,10 @@ import UserIcon from "../../img/SpartanLogo.jpg";
 import dash_pic from "../../img/dash_pic.jpeg";
 import Cookie from "js-cookie";
 import axios from "axios";
-import { API_GETBALANCECREDIT_URL } from "../../constants/apiConstants";
+import {
+  API_GETBALANCECREDIT_URL,
+  API_URL,
+} from "../../constants/apiConstants";
 
 class HeaderDash extends Component {
   //try authentification here
@@ -26,7 +29,7 @@ class HeaderDash extends Component {
       token: token,
     };
     axios
-      .post(API_GETBALANCECREDIT_URL, payload)
+      .post(API_URL + API_GETBALANCECREDIT_URL, payload)
       .then((response) => {
         if (response.status === 200) {
           // var accounts = response.data;

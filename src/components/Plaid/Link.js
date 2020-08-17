@@ -7,7 +7,7 @@ import Cookie from "js-cookie";
 import {
   TRANS_URL,
   GET_ACCESS_URL,
-  API_LOCALHOST_URL,
+  API_URL,
 } from "../../constants/apiConstants";
 
 class Link extends Component {
@@ -27,7 +27,7 @@ class Link extends Component {
     // send token to client server
     console.log(public_token);
     axios
-      .post(API_LOCALHOST_URL + GET_ACCESS_URL, {
+      .post(API_URL + GET_ACCESS_URL, {
         public_token: public_token,
       })
       .then((response) => {
@@ -52,7 +52,7 @@ class Link extends Component {
   handleClick(res) {
     const user_token = Cookie.get("token") ? Cookie.get("token") : null;
     axios
-      .post(API_LOCALHOST_URL + TRANS_URL, {
+      .post(API_URL + TRANS_URL, {
         public_token: this.state.public_token2,
         user_token: user_token,
       })

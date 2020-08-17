@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./LoginForm.css";
-import { API_BASE_URL } from "../../constants/apiConstants";
+import { API_BASE_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 import DisplayHeader from "../DisplayHeader/DisplayHeader.js";
@@ -33,7 +33,7 @@ function LoginForm(props) {
         password: state.password,
       };
       axios
-        .post(API_BASE_URL, payload) //(API_BASE_URL + "login", payload)
+        .post(API_URL + API_BASE_URL, payload) //(API_BASE_URL + "login", payload)
         .then((response) => {
           if (response.status === 200) {
             var accessToken = response.data.accessToken;
