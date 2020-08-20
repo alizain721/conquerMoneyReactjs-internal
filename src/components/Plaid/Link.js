@@ -9,6 +9,8 @@ import {
   GET_ACCESS_URL,
   API_URL,
 } from "../../constants/apiConstants";
+import { trackPromise } from "react-promise-tracker";
+import Loader from "react-loader-spinner";
 
 class Link extends Component {
   constructor() {
@@ -26,6 +28,7 @@ class Link extends Component {
   handleOnSuccess(public_token, metadata) {
     // send token to client server
     console.log(public_token);
+
     axios
       .post(API_URL + GET_ACCESS_URL, {
         public_token: public_token,
@@ -43,6 +46,7 @@ class Link extends Component {
       });
 
     //console.log(public_token);
+    window.$done = false;
   }
 
   handleOnExit() {
@@ -51,36 +55,43 @@ class Link extends Component {
 
   handleClick(res) {
     const user_token = Cookie.get("token") ? Cookie.get("token") : null;
-    axios
-      .post(API_URL + TRANS_URL, {
-        public_token: this.state.public_token2,
-        user_token: user_token,
-      })
-      .then((res) => {
-        console.log({ transactions: res.data });
-        console.log(this.state.public_token2);
-      });
+
+    trackPromise(
+      axios
+
+        .post(API_URL + TRANS_URL, {
+          public_token: this.state.public_token2,
+          user_token: user_token,
+        })
+        .then((res) => {
+          console.log({ transactions: res.data });
+          console.log(this.state.public_token2);
+        })
+    );
   }
 
   render() {
     return (
       <div>
-        <h3 className="card-title">
-          <b>Plaid Component</b>
-        </h3>
         <PlaidLink
           clientName="React Plaid Setup"
-          env="sandbox"
+          env="development"
           product={["auth", "transactions"]}
           publicKey="4407487a1d95a71cbbe3d3b5186c9b"
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}
           className="test"
         >
-          Open Link and connect your bank!
+          Click this link and connect your bank!
         </PlaidLink>
         <div>
-          <button onClick={this.handleClick}>Get Transactions</button>
+          <button
+            class="button"
+            className="btn btn-primary custom-btn"
+            onClick={this.handleClick}
+          >
+            Get Transactions
+          </button>
         </div>
       </div>
     );

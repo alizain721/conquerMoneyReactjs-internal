@@ -1,9 +1,17 @@
 .App {
   text-align: center;
+  padding-bottom: 60px;
 }
 
 .hv-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }

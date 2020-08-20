@@ -4,3 +4,26 @@
   margin: 1rem;
   min-width: 400px;
 }
+
+h5 {
+  margin-top: 20px;
+}
+
+.accountListContainer {
+  margin: auto;
+  width: 80%;
+  border: 3px solid #027d85;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.accountListDiv {
+  text-align: left;
+  padding: 10px;
+}
+
+.viewTrans {
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+}

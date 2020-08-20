@@ -151,20 +151,7 @@
 
 .btn-primary.custom-btn {
   background-color: #027d85;
-  color: #ffff;
-}
-
-.accountListContainer {
-  margin: auto;
-  width: 70%;
-  border: 3px solid #027d85;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.accountListDiv {
-  text-align: left;
-  padding: 10px;
+  color: white;
 }
 
 .listButton {
@@ -177,4 +164,8 @@
   color: #ffff;
   padding: 0px;
   vertical-align: middle;
+}
+
+.dashboard {
+  margin-top: 240px;
 }

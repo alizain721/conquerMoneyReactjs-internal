@@ -46,63 +46,6 @@ class Dashboard extends Component {
 
   deleteAccount(accountID) {}
 
-  handleSubmit() {
-    // handleSubmit = (event) => {
-    this.props.showError(null);
-    const token = Cookie.get("token") ? Cookie.get("token") : null;
-    const payload = {
-      username: "USD", //admin for osiris
-      token: token,
-    };
-    axios
-      .post(API_URL + API_POPACCOUNTS_URL, payload)
-      .then((response) => {
-        if (response.status === 200) {
-          // var accounts = response.data;
-          // const listItems = stuff.map((number) => <li>{number}</li>);
-          // this.setState({ accountList: accounts });
-
-          this.setState({
-            listItems: response.data.map((d) => (
-              <li key={d.id}>
-                {d.accountname} {d.currentbalance} {""}
-                <button
-                  type="button"
-                  className="listButton"
-                  onClick={() => this.deleteAccount(d.accountID)}
-                >
-                  Delete
-                </button>
-              </li>
-            )),
-          });
-
-          //console.log("response " + this.state.accountList.Data);
-
-          this.setState((prevState) => ({
-            ...prevState,
-            successMessage: "Recieved Token",
-          }));
-
-          this.props.showError(null);
-        } else if (response.status === 204) {
-          console.log("204");
-          this.props.showError(
-            "Token has expired you are being redirected to login..."
-          );
-          setTimeout(() => {
-            this.redirectToLogin();
-          }, 1500);
-        } else {
-          console.log("else");
-          this.props.showError("Some error ocurred");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
   generateTiles() {
     this.props.showError(null);
     const token = Cookie.get("token") ? Cookie.get("token") : null;
@@ -124,12 +67,12 @@ class Dashboard extends Component {
               />
             )),
           });
-
+          /*
           this.setState((prevState) => ({
             ...prevState,
             successMessage: "Recieved Token",
           }));
-
+*/
           this.props.showError(null);
         } else if (response.status === 204) {
           console.log("204");
@@ -150,13 +93,12 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    this.handleSubmit();
     this.generateTiles();
   }
 
   render() {
     return (
-      <div>
+      <div className="dashboard">
         {/*}
         {Object.keys(this.state.tiles).map((key) => (
           <div className="container">
@@ -167,12 +109,13 @@ class Dashboard extends Component {
           </div>
         ))}
         */}
+        {/*}
         <Link></Link>
 
         <div className="accountListContainer">
           <div className="accountListDiv">{this.state.listItems}</div>
         </div>
-
+      */}
         {this.state.tileList}
 
         {/*<Tile title={this.state.title} description={this.state.description} />*/}

@@ -57,39 +57,41 @@ class HeaderDash extends Component {
 
   render() {
     return (
-      <div className="card">
-        <div className="card-body heading_card">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-4">
-                <h1 className="text-center available_balance">
-                  <b>{this.state.balance}</b>
-                </h1>
-                <p className="text-center available_balance_tagline">
-                  Available Balance
-                </p>
-              </div>
+      <header>
+        <div className="card dash_card">
+          <div className="card-body heading_card">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-4">
+                  <h1 className="text-center available_balance">
+                    <b>{this.state.balance}</b>
+                  </h1>
+                  <p className="text-center available_balance_tagline">
+                    Available Balance
+                  </p>
+                </div>
 
-              <div className="col-4 ">
-                <h1 className="text-center credit_balance">
-                  <b>{this.state.credit}</b>
-                </h1>
-                <p className="text-center available_credit_tagline">
-                  Available Credit
-                </p>
-              </div>
+                <div className="col-4 ">
+                  <h1 className="text-center credit_balance">
+                    <b>{this.state.credit}</b>
+                  </h1>
+                  <p className="text-center available_credit_tagline">
+                    Available Credit
+                  </p>
+                </div>
 
-              <div className="col-4">
-                <img
-                  src={dash_pic}
-                  className="img-fluid mx-auto d-block"
-                  alt="avatar"
-                />
+                <div className="col-4">
+                  <img
+                    src={dash_pic}
+                    className="img-fluid mx-auto d-block"
+                    alt="avatar"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </header>
     );
   }
 }

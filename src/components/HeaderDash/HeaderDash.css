@@ -5,3 +5,17 @@
   border-bottom-right-radius: 15%;
   max-width: 120px;
 }
+
+.dash_card {
+  position: fixed; /* instead of absolute */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 90;
+}
+
+.heading_card {
+  height: 0px;
+  z-index: 90;
+}

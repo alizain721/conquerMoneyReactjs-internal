@@ -1,5 +1,6 @@
 .header {
   justify-content: right;
+  z-index: 100;
 }
 
 .navbar {
