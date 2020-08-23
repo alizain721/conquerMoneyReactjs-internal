@@ -19,9 +19,7 @@ class HeaderDash extends Component {
   };
 
   getCreditAndBalance() {
-    this.setState({
-      balance: "shat",
-    });
+    this.setState({});
 
     const token = Cookie.get("token") ? Cookie.get("token") : null;
     const payload = {

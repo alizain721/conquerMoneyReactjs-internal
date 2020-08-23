@@ -6,5 +6,6 @@ export const API_GETBALANCECREDIT_URL = "/getbalancecredit";
 export const API_GENTILES_URL = "/gentiles";
 export const TRANS_URL = "/transactions";
 export const GET_ACCESS_URL = "/get_access_token";
+export const API_DELETEACCOUNT_URL = "/deleteaccount";
 
 export const API_URL = "http://localhost:8080/api/auth";

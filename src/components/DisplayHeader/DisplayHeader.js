@@ -17,7 +17,7 @@ function DisplayHeader(props) {
     return <HeaderDash />;
   }
 */
-  return <Header />;
+  return <Header title={props.title} />;
 }
 
 export default withRouter(DisplayHeader);

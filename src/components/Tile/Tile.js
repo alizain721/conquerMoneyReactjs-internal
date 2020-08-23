@@ -4,18 +4,12 @@ import { withRouter } from "react-router-dom";
 import "./Tile.css";
 import test_pic from "../../img/Map.png";
 import Link from "../Plaid/Link.js";
-import axios from "axios";
-import { API_POPACCOUNTS_URL, API_URL } from "../../constants/apiConstants";
-import Cookie from "js-cookie";
 
 class Tile extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      listItems: [],
-      done: window.$done,
-    };
+    this.state = {};
   }
 
   componentDidUpdate() {
@@ -23,8 +17,8 @@ class Tile extends Component {
   }
 
   redirectToPA() {
-    this.props.history.push("/purchaseanalysis");
     this.props.updateTitle("Purchase Analysis");
+    this.props.history.push("/purchaseanalysis");
   }
 
   buttonAction() {
@@ -41,58 +35,6 @@ class Tile extends Component {
   //typeid = 2 Tile with no button (informational)
   //typeid else Image Tile
 
-  populateAccounts() {
-    //this.props.showError(null);
-    const token = Cookie.get("token") ? Cookie.get("token") : null;
-    const payload = {
-      username: "USD", //admin for osiris
-      token: token,
-    };
-    axios
-      .post(API_URL + API_POPACCOUNTS_URL, payload)
-      .then((response) => {
-        if (response.status === 200) {
-          // var accounts = response.data;
-          // const listItems = stuff.map((number) => <li>{number}</li>);
-          // this.setState({ accountList: accounts });
-
-          this.setState({
-            listItems: response.data.map((d) => (
-              <li key={d.id}>
-                {d.accountname} {d.currentbalance} {""}
-                <button
-                  type="button"
-                  className="listButton"
-                  onClick={() => this.deleteAccount(d.accountID)}
-                >
-                  Delete
-                </button>
-              </li>
-            )),
-          });
-
-          this.props.showError(null);
-        } else if (response.status === 204) {
-          console.log("204");
-          this.props.showError(
-            "Token has expired you are being redirected to login..."
-          );
-          setTimeout(() => {
-            this.redirectToLogin();
-          }, 1500);
-        } else {
-          console.log("else");
-          this.props.showError("Some error ocurred");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  componentDidMount() {
-    this.populateAccounts();
-  }
   render() {
     if (this.props.typeid === 1) {
       return (
@@ -107,7 +49,7 @@ class Tile extends Component {
                 <button
                   type="button"
                   className="btn btn-primary custom-btn"
-                  onClick={() => this.buttonAction()}
+                  onClick={() => this.redirectToPA()}
                 >
                   Large button
                 </button>
@@ -156,19 +98,6 @@ class Tile extends Component {
                 <b>Get Started with Plaid!</b>
               </h3>
               <Link> </Link>
-
-              {window.$done ? (
-                <div className="viewTrans">View Transactions</div>
-              ) : (
-                <p>no</p>
-              )}
-              <h5>
-                <b>Your Accounts</b>
-              </h5>
-              <div className="accountListContainer">
-                <div className="accountListDiv">{this.state.listItems}</div>
-              </div>
-              <div className="text-center"></div>
             </div>
           </div>
         </div>

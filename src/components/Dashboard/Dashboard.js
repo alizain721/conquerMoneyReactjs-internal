@@ -15,15 +15,22 @@ import Tile from "../Tile/Tile.js";
 import Link from "../Plaid/Link.js";
 
 class Dashboard extends Component {
-  state = {
-    successMessage: null,
-    // accountList: [],
-    listItems: [],
-    tiles: [],
-    tileList: [],
-    title: "test",
-    description: "something",
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      successMessage: null,
+      // accountList: [],
+      listItems: [],
+      tiles: [],
+      tileList: [],
+      title: "test",
+      description: "something",
+    };
+
+    this.redirectToPA = this.redirectToPA.bind(this);
+    //this.handleOnSuccess = this.handleOnSuccess.bind(this);
+  }
 
   handleClick() {
     console.log("CLICK");
@@ -64,6 +71,7 @@ class Dashboard extends Component {
                 title={d.title}
                 description={d.description}
                 typeid={d.typeid}
+                updateTitle={this.props.updateTitle}
               />
             )),
           });
