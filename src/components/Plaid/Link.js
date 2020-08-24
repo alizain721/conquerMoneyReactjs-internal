@@ -30,6 +30,12 @@ class Link extends Component {
     this.handleOnSuccess = this.handleOnSuccess.bind(this);
     this.populateAccounts = this.populateAccounts.bind(this);
     this.deleteAccount = this.deleteAccount.bind(this);
+    this.redirectToTrans = this.redirectToTrans.bind(this);
+  }
+
+  redirectToTrans() {
+    this.props.history.push("/transactions");
+    //this.props.updateTitle("Transactions");
   }
 
   deleteAccount(mask) {
@@ -43,7 +49,11 @@ class Link extends Component {
       .post(API_URL + API_DELETEACCOUNT_URL, payload)
       .then((response) => {
         if (response.status === 200) {
+          //  this.listItems = this.listItems.filter(function (el) {
+          //    return el.mask !== mask;
+          //  });
           this.setState({
+            // listItems: this.listItems,
             successMessage: "Account deleted!",
           });
         } else if (response.status === 204) {
@@ -161,6 +171,12 @@ class Link extends Component {
     );
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.listItems !== this.state.listItems) {
+      // this.populateAccounts();
+    }
+  }
+
   render() {
     return (
       <div>
@@ -184,9 +200,7 @@ class Link extends Component {
             Get Transactions
           </button>
         </div>
-        {this.state.isDone ? (
-          <div className="viewTrans">View Transactions</div>
-        ) : null}
+
         <h5>
           <b>Your Accounts</b>
         </h5>
@@ -201,6 +215,17 @@ class Link extends Component {
           role="alert"
         >
           {this.state.successMessage}
+        </div>
+        <div>
+          {this.state.isDone ? (
+            <p className="viewTrans" onClick={() => this.redirectToTrans()}>
+              View Transactions
+            </p>
+          ) : (
+            <div className="viewTrans" onClick={() => this.redirectToTrans()}>
+              View Transactions
+            </div>
+          )}
         </div>
       </div>
     );
