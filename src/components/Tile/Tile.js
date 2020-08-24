@@ -97,7 +97,7 @@ class Tile extends Component {
               <h3 className="card-title">
                 <b>Get Started with Plaid!</b>
               </h3>
-              <Link> </Link>
+              <Link updateTitle={this.props.updateTitle}></Link>
             </div>
           </div>
         </div>

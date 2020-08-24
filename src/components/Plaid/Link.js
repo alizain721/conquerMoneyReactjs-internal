@@ -35,7 +35,7 @@ class Link extends Component {
 
   redirectToTrans() {
     this.props.history.push("/transactions");
-    //this.props.updateTitle("Transactions");
+    this.props.updateTitle("Transactions");
   }
 
   deleteAccount(mask) {
@@ -49,13 +49,22 @@ class Link extends Component {
       .post(API_URL + API_DELETEACCOUNT_URL, payload)
       .then((response) => {
         if (response.status === 200) {
-          //  this.listItems = this.listItems.filter(function (el) {
-          //    return el.mask !== mask;
-          //  });
+          //console.log("BEFORE" + JSON.stringify(this.state.listItems));
+          var newList = this.state.listItems.filter(function (el) {
+            //console.log("MIDDLE" + el.props.children[4]);
+            return el.props.children[4] !== mask;
+          });
+
+          // console.log("AFTER" + newList);
           this.setState({
-            // listItems: this.listItems,
+            listItems: newList,
             successMessage: "Account deleted!",
           });
+          setTimeout(() => {
+            this.setState({
+              successMessage: null,
+            });
+          }, 1500);
         } else if (response.status === 204) {
           console.log("204");
           this.props.showError(
@@ -167,14 +176,9 @@ class Link extends Component {
           this.setState({
             isDone: true,
           });
+          this.populateAccounts();
         })
     );
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.listItems !== this.state.listItems) {
-      // this.populateAccounts();
-    }
   }
 
   render() {
