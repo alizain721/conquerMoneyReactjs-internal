@@ -134,25 +134,29 @@ class Link extends Component {
   }
 
   handleOnSuccess(public_token, metadata) {
+    const user_token = Cookie.get("token") ? Cookie.get("token") : null;
     // send token to client server
     console.log(public_token);
 
-    axios
-      .post(API_URL + GET_ACCESS_URL, {
-        public_token: public_token,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("RESPONSE " + response.data.public_token);
-          this.setState({
-            public_token2: response.data.public_token,
-          });
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+    trackPromise(
+      axios
+        .post(API_URL + GET_ACCESS_URL, {
+          public_token: public_token,
+          user_token: user_token,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("RESPONSE " + response.data.public_token);
+            this.setState({
+              public_token2: response.data.public_token,
+            });
+          }
+          this.populateAccounts();
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    );
     //console.log(public_token);
   }
 
@@ -176,7 +180,7 @@ class Link extends Component {
           this.setState({
             isDone: true,
           });
-          this.populateAccounts();
+          // this.populateAccounts();
         })
     );
   }

@@ -125,6 +125,12 @@ class Table extends Component {
                         filter: true,
                       },
                       {
+                        headerName: "Date",
+                        field: "date",
+                        sortable: true,
+                        filter: true,
+                      },
+                      {
                         headerName: "Payment Channel",
                         field: "paymentChannel",
                         sortable: true,
