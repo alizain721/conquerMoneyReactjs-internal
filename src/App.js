@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 
 import Header from "./components/Header/Header";
 import DisplayHeader from "./components/DisplayHeader/DisplayHeader";
@@ -13,6 +13,8 @@ import AlertComponent from "./components/AlertComponent/AlertComponent";
 import PurchaseAnalysis from "./components/PurchaseAnalysis/PurchaseAnalysis";
 import AddCard from "./components/AddCard/AddCard";
 import Tile from "./components/Tile/Tile";
+import axios from "axios";
+import { API_URL, API_TRANS } from "./constants/apiConstants";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
@@ -22,6 +24,10 @@ import BottomNav from "./components/BottomNav/BottomNav";
 
 import { usePromiseTracker } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
+import Table from "./components/Table/Table";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 const useStyles = makeStyles({
   root: {
@@ -66,7 +72,59 @@ function App() {
   const [errorMessage, updateErrorMessage] = useState(null);
 
   const [isLoggedIn, updateIsLoggedIn] = useState(false);
+  /*
+  const [state, setState] = useState({
+    columnDefs: [
+      {
+        headerName: "Make",
+        field: "make",
+        sortable: true,
+        filter: true,
+      },
+      {
+        headerName: "Model",
+        field: "model",
+        sortable: true,
+        filter: true,
+      },
+      {
+        headerName: "Price",
+        field: "price",
+        sortable: true,
+        filter: true,
+      },
+    ],
+    /*
+    rowData: [
+      {
+        make: "Toyota",
+        model: "Celica",
+        price: 35000,
+      },
+      {
+        make: "Ford",
+        model: "Mondeo",
+        price: 32000,
+      },
+      {
+        make: "Porsche",
+        model: "Boxter",
+        price: 72000,
+      },
+    ],
+    
+  });
 
+  useEffect(() => {
+    if ({ title } === "Transactions") {
+      fetch(
+        "https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/sample-data/smallRowData.json"
+      )
+        .then((result) => result.json())
+        .then((rowData) => setState({ rowData }));
+    }
+  });
+*/
   return (
     <Router>
       <DisplayHeader isLoggedIn={isLoggedIn} title={title} />
@@ -88,6 +146,13 @@ function App() {
                 updateTitle={updateTitle}
               />
             </Route>
+            <Route path="/transactions">
+              <Table
+                showError={updateErrorMessage}
+                updateTitle={updateTitle}
+              ></Table>
+            </Route>
+
             <Route path="/login">
               <LoginForm
                 showError={updateErrorMessage}

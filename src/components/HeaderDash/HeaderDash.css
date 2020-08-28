@@ -4,6 +4,11 @@
   border-bottom-left-radius: 15%;
   border-bottom-right-radius: 15%;
   max-width: 120px;
+  cursor: pointer;
+}
+
+.img-fluid:hover {
+  opacity: 0.8;
 }
 
 .dash_card {

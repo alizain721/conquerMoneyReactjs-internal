@@ -19,7 +19,7 @@ class HeaderDash extends Component {
   };
 
   getCreditAndBalance() {
-    this.setState({});
+    //this.setState({});
 
     const token = Cookie.get("token") ? Cookie.get("token") : null;
     const payload = {
@@ -80,9 +80,10 @@ class HeaderDash extends Component {
 
                 <div className="col-4">
                   <img
-                    src={dash_pic}
+                    src={UserIcon}
                     className="img-fluid mx-auto d-block"
                     alt="avatar"
+                    onClick={this.getCreditAndBalance}
                   />
                 </div>
               </div>
