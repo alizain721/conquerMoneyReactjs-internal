@@ -122,6 +122,7 @@ function LoginForm(props) {
         </div>
 
         <div className="form-check"></div>
+        <div>HELLO TESTING</div>
 
         <button
           type="submit"
