@@ -1,18 +1,15 @@
 import "./Dashboard.css";
 
-import React, { useState, Component } from "react";
-import avatar from "../../img/dash_pic.jpeg";
+import React, { Component } from "react"; 
 import axios from "axios";
 import Cookie from "js-cookie";
 
 import {
-  API_GENTILES_URL,
-  API_POPACCOUNTS_URL,
+  API_GENTILES_URL, 
   API_URL,
 } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
-import Tile from "../Tile/Tile.js";
-import Link from "../Plaid/Link.js";
+import Tile from "../Tile/Tile.js"; 
 
 class Dashboard extends Component {
   constructor() {

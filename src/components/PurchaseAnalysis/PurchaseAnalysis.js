@@ -1,5 +1,5 @@
 import "./PurchaseAnalysis.css";
-import React, { useEffect } from "react";
+import React, {  } from "react";
 import chase from "../../img/Chase.png";
 import discover from "../../img/Discover.png";
 import express from "../../img/Express.png";
@@ -12,10 +12,10 @@ function PurchaseAnalysis(props) {
     props.history.push("/login");
     props.updateTitle("Login");
   };
-  const redirectToDash = () => {
-    props.history.push("/dashboard");
-    props.updateTitle("Dashboard");
-  };
+  // const redirectToDash = () => {
+  //   props.history.push("/dashboard");
+  //   props.updateTitle("Dashboard");
+  // };
 
   return (
     <div>

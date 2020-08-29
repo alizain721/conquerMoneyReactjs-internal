@@ -1,39 +1,32 @@
-import React, { useMemo, useState, useEffect } from "react";
-
-import Header from "./components/Header/Header";
+import React, { useState } from "react";
+ 
 import DisplayHeader from "./components/DisplayHeader/DisplayHeader";
 import LoginForm from "./components/LoginForm/LoginForm";
 import Dashboard from "./components/Dashboard/Dashboard";
-import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
-import HeaderDash from "./components/HeaderDash/HeaderDash";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm"; 
 import Home from "./components/Home/Home";
 import withSplashScreen from "./components/SplashScreen/withSplashScreen";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
 import PurchaseAnalysis from "./components/PurchaseAnalysis/PurchaseAnalysis";
-import AddCard from "./components/AddCard/AddCard";
-import Tile from "./components/Tile/Tile";
-import axios from "axios";
-import { API_URL, API_TRANS } from "./constants/apiConstants";
+import AddCard from "./components/AddCard/AddCard"; 
 
-import { makeStyles } from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles"; 
 
 import "./App.css";
 import BottomNav from "./components/BottomNav/BottomNav";
 
 import { usePromiseTracker } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
-import Table from "./components/Table/Table";
-import { AgGridReact } from "ag-grid-react";
+import Table from "./components/Table/Table"; 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-  },
-});
+// const useStyles = makeStyles({
+//   root: {
+//     width: 500,
+//   },
+// });
 
 const LoadingIndicator = (props) => {
   const { promiseInProgress } = usePromiseTracker();

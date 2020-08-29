@@ -5,13 +5,11 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import {
   API_GET_TRANS,
-  API_URL,
-  API_GET_ACCOUNTS,
+  API_URL, 
 } from "../../constants/apiConstants";
 import axios from "axios";
 import Cookie from "js-cookie";
-import "./Table.css";
-import Header from "../Header/Header.js";
+import "./Table.css"; 
 
 class Table extends Component {
   constructor() {

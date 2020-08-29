@@ -3,8 +3,7 @@ import axios from "axios";
 import "./LoginForm.css";
 import { API_BASE_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
-import avatar from "../../img/SpartanLogo.jpg";
-import DisplayHeader from "../DisplayHeader/DisplayHeader.js";
+import avatar from "../../img/SpartanLogo.jpg"; 
 
 import Cookie from "js-cookie";
 
@@ -65,10 +64,10 @@ function LoginForm(props) {
       props.showError("Please enter valid username and password");
     }
   };
-  const redirectToHome = () => {
-    props.updateTitle("Home");
-    props.history.push("/home");
-  };
+  // const redirectToHome = () => {
+  //   props.updateTitle("Home");
+  //   props.history.push("/home");
+  // };
   const redirectToDash = () => {
     props.updateTitle("Dashboard");
     props.history.push("/dashboard");
@@ -79,10 +78,10 @@ function LoginForm(props) {
     props.updateTitle("Sign Up");
   };
 
-  const redirectToLogin = () => {
-    props.history.push("/login");
-    props.updateTitle("Login");
-  };
+  // const redirectToLogin = () => {
+  //   props.history.push("/login");
+  //   props.updateTitle("Login");
+  // };
 
   return (
     <div className="loginPage">
@@ -122,7 +121,6 @@ function LoginForm(props) {
         </div>
 
         <div className="form-check"></div>
-        <div>HELLO TESTING</div>
 
         <button
           type="submit"

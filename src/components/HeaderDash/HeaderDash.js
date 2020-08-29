@@ -1,8 +1,7 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import "./HeaderDash.css";
 import { withRouter } from "react-router-dom";
 import UserIcon from "../../img/SpartanLogo.jpg";
-import dash_pic from "../../img/dash_pic.jpeg";
 import Cookie from "js-cookie";
 import axios from "axios";
 import {

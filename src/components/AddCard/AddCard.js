@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./AddCard.css";
-import { API_REG_URL, API_URL } from "../../constants/apiConstants";
+import { API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 import Cookie from "js-cookie";
@@ -67,10 +67,10 @@ function AddCard(props) {
       props.showError("Please enter valid username and password");
     }
   };
-  const redirectToHome = () => {
-    props.updateTitle("Home");
-    props.history.push("/home");
-  };
+  // const redirectToHome = () => {
+  //   props.updateTitle("Home");
+  //   props.history.push("/home");
+  // };
   const redirectToDash = () => {
     props.updateTitle("Dashboard");
     props.history.push("/dashboard");

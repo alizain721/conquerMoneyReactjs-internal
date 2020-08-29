@@ -21,18 +21,16 @@ function BottomNav(props) {
     setValue(newValue);
   };
 
-  const testFunction = () => {
-    console.log("shat");
-  };
+
   const classes = useStyles();
 
-  const styles = {
-    stickToBottom: {
-      width: "100%",
-      position: "absolute",
-      bottom: 0,
-    },
-  };
+  // const styles = {
+  //   stickToBottom: {
+  //     width: "100%",
+  //     position: "absolute",
+  //     bottom: 0,
+  //   },
+  // };
 
   return (
     <BottomNavigation

@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import { PlaidLink } from "react-plaid-link";
 import axios from "axios";
 import { withRouter } from "react-router-dom";

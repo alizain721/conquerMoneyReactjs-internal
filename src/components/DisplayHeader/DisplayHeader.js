@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderDash from "../HeaderDash/HeaderDash.js";
 import Header from "../Header/Header.js";
-import ReactDOM from "react-dom";
+
 import { withRouter } from "react-router-dom";
 
 function DisplayHeader(props) {

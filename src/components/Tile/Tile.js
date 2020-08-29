@@ -1,5 +1,4 @@
-import React, { useState, Component } from "react";
-import gameover from "../../img/source.gif";
+import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "./Tile.css";
 import test_pic from "../../img/Map.png";
