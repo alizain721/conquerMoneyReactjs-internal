@@ -1,0 +1,10 @@
+.btn-primary.custom-btn {
+    border-radius:20px;
+    background-color: #027d85;
+    color: rgb(255, 255, 255);
+  }
+
+  .successMessage {
+    color: green;
+    font-weight: bold;
+  }

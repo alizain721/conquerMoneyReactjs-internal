@@ -12,10 +12,9 @@ import {
 } from "../../constants/apiConstants";
 import axios from "axios";
 import Cookie from "js-cookie";
-import "./Table.css";
-import BtnCellRenderer from "./BtnCellRenderer.jsx";
+import "./Transactions.css";
 
-class Table extends Component {
+class Transactions extends Component {
   constructor() {
     super();
 
@@ -55,6 +54,7 @@ class Table extends Component {
             )),
             newAccountList: this.state.accountList.concat(
               <button
+                key={new Date().getTime()}
                 onClick={() => {
                   this.loadOneTable();
                 }}
@@ -172,7 +172,7 @@ class Table extends Component {
 
   render() {
     return (
-      <div>
+      <div className="transPage">
         <div className="split left">{this.state.newAccountList}</div>
 
         <div className="split right">
@@ -196,4 +196,4 @@ class Table extends Component {
   }
 }
 
-export default withRouter(Table);
+export default withRouter(Transactions);

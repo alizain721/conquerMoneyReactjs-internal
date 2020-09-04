@@ -1,0 +1,37 @@
+.right {
+  right: 0;
+  padding-top: 60px;
+  padding-right: 20px;
+}
+
+.leftText {
+  float: left;
+}
+
+.rightText {
+  float: right;
+  font-weight: normal;
+}
+
+.largeText {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.largeText2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cashCard {
+  margin: 15px;
+}
+
+.creditCard {
+  margin: 15px;
+}
+
+.loanCard {
+  margin: 15px;
+}

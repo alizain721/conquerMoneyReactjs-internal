@@ -9,7 +9,7 @@ function DisplayHeader(props) {
   console.log(props.location.pathname);
 
   if (props.location.pathname === "/dashboard") {
-    return <HeaderDash updateCredit={"2555"} />;
+    return <HeaderDash updateCredit={"2555"} updateTitle={props.updateTitle} />;
   }
 
   /*

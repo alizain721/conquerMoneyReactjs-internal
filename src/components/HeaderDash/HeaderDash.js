@@ -12,10 +12,19 @@ import {
 class HeaderDash extends Component {
   //try authentification here
 
-  state = {
-    balance: null,
-    credit: null,
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      balance: null,
+      credit: null,
+    };
+  }
+
+  redirectToAccounts() {
+    this.props.history.push("/accounts");
+    this.props.updateTitle("Accounts");
+  }
 
   getCreditAndBalance() {
     //this.setState({});
@@ -55,7 +64,12 @@ class HeaderDash extends Component {
   render() {
     return (
       <header>
-        <div className="card dash_card">
+        <div
+          className="card dash_card"
+          onClick={() => {
+            this.redirectToAccounts();
+          }}
+        >
           <div className="card-body heading_card">
             <div className="container-fluid">
               <div className="row">
@@ -82,7 +96,9 @@ class HeaderDash extends Component {
                     src={UserIcon}
                     className="img-fluid mx-auto d-block"
                     alt="avatar"
-                    onClick={this.getCreditAndBalance}
+                    onClick={() => {
+                      this.getCreditAndBalance();
+                    }}
                   />
                 </div>
               </div>

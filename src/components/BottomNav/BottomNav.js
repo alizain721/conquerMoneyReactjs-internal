@@ -7,13 +7,17 @@ import ForwardIcon from "@material-ui/icons/ArrowForward";
 import BackIcon from "@material-ui/icons/ArrowBack";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import MoneyIcon from "@material-ui/icons/MoneyRounded";
+import PostIcon from "@material-ui/icons/PostAdd";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles({
   root: {
     width: 500,
   },
 });
+
 function BottomNav(props) {
   let history = useHistory();
   const [value, setValue] = React.useState("recents");
@@ -21,6 +25,15 @@ function BottomNav(props) {
     setValue(newValue);
   };
 
+  const redirectToTransactions = () => {
+    props.history.push("/transactions");
+    props.updateTitle("Transactions");
+  };
+
+  const redirectToPost = () => {
+    props.history.push("/addpost");
+    props.updateTitle("Add Post");
+  };
 
   const classes = useStyles();
 
@@ -45,14 +58,16 @@ function BottomNav(props) {
         onClick={() => history.goBack()}
       />
       <BottomNavigationAction
-        label="Favorites"
-        value="favorites"
-        icon={<FavoriteIcon />}
+        label="Transactions"
+        value="transactions"
+        icon={<MoneyIcon />}
+        onClick={() => redirectToTransactions()}
       />
       <BottomNavigationAction
-        label="Nearby"
-        value="nearby"
-        icon={<LocationOnIcon />}
+        label="Post"
+        value="post"
+        icon={<PostIcon />}
+        onClick={() => redirectToPost()}
       />
       <BottomNavigationAction
         label="Forward"
