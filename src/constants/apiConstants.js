@@ -12,5 +12,8 @@ export const API_GET_TRANS = "/get_transactions";
 export const API_GET_ACCOUNTS = "/get_accounts";
 export const API_ADDPOST_URL = "/addpost";
 export const API_GET_CASH = "/get_cash";
+export const API_GET_CARDS = "/get_cards";
+export const API_GET_LOANS = "/get_loans";
+export const API_GET_HEADERDASH = "/get_headerdash";
 
 export const API_URL = "http://localhost:8080/api/auth";

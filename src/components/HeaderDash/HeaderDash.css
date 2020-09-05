@@ -1,4 +1,5 @@
 .img-fluid {
+  padding-top: 15px;
   border-top-left-radius: 15%;
   border-top-right-radius: 15%;
   border-bottom-left-radius: 15%;
@@ -9,6 +10,24 @@
 
 .img-fluid:hover {
   opacity: 0.8;
+}
+
+.moneyText {
+  padding-top: 2px;
+  color: lightgreen;
+  font-size: 22px;
+}
+
+.headerText {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.redMoneyText {
+  padding-top: 2px;
+  color: maroon;
+  font-size: 22px;
 }
 
 .dash_card {

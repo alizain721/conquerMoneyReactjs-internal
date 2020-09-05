@@ -8,6 +8,11 @@
   float: left;
 }
 
+.leftTextMuted {
+  float: left;
+  font-size: 12px;
+}
+
 .rightText {
   float: right;
   font-weight: normal;

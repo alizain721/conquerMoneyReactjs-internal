@@ -7,6 +7,7 @@ import axios from "axios";
 import {
   API_GETBALANCECREDIT_URL,
   API_URL,
+  API_GET_HEADERDASH,
 } from "../../constants/apiConstants";
 
 class HeaderDash extends Component {
@@ -18,12 +19,40 @@ class HeaderDash extends Component {
     this.state = {
       balance: null,
       credit: null,
+      cash: null,
+      cards: null,
+      investments: null,
     };
   }
 
   redirectToAccounts() {
     this.props.history.push("/accounts");
     this.props.updateTitle("Accounts");
+  }
+
+  getCashCardsInvest() {
+    const token = Cookie.get("token") ? Cookie.get("token") : null;
+    const payload = {
+      token: token,
+    };
+    axios
+      .post(API_URL + API_GET_HEADERDASH, payload)
+      .then((response) => {
+        if (response.status === 200) {
+          this.setState({
+            cash: response.data.totalCash,
+            cards: response.data.totalDebt,
+            investments: response.data.totalInvestments,
+          });
+        } else if (response.status === 204) {
+          console.log("204");
+        } else {
+          console.log("else");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   getCreditAndBalance() {
@@ -58,7 +87,8 @@ class HeaderDash extends Component {
   }
 
   componentDidMount() {
-    this.getCreditAndBalance();
+    //this.getCreditAndBalance();
+    this.getCashCardsInvest();
   }
 
   render() {
@@ -74,20 +104,18 @@ class HeaderDash extends Component {
             <div className="container-fluid">
               <div className="row">
                 <div className="col-4">
-                  <h1 className="text-center available_balance">
-                    <b>{this.state.balance}</b>
-                  </h1>
-                  <p className="text-center available_balance_tagline">
-                    Available Balance
-                  </p>
+                  <p className="text-center headerText">Cash</p>
+                  <p className="text-center headerText">Credit Cards</p>
+                  <p className="text-center headerText">Investments</p>
                 </div>
 
                 <div className="col-4 ">
-                  <h1 className="text-center credit_balance">
-                    <b>{this.state.credit}</b>
-                  </h1>
-                  <p className="text-center available_credit_tagline">
-                    Available Credit
+                  <p className="text-center moneyText">$ {this.state.cash}</p>
+                  <p className="text-center redMoneyText">
+                    $ {this.state.cards}
+                  </p>
+                  <p className="text-center moneyText">
+                    $ {this.state.investments}
                   </p>
                 </div>
 
