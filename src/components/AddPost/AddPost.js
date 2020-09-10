@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
 import { API_URL } from "../../constants/apiConstants";
@@ -6,176 +6,167 @@ import "./AddPost.css";
 import { withRouter } from "react-router-dom";
 import { API_ADDPOST_URL } from "../../constants/apiConstants";
 
-function AddPost(props) {
-  const token = Cookie.get("token") ? Cookie.get("token") : null;
+class AddPost extends Component {
+  constructor() {
+    super();
 
-  const [state, setState] = useState({
-    description: "",
-    messagetypeid: "1",
-    posttypeid: "",
-    successMessage: null,
-  });
-  /*
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [id]: value,
-      posttypeid: e.target.value,
-    }));
-  };
-  */
+    this.state = {
+      description: "",
+      messagetypeid: "1",
+      posttypeid: "",
+      successMessage: "",
+    };
 
-  const handleOptionChange = (changeEvent) => {
-    setState({
+    this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.handleDescChange = this.handleDescChange.bind(this);
+    this.sendDetailsToServer = this.sendDetailsToServer.bind(this);
+  }
+
+  handleOptionChange(changeEvent) {
+    this.setState({
       posttypeid: changeEvent.target.value,
     });
-  };
+  }
 
-  const handleDescChange = (changeEvent) => {
-    setState({
+  handleDescChange(changeEvent) {
+    this.setState({
       description: changeEvent.target.value,
     });
-  };
+  }
 
-  const sendDetailsToServer = () => {
-    console.log("DESC: " + state.description);
-    console.log("POSTTYPEID: " + state.posttypeid);
+  sendDetailsToServer() {
+    const token = Cookie.get("token") ? Cookie.get("token") : null;
+    console.log("DESC: " + this.state.description);
+    console.log("POSTTYPEID: " + this.state.posttypeid);
 
-    if (state.description.length) {
-      props.showError(null);
-      const payload = {
-        description: state.description,
-        typeid: state.typeid,
-        messagetypeid: "1",
-        posttypeid: state.posttypeid,
-        token: token,
-      };
-      axios
-        .post(API_URL + API_ADDPOST_URL, payload)
-        .then(function (response) {
-          if (response.status === 200) {
-            setState((prevState) => ({
-              ...prevState,
-              successMessage:
-                "Post Added Succesfully. Redirecting to Dashboard..",
-            }));
-            setTimeout(() => {
-              redirectToDash();
-            }, 1500);
+    this.props.showError(null);
+    const payload = {
+      description: this.state.description,
+      typeid: this.state.typeid,
+      messagetypeid: "1",
+      posttypeid: this.state.posttypeid,
+      token: token,
+    };
+    axios
+      .post(API_URL + API_ADDPOST_URL, payload)
+      .then((response) => {
+        if (response.status === 200) {
+          this.setState({
+            successMessage:
+              "Post Added Succesfully. Redirecting to Dashboard..",
+          });
+          setTimeout(() => {
+            this.redirectToDash();
+          }, 1500);
 
-            props.showError(null);
-          } else if (response.status === 204) {
-            props.showError(
-              "Token has expired you are being redirected to login..."
-            );
-            setTimeout(() => {
-              redirectToLogin();
-            }, 1500);
-          } else {
-            props.showError("Some error ocurred");
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-  };
-  const redirectToDash = () => {
-    props.updateTitle("Dashboard");
-    props.history.push("/dashboard");
-  };
-  const redirectToLogin = () => {
-    props.updateTitle("Login");
-    props.history.push("/login");
-  };
-  const handleSubmitClick = (e) => {
-    e.preventDefault();
+          this.props.showError(null);
+        } else if (response.status === 204) {
+          this.props.showError(
+            "Token has expired you are being redirected to login..."
+          );
+          setTimeout(() => {
+            this.redirectToLogin();
+          }, 1500);
+        } else {
+          this.props.showError("Some error ocurred");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  redirectToDash() {
+    this.props.updateTitle("Dashboard");
+    this.props.history.push("/dashboard");
+  }
+  redirectToLogin() {
+    this.props.updateTitle("Login");
+    this.props.history.push("/login");
+  }
 
-    sendDetailsToServer();
-  };
-
-  return (
-    <div>
-      <form>
-        <div className="form-group">
-          <textarea
-            className="form-control"
-            type="description"
-            id="description"
-            placeholder="What's happening?"
-            maxlength="140"
-            rows="7"
-            cols="60"
-            value={state.description}
-            onChange={handleDescChange}
-          ></textarea>
-        </div>
-        ​
-        <div className="form-group">
-          <div className="category">
-            <label>
-              <input
-                type="radio"
-                name="category"
-                value="1"
-                onChange={handleOptionChange}
-                checked={state.posttypeid === "1"}
-              />
-              Option 1
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="category"
-                value="2"
-                onChange={handleOptionChange}
-                checked={state.posttypeid === "2"}
-              />
-              Option 2
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="category"
-                value="3"
-                onChange={handleOptionChange}
-                checked={state.posttypeid === "3"}
-              />
-              Option 3
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="category"
-                value="4"
-                onChange={handleOptionChange}
-                checked={state.posttypeid === "4"}
-              />
-              Option 4
-            </label>
+  render() {
+    return (
+      <div>
+        <form>
+          <div className="form-group">
+            <textarea
+              className="form-control"
+              type="description"
+              id="description"
+              placeholder="What's happening?"
+              maxLength="140"
+              rows="7"
+              cols="60"
+              value={this.state.description}
+              onChange={this.handleDescChange}
+            ></textarea>
           </div>
-        </div>
-        ​
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn-primary.custom-btn"
-          onClick={handleSubmitClick}
+
+          <div className="form-group">
+            <div className="category">
+              <label>
+                <input
+                  type="radio"
+                  name="category"
+                  value="1"
+                  onChange={this.handleOptionChange}
+                  checked={this.state.posttypeid === "1"}
+                />
+                Option 1
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="category"
+                  value="2"
+                  onChange={this.handleOptionChange}
+                  checked={this.state.posttypeid === "2"}
+                />
+                Option 2
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="category"
+                  value="3"
+                  onChange={this.handleOptionChange}
+                  checked={this.state.posttypeid === "3"}
+                />
+                Option 3
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="category"
+                  value="4"
+                  onChange={this.handleOptionChange}
+                  checked={this.state.posttypeid === "4"}
+                />
+                Option 4
+              </label>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            id="submit"
+            name="submit"
+            className="btn-primary.custom-btn"
+            onClick={() => this.sendDetailsToServer()}
+          >
+            Add Post
+          </button>
+        </form>
+        <div
+          className="alert alert-success mt-2"
+          style={{ display: this.state.successMessage ? "block" : "none" }}
+          role="alert"
         >
-          Add Post
-        </button>
-      </form>
-      <div
-        className="alert alert-success mt-2"
-        style={{ display: state.successMessage ? "block" : "none" }}
-        role="alert"
-      >
-        {state.successMessage}
+          {this.state.successMessage}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default withRouter(AddPost);
