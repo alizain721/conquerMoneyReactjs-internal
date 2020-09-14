@@ -14,6 +14,10 @@ import AddCard from "./components/AddCard/AddCard";
 //import { makeStyles } from "@material-ui/core/styles";
 
 import "./App.css";
+
+import "./style.css";
+
+import "./responsive-style.css";
 import BottomNav from "./components/BottomNav/BottomNav";
 
 import { usePromiseTracker } from "react-promise-tracker";

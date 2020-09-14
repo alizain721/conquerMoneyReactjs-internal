@@ -1,10 +1,4 @@
 .img-fluid {
-  padding-top: 15px;
-  border-top-left-radius: 15%;
-  border-top-right-radius: 15%;
-  border-bottom-left-radius: 15%;
-  border-bottom-right-radius: 15%;
-  max-width: 120px;
   cursor: pointer;
 }
 
@@ -12,12 +6,99 @@
   opacity: 0.8;
 }
 
+.financial_feed {
+  /*
+  margin-top: 14%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 85;
+  */
+  background: white;
+}
+
+.financial_feed .titile_desc h5 {
+  font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1920 - 320));
+}
+
+.top_section {
+  background: transparent linear-gradient(180deg, #08a8b1 0%, #02777e 100%) 0%
+    0% no-repeat padding-box;
+}
+
+.header-top-sec {
+  background: #fff;
+  height: 10%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+}
+
+.top_section {
+  border-radius: 0px 0px 40px 40px;
+  padding: 50px 20px;
+  position: fixed; /* instead of absolute */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  height: 15%;
+  /*color: #fff;*/
+}
+
+.profile_img {
+  width: 80px;
+  height: 80px;
+  border-radius: 15px;
+  /*border: 4px solid #fff;*/
+}
+.profile_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 4px solid #fff;
+}
+.notification {
+  position: relative;
+}
+.notification img {
+  width: 30px;
+}
+.notification img:after {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background: #d90000;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+}
 .moneyText {
   padding-top: 2px;
   color: lightgreen;
   font-size: 22px;
 }
-
+.available_balance h4,
+.credit_balance h4 {
+  font-family: "Proxima bold";
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  font-size: calc(18px + (30 - 18) * (100vw - 320px) / (1920 - 320));
+  color: #fff;
+  padding-left: 15px;
+}
+.available_balance h5,
+.credit_balance h5 {
+  letter-spacing: 0.5px;
+  font-size: calc(12px + (16 - 12) * (100vw - 320px) / (1920 - 320));
+  color: #fff;
+  padding-left: 15px;
+}
 .headerText {
   color: white;
   font-size: 24px;
@@ -28,18 +109,4 @@
   padding-top: 2px;
   color: maroon;
   font-size: 22px;
-}
-
-.dash_card {
-  position: fixed; /* instead of absolute */
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  z-index: 90;
-}
-
-.heading_card {
-  height: 0px;
-  z-index: 90;
 }

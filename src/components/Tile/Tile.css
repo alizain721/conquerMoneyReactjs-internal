@@ -27,3 +27,36 @@ h5 {
   font-weight: bold;
   cursor: pointer;
 }
+
+.container-fluid {
+  padding-top: 15px;
+}
+
+.financial_title {
+  font-size: calc(20px + (24 - 20) * (100vw - 320px) / (1920 - 320));
+}
+.tile_img_box {
+  padding-bottom: 20px;
+}
+.financial_sub_text {
+  font-size: calc(14px + (20 - 14) * (100vw - 320px) / (1920 - 320));
+  padding-bottom: 20px;
+}
+.spending_descreases .spending_graph .sg_img {
+  height: 130px;
+  width: 130px;
+}
+.spending_descreases .spending_graph .sg_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.spending_descreases .spending_graph .sg_block .sg_per {
+  text-align: center;
+  color: #242126;
+  padding-top: 10px;
+  margin-bottom: 0;
+  font-size: calc(18px + (30 - 18) * (100vw - 320px) / (1920 - 320));
+  font-weight: 600;
+}

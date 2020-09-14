@@ -1,0 +1,503 @@
+@font-face {
+  font-family: "Proxima rg";
+  src: url("./fonts/theme-font/ProximaNova-Regular.eot");
+  src: url("./fonts/theme-font/ProximaNova-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/theme-font/ProximaNova-Regular.woff2") format("woff2"),
+    url("./fonts/theme-font/ProximaNova-Regular.woff") format("woff"),
+    url("./fonts/theme-font/ProximaNova-Regular.ttf") format("truetype"),
+    url("./fonts/theme-font/ProximaNova-Regular.svg#ProximaNova-Regular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima bold";
+  src: url("./fonts/theme-font/ProximaNovaA-Bold.eot");
+  src: url("./fonts/theme-font/ProximaNovaA-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/theme-font/ProximaNovaA-Bold.woff2") format("woff2"),
+    url("./fonts/theme-font/ProximaNovaA-Bold.woff") format("woff"),
+    url("./fonts/theme-font/ProximaNovaA-Bold.ttf") format("truetype"),
+    url("./fonts/theme-font/ProximaNovaA-Bold.svg#ProximaNovaA-Bold")
+      format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 14px;
+  font-family: "Proxima rg";
+  color: #333333;
+  background: #f5f7fa;
+}
+* {
+  /*transition: all 0.2s ease-in;*/
+}
+
+/* Class css*/
+
+.proxima-bold {
+  font-family: "Proxima bold";
+}
+.grey-color {
+  color: #7f838d;
+}
+.bg-white {
+  background-color: #fff;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+
+/* Like Share Comment */
+
+.like_comt_share {
+  padding: 10px 25px;
+}
+.like_comt_share {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #ddd;
+}
+.like_comt_share a {
+  color: #7f838d;
+  font-size: calc(14px + (20 - 14) * (100vw - 320px) / (1920 - 320));
+  text-transform: capitalize;
+  padding: 10px 0;
+  text-decoration: none;
+  text-align: center;
+}
+.like_comt_share a span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+.like_comt_share a i {
+  padding-right: 5px;
+}
+
+.like_comt_share_imgs {
+  width: 30px;
+  margin: 0 auto;
+  display: inline-block;
+}
+.like_comt_share_imgs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* All CSs */
+
+.main_wrapper {
+  background: #f5f7fa;
+}
+.recent_transactions_content .recent_days {
+  font-size: calc(18px + (22 - 18) * (100vw - 320px) / (1920 - 320));
+}
+.paymrnt_from span {
+  font-weight: 600;
+}
+.rt_blocks {
+  box-shadow: 0px 3px 26px #00000012;
+  border-radius: 25px;
+  opacity: 1;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.yesterdays_transaction .rt_blocks:last-child {
+  margin-bottom: 0;
+}
+.rt_blocks .today_title {
+  font-size: calc(18px + (26 - 18) * (100vw - 320px) / (1920 - 320));
+  margin-bottom: 1px;
+  color: #333333;
+}
+.right_blocks .amount {
+  font-size: calc(18px + (26 - 18) * (100vw - 320px) / (1920 - 320));
+  color: #ec4e4e;
+}
+.right_blocks .amount_plus {
+  color: #33b27c;
+}
+.right_blocks .share_icons {
+  text-align: right;
+}
+.right_blocks .share_icons a img {
+  width: 25px;
+}
+.rt_blocks .paymrnt_from {
+  font-size: calc(15px + (22 - 15) * (100vw - 320px) / (1920 - 320));
+}
+
+.left_block .today_detail {
+  padding-left: 25px;
+}
+.left_block {
+  width: 65%;
+}
+.right_blocks {
+  width: 35%;
+  padding: 0px;
+  text-align: right;
+}
+.left_block .img {
+  width: 90px;
+  height: 90px;
+  padding: 15px;
+  background: #f5f7fa;
+  border-radius: 15px;
+}
+.left_block .img img {
+  width: 100%;
+  height: 100%;
+}
+.see_all_transaction {
+  text-align: center;
+  padding: 15px 0 20px;
+}
+.see_all_transaction button {
+  cursor: pointer;
+  box-shadow: 0px 3px 26px #00000012;
+  border-radius: 15px;
+  background-color: #03858c;
+  padding: 10px 90px;
+  color: #fff;
+  font-size: calc(18px + (26 - 18) * (100vw - 320px) / (1920 - 320));
+  border: 0;
+}
+.see_all_transaction button:hover {
+  background-color: #03858cbd;
+}
+.see_all_transaction button:focus {
+  outline: none;
+}
+
+.user_image_name {
+  display: flex;
+  flex-grow: 1;
+}
+.user_name_in {
+  flex-grow: 1;
+}
+.user_image_name .use_image {
+  width: 120px;
+  height: 120px;
+}
+.user_image_name .use_image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user_image_name .user_name {
+  padding-left: 25px;
+}
+.user_image_name .user_name .username {
+  font-size: calc(18px + (26 - 18) * (100vw - 320px) / (1920 - 320));
+  margin-bottom: 0;
+}
+.user_image_name .user_name .userid {
+  margin-bottom: 0;
+  font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1920 - 320));
+}
+
+.user_image_name .ellipsis_line {
+  position: relative;
+}
+.user_image_name .ellipsis_line .ellipsis_dots {
+  position: absolute;
+  height: 7px;
+  width: 7px;
+  background-color: #7f838d;
+  border-radius: 50%;
+  right: 10px;
+  top: 30px;
+}
+.user_image_name .ellipsis_line .ellipsis_dots:before,
+.user_image_name .ellipsis_line .ellipsis_dots:after {
+  position: absolute;
+  content: "";
+  height: 7px;
+  width: 7px;
+  background-color: #7f838d;
+  border-radius: 50%;
+}
+.user_image_name .ellipsis_line .ellipsis_dots:after {
+  top: 25px;
+  right: 0;
+}
+.user_image_name .ellipsis_line .ellipsis_dots:before {
+  top: 12px;
+  right: 0;
+}
+.ellipsis_line a:hover .ellipsis_dots,
+.ellipsis_line a:hover .ellipsis_dots:after,
+.ellipsis_line a:hover .ellipsis_dots:before {
+  background-color: #03858c;
+}
+.users_post {
+  padding: 20px 20px;
+}
+.user_post_box-shadow {
+  box-shadow: 0px 0px 31px #9b9b9b33;
+  border-radius: 15px;
+}
+.users_post_in {
+  padding: 25px;
+}
+.use_post_content p {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: calc(15px + (18 - 15) * (100vw - 320px) / (1920 - 320));
+}
+.like_comt_count span {
+  font-size: calc(14px + (18 - 14) * (100vw - 320px) / (1920 - 320));
+}
+
+.comment_a {
+  position: relative;
+}
+.comment_a:before,
+.comment_a:after {
+  content: "";
+  position: absolute;
+  height: 50px;
+  width: 1px;
+  background-color: #ddd;
+  top: 0;
+}
+.comment_a:after {
+  right: -20px;
+}
+.comment_a:before {
+  left: -20px;
+}
+
+.menus_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.menu_single {
+  padding: 0 0 15px;
+  height: 60px;
+  width: 60px;
+
+  position: relative;
+  margin: 0 auto;
+}
+.menu_single img.hover_img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 44px;
+  width: 60px;
+  opacity: 0;
+  transition: all 0.2s ease-in;
+}
+.menu_home.active .hover_img,
+.menu_home:hover .hover_img {
+  opacity: 1;
+  transition: all 0.2s ease-in;
+}
+.menu_home.active .menu_name,
+.menu_home:hover .menu_name {
+  color: #008991;
+  transition: all 0.2s ease-in;
+}
+.menu_home.active,
+.menu_home:hover {
+  border-top: 5px solid #008991;
+  transition: all 0.2s ease-in;
+}
+.menu_single img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.2s ease-in;
+}
+.menu_home {
+  cursor: pointer;
+}
+.menu_home {
+  display: block;
+  padding-top: 15px;
+  width: 25%;
+}
+.menu_home {
+  border-top: 5px solid transparent;
+}
+
+.menu_name {
+  font-size: calc(14px + (22 - 14) * (100vw - 320px) / (1920 - 320));
+}
+
+.menus_bottom_wrapper {
+  box-shadow: 0px 0px 20px #0000001a;
+}
+
+.percentage_progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.per_pro_dertail {
+  width: 25%;
+}
+.progress_icon_text img {
+  width: 22px;
+  margin-right: 6px;
+}
+.progress_icon_text .income_expense_text {
+  font-size: 21px;
+  display: flex;
+  align-items: center;
+}
+.progress_icon_text h4 {
+  font-family: "Proxima bold";
+  font-size: calc(18px + (24 - 20) * (100vw - 320px) / (1920 - 320));
+  margin-top: 15px;
+}
+
+.menus_bottom_wrapper {
+  position: sticky;
+  margin-bottom: 0 !important;
+  padding-bottom: 15px;
+  width: 100%;
+  /*height: 81px;*/
+  bottom: 0;
+}
+.menus_bottom_wrapper .col-12 {
+  padding: 0 10px;
+}
+
+/* Financial Feed Css for circle progress */
+.set-size {
+  font-size: 7em;
+}
+.charts-container:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.pie-wrapper {
+  height: 1em;
+  width: 1em;
+  float: left;
+  margin: 15px;
+  position: relative;
+  padding: 4px;
+}
+.pie-wrapper:nth-child(3n + 1) {
+  clear: both;
+}
+.pie-wrapper .pie {
+  height: 100%;
+  width: 100%;
+  clip: rect(0, 1em, 1em, 0.5em);
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.pie-wrapper .pie .half-circle {
+  height: 100%;
+  width: 100%;
+  border: 0.1em solid #3498db;
+  border-radius: 50%;
+  clip: rect(0, 0.5em, 1em, 0);
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.pie-wrapper .label {
+  background: #34495e;
+  border-radius: 50%;
+  bottom: 0.4em;
+  color: #ecf0f1;
+  cursor: default;
+  display: block;
+  font-size: 0.25em;
+  left: 0.4em;
+  line-height: 2.6em;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0.8em;
+}
+.pie-wrapper .label .smaller {
+  color: #000;
+  font-size: 0.9em;
+  padding-bottom: 20px;
+}
+.pie-wrapper .shadow {
+  height: 100%;
+  width: 100%;
+  border: 0.03em solid #e6f6f7;
+  border-radius: 50%;
+}
+.pie-wrapper.style-2 .label {
+  background: none;
+  color: #000;
+}
+.pie-wrapper.style-2 .label .smaller {
+  color: #000;
+}
+
+.pie-wrapper.progress-45 .pie .right-side {
+  display: none;
+}
+.pie-wrapper.progress-45 .pie .half-circle {
+  border-color: #008991;
+}
+.pie-wrapper.progress-45 .pie .left-side {
+  transform: rotate(162deg);
+}
+.pie-wrapper.progress-75 .pie {
+  clip: rect(auto, auto, auto, auto);
+}
+.pie-wrapper.progress-75 .pie .right-side {
+  transform: rotate(180deg);
+}
+.pie-wrapper.progress-75 .pie .half-circle {
+  border-color: #8e44ad;
+}
+.pie-wrapper.progress-75 .pie .left-side {
+  transform: rotate(270deg);
+}
+.pie-wrapper.progress-95 .pie {
+  clip: rect(auto, auto, auto, auto);
+}
+.pie-wrapper.progress-95 .pie .right-side {
+  transform: rotate(180deg);
+}
+.pie-wrapper.progress-95 .pie .half-circle {
+  border-color: #e74c3c;
+}
+.pie-wrapper.progress-95 .pie .left-side {
+  transform: rotate(342deg);
+}
+.pie-wrapper.progress-100 .pie .left-side {
+  transform: rotate(360deg);
+}
+.pie-wrapper--solid {
+  border-radius: 50%;
+  overflow: hidden;
+}

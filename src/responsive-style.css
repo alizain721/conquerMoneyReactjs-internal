@@ -1,0 +1,170 @@
+@media (min-width: 400px) {
+}
+
+@media (max-width: 575px) {
+  .dashboard {
+    margin-top: 27%;
+    width: 107%;
+  }
+  .notification img {
+    width: 20px;
+  }
+  .profile_img {
+    width: 60px;
+    height: 60px;
+  }
+  .rt_blocks {
+    margin-bottom: 10px;
+  }
+  .financial_feed .titile_desc {
+    padding-top: 0 !important;
+  }
+  .financial_title {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .top_section {
+    padding: 0px 10px;
+    height: 10%;
+  }
+  .header-top-sec {
+    height: 10%;
+  }
+  .credit_balance,
+  .available_balance {
+    text-align: left;
+  }
+
+  .user_name_in {
+    flex-wrap: wrap;
+  }
+  .spending_descreases .spending_graph .sg_img {
+    margin: 0 auto;
+  }
+  .users_post_in {
+    padding: 15px;
+  }
+  .users_post {
+    padding: 10px 5px;
+  }
+  .menu_single {
+    height: 40px;
+    width: 40px;
+  }
+  .user_image_name .use_image {
+    width: 90px;
+    height: 90px;
+  }
+  .like_comt_share_imgs {
+    width: 20px;
+  }
+  .like_comt_share_imgs {
+    margin-bottom: 5px;
+  }
+  .like_comt_share {
+    padding: 5px 10px;
+  }
+  .spending_descreases .spending_graph .sg_img {
+    height: 80px;
+    width: 80px;
+  }
+  .user_image_name .ellipsis_line .ellipsis_dots {
+    top: 20px;
+  }
+  .user_image_name .ellipsis_line .ellipsis_dots:before {
+    top: 10px;
+  }
+  .user_image_name .ellipsis_line .ellipsis_dots:after {
+    top: 21px;
+  }
+  .user_image_name .ellipsis_line .ellipsis_dots:before,
+  .user_image_name .ellipsis_line .ellipsis_dots:after,
+  .user_image_name .ellipsis_line .ellipsis_dots {
+    height: 5px;
+    width: 5px;
+  }
+  .see_all_transaction button {
+    border-radius: 10px;
+    padding: 9px 50px;
+  }
+  .see_all_transaction {
+    padding: 10px 0;
+  }
+  .financial_feed .titile_desc p {
+    margin-bottom: 0;
+  }
+  .available_balance h5,
+  .credit_balance h5 {
+    white-space: nowrap;
+  }
+
+  .top_section .col-4:last-child .profile_notification_section {
+    justify-content: space-evenly;
+  }
+  .notification {
+    margin: 0 !important;
+  }
+  .menu_single img.hover_img {
+    height: 26px;
+    width: 40px;
+  }
+  .credit_balance,
+  .balance_section {
+    text-align: center;
+  }
+  .right_blocks .share_icons a img {
+    width: 22px;
+  }
+}
+
+@media (max-width: 479px) {
+  .top_section .container {
+    padding: 0;
+  }
+  .left_block .img {
+    width: 70px;
+    height: 70px;
+  }
+  .left_block .today_detail {
+    padding-left: 10px;
+  }
+  .sg_block {
+    width: 100%;
+  }
+  .percentage_progress {
+    flex-wrap: wrap;
+  }
+  .per_pro_dertail {
+    width: 50%;
+  }
+  .user_image_name .user_name {
+    padding-left: 15px;
+  }
+  .rt_blocks {
+    padding: 10px;
+  }
+  .right_blocks .share_icons a img {
+    width: 18px;
+  }
+}
+@media (max-width: 374px) {
+  .comment_a:before {
+    left: -8px;
+  }
+  .comment_a:after {
+    right: -8px;
+  }
+  .right_blocks .share_icons a img {
+    transform: translatey(2px);
+  }
+  .left_block .today_detail {
+    padding-left: 5px;
+  }
+  .right_blocks .share_icons {
+    display: block;
+    vertical-align: top;
+    margin-left: 15px;
+    text-align: right;
+  }
+}

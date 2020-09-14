@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import "./HeaderDash.css";
+
 import { withRouter } from "react-router-dom";
-import UserIcon from "../../img/SpartanLogo.jpg";
+import notification from "../../img/ProHTML/notification.png";
+//import profile_image from "../../img/ProHTML/profile_image.png";
+import profile from "../../img/ProHTML/profile.jpg";
+
 import Cookie from "js-cookie";
 import axios from "axios";
 import {
@@ -87,53 +91,71 @@ class HeaderDash extends Component {
   }
 
   componentDidMount() {
-    //this.getCreditAndBalance();
-    this.getCashCardsInvest();
+    this.getCreditAndBalance();
+    //this.getCashCardsInvest();
   }
 
   render() {
     return (
-      <header>
+      <div className="main_wrapper">
         <div
-          className="card dash_card"
+          className="header-top-sec pb-2"
           onClick={() => {
             this.redirectToAccounts();
           }}
         >
-          <div className="card-body heading_card">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-4">
-                  <p className="text-center headerText">Cash</p>
-                  <p className="text-center headerText">Credit Cards</p>
-                  <p className="text-center headerText">Investments</p>
-                </div>
-
+          <div className="top_section">
+            {/*top section*/}
+            <div className="container">
+              {/*container*/}
+              <div className="row  no-gutters align-items-center">
+                {/*row*/}
                 <div className="col-4 ">
-                  <p className="text-center moneyText">$ {this.state.cash}</p>
-                  <p className="text-center redMoneyText">
-                    $ {this.state.cards}
-                  </p>
-                  <p className="text-center moneyText">
-                    $ {this.state.investments}
-                  </p>
+                  <div className="balance_section">
+                    <div className="available_balance">
+                      <h4>
+                        &#36;<span>{this.state.balance}</span>
+                      </h4>
+                      <h5 className="text-capitalize">available balance</h5>
+                    </div>
+                  </div>
                 </div>
-
                 <div className="col-4">
-                  <img
-                    src={UserIcon}
-                    className="img-fluid mx-auto d-block"
-                    alt="avatar"
-                    onClick={() => {
-                      this.getCreditAndBalance();
-                    }}
-                  />
+                  <div className="credit_section mx-2">
+                    <div className="credit_balance">
+                      <h4>
+                        &#36;<span>{this.state.credit}</span>
+                      </h4>
+                      <h5 className="text-capitalize">credit balance</h5>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
+                <div className="col-4">
+                  <div className="d-flex align-items-center profile_notification_section">
+                    <div className="notification mx-4">
+                      <img
+                        className="img-fluid mx-auto d-block"
+                        src={notification}
+                        alt="notification"
+                      />
+                    </div>
+                    <div className="profile_img">
+                      <img
+                        className="img-fluid mx-auto d-block"
+                        src={profile}
+                        alt="profile"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>{" "}
+              {/*row*/}
+            </div>{" "}
+            {/*container*/}
+          </div>{" "}
+          {/*top section*/}
         </div>
-      </header>
+      </div>
     );
   }
 }

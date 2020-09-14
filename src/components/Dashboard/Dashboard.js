@@ -1,15 +1,12 @@
 import "./Dashboard.css";
 
-import React, { Component } from "react"; 
+import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
 
-import {
-  API_GENTILES_URL, 
-  API_URL,
-} from "../../constants/apiConstants";
+import { API_GENTILES_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
-import Tile from "../Tile/Tile.js"; 
+import Tile from "../Tile/Tile.js";
 
 class Dashboard extends Component {
   constructor() {
@@ -121,6 +118,7 @@ class Dashboard extends Component {
           <div className="accountListDiv">{this.state.listItems}</div>
         </div>
       */}
+        <Tile typeid={6} updateTitle={this.props.updateTitle} />
         {this.state.tileList}
 
         {/*<Tile title={this.state.title} description={this.state.description} />*/}

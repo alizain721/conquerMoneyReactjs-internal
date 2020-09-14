@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
 import {
-  API_GET_TRANS,
   API_URL,
   API_GET_ACCOUNTS,
   API_GET_CASH,
