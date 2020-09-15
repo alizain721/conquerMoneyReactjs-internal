@@ -10,14 +10,19 @@ class AddPost extends Component {
   constructor() {
     super();
 
+    //MessageTypeID and PostTypeID commented out for now to work with Tiles.
+
     this.state = {
+      title: "",
       description: "",
-      messagetypeid: "1",
-      posttypeid: "",
+      typeid: "2",
+      //messagetypeid: "1",
+      //posttypeid: "",
       successMessage: "",
     };
 
     this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleDescChange = this.handleDescChange.bind(this);
     this.sendDetailsToServer = this.sendDetailsToServer.bind(this);
   }
@@ -25,6 +30,12 @@ class AddPost extends Component {
   handleOptionChange(changeEvent) {
     this.setState({
       posttypeid: changeEvent.target.value,
+    });
+  }
+
+  handleTitleChange(changeEvent) {
+    this.setState({
+      title: changeEvent.target.value,
     });
   }
 
@@ -37,14 +48,15 @@ class AddPost extends Component {
   sendDetailsToServer() {
     const token = Cookie.get("token") ? Cookie.get("token") : null;
     console.log("DESC: " + this.state.description);
-    console.log("POSTTYPEID: " + this.state.posttypeid);
+    //console.log("POSTTYPEID: " + this.state.posttypeid);
 
     this.props.showError(null);
     const payload = {
+      title: this.state.title,
       description: this.state.description,
       typeid: this.state.typeid,
-      messagetypeid: "1",
-      posttypeid: this.state.posttypeid,
+      //messagetypeid: "1",
+      //posttypeid: this.state.posttypeid,
       token: token,
     };
     axios
@@ -88,6 +100,18 @@ class AddPost extends Component {
     return (
       <div>
         <form>
+        <div className="form-group">
+            <textarea
+              className="form-control"
+              type="title"
+              id="title"
+              placeholder="Title goes here"
+              maxLength="30"
+              value={this.state.title}
+              onChange={this.handleTitleChange}
+            ></textarea>
+          </div>
+
           <div className="form-group">
             <textarea
               className="form-control"
@@ -102,15 +126,15 @@ class AddPost extends Component {
             ></textarea>
           </div>
 
-          <div className="form-group">
+            <div className="form-group">
             <div className="category">
               <label>
                 <input
                   type="radio"
                   name="category"
                   value="1"
-                  onChange={this.handleOptionChange}
-                  checked={this.state.posttypeid === "1"}
+                  //onChange={this.handleOptionChange}
+                  //checked={this.state.posttypeid === "1"}
                 />
                 Option 1
               </label>
@@ -119,8 +143,8 @@ class AddPost extends Component {
                   type="radio"
                   name="category"
                   value="2"
-                  onChange={this.handleOptionChange}
-                  checked={this.state.posttypeid === "2"}
+                  //onChange={this.handleOptionChange}
+                  //checked={this.state.posttypeid === "2"}
                 />
                 Option 2
               </label>
@@ -129,8 +153,8 @@ class AddPost extends Component {
                   type="radio"
                   name="category"
                   value="3"
-                  onChange={this.handleOptionChange}
-                  checked={this.state.posttypeid === "3"}
+                  //onChange={this.handleOptionChange}
+                  //checked={this.state.posttypeid === "3"}
                 />
                 Option 3
               </label>
@@ -139,8 +163,8 @@ class AddPost extends Component {
                   type="radio"
                   name="category"
                   value="4"
-                  onChange={this.handleOptionChange}
-                  checked={this.state.posttypeid === "4"}
+                  //onChange={this.handleOptionChange}
+                  //checked={this.state.posttypeid === "4"}
                 />
                 Option 4
               </label>
