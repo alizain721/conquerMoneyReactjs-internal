@@ -40,6 +40,7 @@
 .top_section {
   border-radius: 0px 0px 40px 40px;
   padding: 50px 20px;
+
   position: fixed; /* instead of absolute */
   top: 0;
   left: 0;

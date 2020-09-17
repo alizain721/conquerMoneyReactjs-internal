@@ -139,12 +139,6 @@ class Dashboard extends Component {
         >
           {this.state.successMessage}
         </div>
-
-        <h2>
-          <span className="loginText" onClick={() => this.redirectToLogin()}>
-            Back to Login
-          </span>
-        </h2>
       </div>
     );
   }

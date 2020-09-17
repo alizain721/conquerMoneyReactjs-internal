@@ -1,10 +1,28 @@
 @media (min-width: 400px) {
+  .dashboard {
+    margin-top: 27%;
+    width: 107%;
+  }
+  .top_section {
+    padding: 2% 5%;
+    height: max-content;
+  }
+  .header-top-sec {
+    height: max-content;
+  }
 }
 
 @media (max-width: 575px) {
   .dashboard {
     margin-top: 27%;
     width: 107%;
+  }
+  .top_section {
+    padding: 2% 5%;
+    height: max-content;
+  }
+  .header-top-sec {
+    height: max-content;
   }
   .notification img {
     width: 20px;
@@ -24,13 +42,6 @@
     margin-bottom: 10px !important;
   }
 
-  .top_section {
-    padding: 0px 10px;
-    height: 10%;
-  }
-  .header-top-sec {
-    height: 10%;
-  }
   .credit_balance,
   .available_balance {
     text-align: left;

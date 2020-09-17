@@ -88,19 +88,21 @@ class Tile extends Component {
           </div>
 
           <div className="like_comt_share">
-            <a href="www.google.com">
+            <a className="comment_a">
               <div className="like_comt_share_imgs">
                 <img src={like} alt="like" />
               </div>
               <span>like</span>
             </a>
-            <a href="www.google.com" className="comment_a">
+            <a className="comment_a">
+              {" "}
+              {/*href="www.etc.com"*/}
               <div className="like_comt_share_imgs">
                 <img src={comment} alt="comment" />
               </div>
               <span>Comment</span>
             </a>
-            <a href="www.google.com">
+            <a className="comment_a">
               <div className="like_comt_share_imgs">
                 <img src={share} alt="share" />
               </div>
@@ -132,22 +134,6 @@ class Tile extends Component {
             </div>
           </div>
         </div>
-        /*
-        <div className="card">
-          <div className="card-body people-cards">
-            <div className="container-fluid">
-              <h3 className="card-title">
-                <b>{this.props.title}</b>
-              </h3>
-              <img
-                src={test_pic}
-                className="img-fluid mx-auto d-block"
-                alt="avatar"
-              />
-            </div>
-          </div>
-        </div>
-        */
       );
     } else if (this.props.typeid === 4) {
       //PLAID TILE
@@ -206,19 +192,19 @@ class Tile extends Component {
             </div>
           </div>
           <div className="like_comt_share">
-            <a href="www.google.com">
+            <a className="comment_a">
               <div className="like_comt_share_imgs">
                 <img src={like} alt="like" />
               </div>
               <span>like</span>
             </a>
-            <a href="www.google.com" className="comment_a">
+            <a className="comment_a">
               <div className="like_comt_share_imgs">
                 <img src={comment} alt="comment" />
               </div>
               <span>Comment</span>
             </a>
-            <a href="www.google.com">
+            <a className="comment_a">
               <div className="like_comt_share_imgs">
                 <img src={share} alt="share" />
               </div>

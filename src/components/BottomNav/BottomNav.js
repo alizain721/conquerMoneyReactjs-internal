@@ -11,6 +11,10 @@ import MoneyIcon from "@material-ui/icons/MoneyRounded";
 import PostIcon from "@material-ui/icons/PostAdd";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+import HomeIcon from "@material-ui/icons/Home";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import SettingsIcon from "@material-ui/icons/Settings";
+import SimpleMenu from "../Menu/Menu.js";
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +32,16 @@ function BottomNav(props) {
   const redirectToTransactions = () => {
     props.history.push("/transactions");
     props.updateTitle("Transactions");
+  };
+
+  const redirectToDash = () => {
+    props.history.push("/dashboard");
+    props.updateTitle("Dashboard");
+  };
+
+  const redirectToAccounts = () => {
+    props.history.push("/accounts");
+    props.updateTitle("Accounts");
   };
 
   const redirectToPost = () => {
@@ -50,12 +64,25 @@ function BottomNav(props) {
       value={value}
       onChange={handleChange}
       className={classes.stickToBottom}
+      showLabels
     >
       <BottomNavigationAction
         label="Back"
         value="back"
         icon={<BackIcon />}
         onClick={() => history.goBack()}
+      />
+      <BottomNavigationAction
+        label="Dashboard"
+        value="dashboard"
+        icon={<HomeIcon />}
+        onClick={() => redirectToDash()}
+      />
+      <BottomNavigationAction
+        label="Accounts"
+        value="accounts"
+        icon={<AccountBalanceIcon />}
+        onClick={() => redirectToAccounts()}
       />
       <BottomNavigationAction
         label="Transactions"
@@ -69,6 +96,13 @@ function BottomNav(props) {
         icon={<PostIcon />}
         onClick={() => redirectToPost()}
       />
+      <BottomNavigationAction
+        label="Settings"
+        value="settings"
+        icon={<SettingsIcon />}
+        //onClick={SimpleMenu}
+      />
+
       <BottomNavigationAction
         label="Forward"
         value="forward"
