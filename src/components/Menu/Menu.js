@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -16,13 +18,15 @@ export default function SimpleMenu() {
 
   return (
     <div>
-      <Button
+      <BottomNavigationAction
+        label="Settings"
+        value="settings"
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
-      >
-        Open Menu
-      </Button>
+        icon={<SettingsIcon />}
+        showLabel={true}
+      />
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
@@ -30,8 +34,6 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>

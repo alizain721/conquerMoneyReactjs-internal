@@ -152,6 +152,7 @@ class Link extends Component {
             });
           }
           this.populateAccounts();
+          this.handleClick();
         })
         .catch(function (error) {
           console.log(error);
@@ -199,6 +200,7 @@ class Link extends Component {
         >
           Click this link and connect your bank!
         </PlaidLink>
+        {/*
         <div>
           <button
             type="button"
@@ -208,7 +210,7 @@ class Link extends Component {
             Get Transactions
           </button>
         </div>
-
+    */}
         <h5>
           <b>Your Accounts</b>
         </h5>

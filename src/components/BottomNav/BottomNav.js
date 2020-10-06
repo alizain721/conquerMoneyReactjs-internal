@@ -13,7 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
-import SettingsIcon from "@material-ui/icons/Settings";
+
 import SimpleMenu from "../Menu/Menu.js";
 
 const useStyles = makeStyles({
@@ -51,14 +51,6 @@ function BottomNav(props) {
 
   const classes = useStyles();
 
-  // const styles = {
-  //   stickToBottom: {
-  //     width: "100%",
-  //     position: "absolute",
-  //     bottom: 0,
-  //   },
-  // };
-
   return (
     <BottomNavigation
       value={value}
@@ -90,19 +82,22 @@ function BottomNav(props) {
         icon={<MoneyIcon />}
         onClick={() => redirectToTransactions()}
       />
+
       <BottomNavigationAction
         label="Post"
         value="post"
         icon={<PostIcon />}
         onClick={() => redirectToPost()}
       />
+      <SimpleMenu></SimpleMenu>
+      {/*
       <BottomNavigationAction
         label="Settings"
         value="settings"
         icon={<SettingsIcon />}
         //onClick={SimpleMenu}
       />
-
+  */}
       <BottomNavigationAction
         label="Forward"
         value="forward"
