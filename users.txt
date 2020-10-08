@@ -6,4 +6,5 @@ Dany Hanna
 Yufan Lou
 Victor Pajonas
 Sebastian Huidobro
+Simran Abbas
 Frank Amankwah
