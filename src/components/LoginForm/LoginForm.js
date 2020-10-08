@@ -3,7 +3,7 @@ import axios from "axios";
 import "./LoginForm.css";
 import { API_BASE_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
-import avatar from "../../img/SpartanLogo.jpg"; 
+import avatar from "../../img/SpartanLogo.jpg";
 
 import Cookie from "js-cookie";
 
@@ -94,13 +94,13 @@ function LoginForm(props) {
         </h1>
 
         <div className="container text-left">
-          <label htmlFor="exampleInputEmail1">Email address</label>
+          <label htmlFor="exampleInputEmail1">Username</label>
           <input
             type="email"
             className="form-control"
             id="username"
             aria-describedby="emailHelp"
-            placeholder="Enter email"
+            placeholder="Enter username"
             value={state.username}
             onChange={handleChange}
           />
