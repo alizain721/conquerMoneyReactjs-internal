@@ -8,22 +8,13 @@ afterEach(() => {
   cleanup();
 })
 
-describe('SplashScreen', () => {
-  it('contains wait message', () => {
-    render(<App />);
-    // look for wait message
-    const loadingText = screen.queryByText(/Wait a moment/i);
-    // assert wait message exists
-    expect(loadingText).toBeInTheDocument();
-  });
-  it('goes away after 2 seconds', async () => {
+describe('App', () => {
+  it('shows LoginForm after SplashScreen', async () => {
     render(<App />);
     await act(async () => {
       await waitForDomChange();
     })
-    // look for wait message
-    const loadingText = screen.queryByText(/Wait a moment/i);
-    // assert wait message disappears
-    expect(loadingText).not.toBeInTheDocument();
-  })
+    const usernameField = screen.queryByText(/Username/i);
+    expect(usernameField).toBeInTheDocument();
+  });
 });
