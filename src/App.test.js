@@ -1,19 +1,10 @@
 import React from 'react';
-import { render, screen, act, cleanup } from '@testing-library/react';
+import { render, screen, act, cleanup, waitForDomChange } from '@testing-library/react';
 import App from './App';
 
 // about before and after
 // https://jestjs.io/docs/en/setup-teardown
-
-// use fake timers in tests and return to real timers after
-beforeEach(() => {
-  jest.useFakeTimers();
-})
-
 afterEach(() => {
-  // must flush pending timers before returning to real timers
-  jest.runOnlyPendingTimers();
-  jest.useRealTimers();
   cleanup();
 })
 
@@ -25,10 +16,11 @@ describe('SplashScreen', () => {
     // assert wait message exists
     expect(loadingText).toBeInTheDocument();
   });
-  it('goes away after 2 seconds', () => {
+  it('goes away after 2 seconds', async () => {
     render(<App />);
-    // pass 2 seconds
-    act(() => jest.advanceTimersByTime(2000));
+    await act(async () => {
+      await waitForDomChange();
+    })
     // look for wait message
     const loadingText = screen.queryByText(/Wait a moment/i);
     // assert wait message disappears
