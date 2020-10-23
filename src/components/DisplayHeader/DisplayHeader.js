@@ -8,7 +8,10 @@ function DisplayHeader(props) {
   //const isLoggedIn = props.isLoggedIn;
   console.log(props.location.pathname);
 
-  if (props.location.pathname === "/dashboard") {
+  if (
+    props.location.pathname === "/dashboard" ||
+    props.location.pathname === "/purchaseanalysis"
+  ) {
     return <HeaderDash updateCredit={"2555"} updateTitle={props.updateTitle} />;
   }
 

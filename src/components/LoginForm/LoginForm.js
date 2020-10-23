@@ -96,17 +96,13 @@ function LoginForm(props) {
         <div className="container text-left">
           <label htmlFor="exampleInputEmail1">Username</label>
           <input
-            type="email"
+            type="username"
             className="form-control"
             id="username"
-            aria-describedby="emailHelp"
             placeholder="Enter username"
             value={state.username}
             onChange={handleChange}
           />
-          <small id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
-          </small>
         </div>
         <div className="container text-left">
           <label htmlFor="exampleInputPassword1">Password</label>

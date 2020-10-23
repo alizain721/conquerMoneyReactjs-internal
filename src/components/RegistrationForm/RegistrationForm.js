@@ -21,7 +21,7 @@ function RegistrationForm(props) {
     }));
   };
   const sendDetailsToServer = () => {
-    if (state.email.length && state.password.length) {
+    if (state.email.length && state.password.length && state.username.length) {
       props.showError(null);
       const payload = {
         username: state.username,
@@ -35,11 +35,11 @@ function RegistrationForm(props) {
             setState((prevState) => ({
               ...prevState,
               successMessage:
-                "Registration successful. Redirecting to home page..",
+                "Registration successful. Redirecting to login page..",
             }));
 
             setTimeout(() => {
-              redirectToHome();
+              redirectToLogin();
             }, 1500);
 
             props.showError(null);
@@ -48,10 +48,11 @@ function RegistrationForm(props) {
           }
         })
         .catch(function (error) {
+          props.showError("Some error ocurred");
           console.log(error);
         });
     } else {
-      props.showError("Please enter valid username and password");
+      props.showError("Please enter valid username, password and email");
     }
   };
   const redirectToHome = () => {

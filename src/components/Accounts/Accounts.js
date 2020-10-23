@@ -86,7 +86,7 @@ class Accounts extends Component {
             totalCardDebt: response.data.totalDebt,
           });
 
-          console.log("CARDS" + response.data.totalCash);
+          //console.log("CARDS" + response.data.totalCash);
         } else {
           console.log("else");
           this.props.showError("Some error ocurred");
@@ -169,7 +169,7 @@ class Accounts extends Component {
     this.loadAccountButtons();
     this.loadCash();
     this.loadCards();
-    this.loadLoans();
+    // this.loadLoans();
   }
 
   render() {

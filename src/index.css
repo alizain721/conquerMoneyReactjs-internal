@@ -36,6 +36,7 @@ code {
 label {
   font-size: 16px;
   font-weight: bold;
+  margin-top: 2%;
 }
 
 @keyframes fade {
@@ -76,6 +77,7 @@ input[type="passwordd"] {
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  margin-top: 10%;
 }
 
 /* Set a style for all buttons */
