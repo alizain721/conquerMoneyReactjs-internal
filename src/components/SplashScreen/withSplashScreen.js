@@ -40,7 +40,7 @@ function withSplashScreen(WrappedComponent) {
     async componentDidMount() {
       try {
         await testFunction();
-        setTimeout(() => {
+        this.task = setTimeout(() => {
           this.setState({
             loading: false,
           });
@@ -51,6 +51,10 @@ function withSplashScreen(WrappedComponent) {
           loading: false,
         });
       }
+    }
+
+    async componentWillUnmount() {
+      clearTimeout(this.task);
     }
 
     render() {
