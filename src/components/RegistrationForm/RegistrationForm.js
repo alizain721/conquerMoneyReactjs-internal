@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 
 function RegistrationForm(props) {
+  const minUsernameLength = 6;
   const [state, setState] = useState({
     username: "",
     email: "",
@@ -17,12 +18,12 @@ function RegistrationForm(props) {
   const handleChange = (e) => {
     const { id, value } = e.target;
     if(e.target.id === "username") {
-      if(value.length < 6) {
+      if(value.length < minUsernameLength) {
         console.log("here")
         setState((prevState) => ({
           ...prevState,
           lengthErrorMessage:
-              "Username must be 6 characters or more",
+              `Username must be ${minUsernameLength} characters or more`,
         }));
       }else {
         setState((prevState) => ({
@@ -106,7 +107,6 @@ function RegistrationForm(props) {
             id="username"
             placeholder="Username"
             value={state.username}
-            minLength={6}
             onChange={handleChange}
           />
         </div>
