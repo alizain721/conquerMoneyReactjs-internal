@@ -6,15 +6,33 @@ import { withRouter } from "react-router-dom";
 import avatar from "../../img/SpartanLogo.jpg";
 
 function RegistrationForm(props) {
+  const minUsernameLength = 6;
   const [state, setState] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
     successMessage: null,
+    lengthErrorMessage: null,
   });
   const handleChange = (e) => {
     const { id, value } = e.target;
+    if(e.target.id === "username") {
+      if(value.length < minUsernameLength) {
+        console.log("here")
+        setState((prevState) => ({
+          ...prevState,
+          lengthErrorMessage:
+              `Username must be ${minUsernameLength} characters or more`,
+        }));
+      }else {
+        setState((prevState) => ({
+          ...prevState,
+          lengthErrorMessage:
+              null,
+        }));
+      }
+    }
     setState((prevState) => ({
       ...prevState,
       [id]: value,
@@ -92,7 +110,12 @@ function RegistrationForm(props) {
             onChange={handleChange}
           />
         </div>
-
+        <div
+            className="errorMessage mt-2"
+            style={{ display: state.lengthErrorMessage ? "block" : "none" }}
+        >
+          {state.lengthErrorMessage}
+        </div>
         <div className="container text-left">
           <label htmlFor="exampleInputEmail1">Email Address</label>
           <input
