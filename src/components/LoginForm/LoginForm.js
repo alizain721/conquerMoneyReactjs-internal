@@ -3,7 +3,7 @@ import axios from "axios";
 import "./LoginForm.css";
 import { API_BASE_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
-import avatar from "../../img/SpartanLogo.jpg";
+import avatar from "../../img/Logo_v3.png";
 
 import Cookie from "js-cookie";
 
