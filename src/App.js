@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
 import PurchaseAnalysis from "./components/PurchaseAnalysis/PurchaseAnalysis";
 import AddCard from "./components/AddCard/AddCard";
+import Post from './components/Posts/Post';
 
 //import { makeStyles } from "@material-ui/core/styles";
 
@@ -78,6 +79,12 @@ function App() {
 
         <div className="container d-flex align-items-center flex-column">
           <Switch>
+            <Route  path="/post/:id/:title" exact={true}>
+              <Post
+                showError={updateErrorMessage}
+                updateTitle={updateTitle}
+              />
+            </Route>
             <Route path="/" exact={true}>
               <LoginForm
                 showError={updateErrorMessage}
@@ -109,7 +116,6 @@ function App() {
                 updateTitle={updateTitle}
               />
             </Route>
-
             <Route path="/login">
               <LoginForm
                 showError={updateErrorMessage}

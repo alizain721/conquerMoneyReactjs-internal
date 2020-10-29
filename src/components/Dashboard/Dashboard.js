@@ -5,7 +5,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 
 import { API_GENTILES_URL, API_URL } from "../../constants/apiConstants";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Tile from "../Tile/Tile.js";
 
 class Dashboard extends Component {
@@ -60,13 +60,17 @@ class Dashboard extends Component {
         if (response.status === 200) {
           this.setState({
             tileList: response.data.map((d) => (
-              <Tile
-                key={d.id}
-                title={d.title}
-                description={d.description}
-                typeid={d.typeid}
-                updateTitle={this.props.updateTitle}
-              />
+                <Link
+                    key={d.id}
+                    to ={`/post/${d.id}/${d.title}`}
+                >
+                  <Tile
+                      key={d.id}
+                      title={d.title}
+                      description={d.description}
+                      typeid={d.typeid}
+                  />
+                </Link>
             )),
           });
           /*
