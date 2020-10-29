@@ -80,6 +80,12 @@
 .h2 {
   padding: 20px;
 }
+
+.rewardP {
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: left;
+}
 .loginText {
   padding-top: 120px;
   font-size: 14px;
