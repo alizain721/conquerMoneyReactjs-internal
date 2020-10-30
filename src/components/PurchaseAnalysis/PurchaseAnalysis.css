@@ -64,16 +64,16 @@
     width: 100%;
   }
   .name1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .name2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .name3 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .selects {
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: justify;
   }
 }
@@ -149,14 +149,6 @@
   background-color: white;
   min-height: 100%;
   margin-bottom: 20%;
-}
-
-.PAform-control {
-  max-width: 50%;
-  text-align: center;
-  margin: auto;
-  margin-bottom: 5%;
-  margin-top: 5%;
 }
 
 .input-container {
