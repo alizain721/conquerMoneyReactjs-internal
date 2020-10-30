@@ -60,17 +60,13 @@ class Dashboard extends Component {
         if (response.status === 200) {
           this.setState({
             tileList: response.data.map((d) => (
-                <Link
-                    key={d.id}
-                    to ={`/post/${d.id}/${d.title}`}
-                >
-                  <Tile
-                      key={d.id}
-                      title={d.title}
-                      description={d.description}
-                      typeid={d.typeid}
-                  />
-                </Link>
+                    <Tile
+                        key={d.id}
+                        description={d.description}
+                        typeid={d.typeid}
+                        data={d}
+                        updateTitle={this.props.updateTitle}
+                    />
             )),
           });
           /*
