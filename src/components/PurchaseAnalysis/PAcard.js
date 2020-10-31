@@ -36,7 +36,12 @@ class PAcard extends Component {
                 <img className="card-img-top" src={discover} alt="discover" />
               </div>
               <div className="col">
-                <p>{this.props.rewardstype + " " + this.props.rewardrate}</p>
+                <p className="rewardP">
+                  {this.props.rewardsrate +
+                    " " +
+                    this.props.rewardstype +
+                    " back"}
+                </p>
               </div>
             </div>
 
@@ -44,7 +49,14 @@ class PAcard extends Component {
               <h5 className="card-title">
                 <b>{this.props.officialname}</b>
               </h5>
-              <p className="card-text">{this.props.benefitname}</p>
+              <p className="card-text">
+                {this.props.rewardsrate +
+                  " " +
+                  this.props.rewardstype +
+                  " back at "}{" "}
+                {this.props.purchasecategory + " locations. "}{" "}
+                {this.props.benefitname}
+              </p>
               <div className="text-center">
                 <button type="button" className="btn-secondary">
                   USE
@@ -63,7 +75,12 @@ class PAcard extends Component {
                 <img className="card-img-top" src={discover} alt="discover" />
               </div>
               <div className="col">
-                <p>{this.props.rewardstype + " " + this.props.rewardrate}</p>
+                <p className="rewardP">
+                  {this.props.rewardsrate +
+                    " " +
+                    this.props.rewardstype +
+                    " back"}
+                </p>
               </div>
             </div>
 
@@ -71,7 +88,14 @@ class PAcard extends Component {
               <h5 className="card-title">
                 <b>{this.props.officialname}</b>
               </h5>
-              <p className="card-text">{this.props.benefitname}</p>
+              <p className="card-text">
+                {this.props.rewardsrate +
+                  " " +
+                  this.props.rewardstype +
+                  " back at "}{" "}
+                {this.props.purchasecategory + " locations. "}{" "}
+                {this.props.benefitname}
+              </p>
             </div>
             <div className="text-center">
               <button type="button" className="btn-secondary2">

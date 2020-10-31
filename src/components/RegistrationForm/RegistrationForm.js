@@ -3,13 +3,13 @@ import axios from "axios";
 import "./RegistrationForm.css";
 import { API_REG_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
-import avatar from "../../img/SpartanLogo.jpg";
-import Button from '@material-ui/core/Button';
+import avatar from "../../img/Logo_v3.png";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 
 
 function validateEmail(email) {
@@ -221,7 +221,7 @@ function RegistrationForm(props) {
             value={state.email}
             onChange={handleChange}
           />
-          <small id="emailHelp" className="form-text text-muted">
+          <small id="emailHelp" className="form-text text-muted centerSmallText">
             We'll never share your email with anyone else.
           </small>
         </div>

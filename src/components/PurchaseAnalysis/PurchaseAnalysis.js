@@ -49,10 +49,11 @@ class PurchaseAnalysis extends Component {
                 <PAcard
                   key={d.id}
                   rewardstype={d.rewardstype}
-                  rewardrate={d.rewardrate}
+                  rewardsrate={d.rewardsrate}
                   officialname={d.officialname}
                   benefitname={d.benefitname}
                   userhas={d.userhas}
+                  purchasecategory={d.purchasecategory}
                 ></PAcard>
               )),
             });

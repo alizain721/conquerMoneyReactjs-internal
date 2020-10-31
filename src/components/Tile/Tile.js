@@ -37,6 +37,9 @@ class Tile extends Component {
       this.props.history.push("/purchaseanalysis");
     }
   }
+  handleClick = () => {
+    this.props.history.push(`/post/${this.props.data.id}/${this.props.data.title}`);
+  }
 
   //typeid = 1 Tile with button
   //typeid = 2 Tile with no button (informational)
@@ -77,9 +80,11 @@ class Tile extends Component {
               <div className="col-12">
                 <div className="tile_no_btn_top">
                   <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-                    {this.props.title}
+                    <div onClick={this.handleClick}>{this.props.title}</div>
                   </h4>
-                  <h5 className="financial_sub_text text-capitalize mb-0 grey-color">
+                  <h5 className="financial_sub_text text-capitalize mb-0 grey-color"
+                      onClick={this.handleClick}
+                  >
                     {this.props.description}
                   </h5>
                 </div>
