@@ -27,3 +27,6 @@
 .redDialogText > * {
   color: red !important;
 }
+.centerSmallText {
+  text-align: center;
+}
