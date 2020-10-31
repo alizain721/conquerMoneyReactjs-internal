@@ -4,6 +4,12 @@ import "./RegistrationForm.css";
 import { API_REG_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/Logo_v3.png";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 
 
 function validateEmail(email) {
@@ -28,6 +34,8 @@ function RegistrationForm(props) {
     usernameErrorMessage: null,
     emailErrorMessage: null,
     confirmPasswordErrorMessage: null,
+    openDialog: false,
+    backendAccountTakenError: null,
   });
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -130,7 +138,14 @@ function RegistrationForm(props) {
             }
           }).catch(err => {
             if(err.response.data.message) {
-              props.showError(err.response.data.message)
+              // props.showError(err.response.data.message)
+              setState((prevState) => ({
+                ...prevState,
+                backendAccountTakenError:
+                  err.response.data.message,
+                openDialog:
+                  true,
+              }));
             }else {
               err.response.data.map((err) => {
                 props.showError(err)
@@ -155,6 +170,19 @@ function RegistrationForm(props) {
       props.showError("Passwords do not match");
     }
   };
+  const handleDialogOpen = () => {
+    setState((prevState) => ({
+      ...prevState,
+      openDialog: true
+    }));
+  };
+  const handleDialogClose = () => {
+    setState((prevState) => ({
+      ...prevState,
+      openDialog: false
+    }));
+  };
+
   return (
     <div className="regForm">
       <form>
@@ -193,7 +221,7 @@ function RegistrationForm(props) {
             value={state.email}
             onChange={handleChange}
           />
-          <small id="emailHelp" className="form-text text-muted">
+          <small id="emailHelp" className="form-text text-muted centerSmallText">
             We'll never share your email with anyone else.
           </small>
         </div>
@@ -257,6 +285,26 @@ function RegistrationForm(props) {
         <span className="loginText" onClick={() => redirectToLogin()}>
           Login here
         </span>
+      </div>
+      <div>
+        <Dialog
+            open={state.openDialog}
+            onClose={handleDialogClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title" className="redDialogText">{"Error making account"}</DialogTitle>
+          <DialogContent classes={{root: "redDialogText"}}>
+            <DialogContentText id="alert-dialog-description">
+              {state.backendAccountTakenError ? state.backendAccountTakenError : null}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDialogClose} color="primary" autoFocus>
+              Retry
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );
