@@ -129,7 +129,13 @@ function RegistrationForm(props) {
               props.showError(null);
             }
           }).catch(err => {
-            props.showError(err.response.data.message)
+            if(err.response.data.message) {
+              props.showError(err.response.data.message)
+            }else {
+              err.response.data.map((err) => {
+                props.showError(err)
+              })
+            }
       })
     }
   }
