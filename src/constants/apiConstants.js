@@ -19,3 +19,4 @@ export const API_GET_HEADERDASH = "/get_headerdash";
 export const API_GET_PA = "/get_purchase_analysis";
 
 export const API_URL = "http://localhost:8080/api/auth";
+export const API_PUB_URL = "http://localhost:8080/api/pub";
