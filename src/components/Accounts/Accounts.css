@@ -1,11 +1,15 @@
-.right {
-  right: 0;
-  padding-top: 60px;
-  padding-right: 20px;
+.center {
+  height: 80px;
+  width: 500px;
 }
 
 .leftText {
   float: left;
+}
+.bankText {
+  float: left;
+  font-size: 12px;
+  opacity: 0.5;
 }
 
 .leftTextMuted {
