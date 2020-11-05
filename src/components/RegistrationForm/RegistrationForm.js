@@ -1,27 +1,111 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./RegistrationForm.css";
-import { API_REG_URL, API_URL } from "../../constants/apiConstants";
+import { API_REG_URL, API_PUB_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
-import avatar from "../../img/SpartanLogo.jpg";
+import avatar from "../../img/Logo_v3.png";
+
+
+function validateEmail(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
 
 function RegistrationForm(props) {
+  const minUsernameLength = 6;
+  const minPasswordLength = 6;
   const [state, setState] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
     successMessage: null,
+    usernameFalse: null,
+    passwordFalse: null,
+    emailFalse: null,
+    confirmPasswordFalse: null,
+    passWordErrorMessage: null,
+    usernameErrorMessage: null,
+    emailErrorMessage: null,
+    confirmPasswordErrorMessage: null,
   });
   const handleChange = (e) => {
     const { id, value } = e.target;
+    if(e.target.id === "username") {
+      if(value.length < minUsernameLength) {
+        setState((prevState) => ({
+          ...prevState,
+          usernameErrorMessage:
+              `Username must be ${minUsernameLength} characters or more`,
+          usernameFalse: true
+        }));
+      }else {
+        setState((prevState) => ({
+          ...prevState,
+          usernameErrorMessage:
+              null,
+          usernameFalse: false,
+        }));
+      }
+    }
+    if(e.target.id === "password") {
+      if(value.length < minPasswordLength) {
+        setState((prevState) => ({
+          ...prevState,
+          passwordErrorMessage:
+              `Password must be ${minPasswordLength} characters or more`,
+          passwordFalse: true,
+        }));
+      }else {
+        setState((prevState) => ({
+          ...prevState,
+          passwordErrorMessage:
+              null,
+          passwordFalse: false,
+        }));
+      }
+    }
+    if(e.target.id === "confirmPassword") {
+      if(value != state.password) {
+        setState((prevState) => ({
+          ...prevState,
+          confirmPasswordErrorMessage:
+              `Passwords must match`,
+          confirmPasswordFalse: true,
+        }));
+      }else {
+        setState((prevState) => ({
+          ...prevState,
+          confirmPasswordErrorMessage:
+              null,
+          confirmPasswordFalse: false,
+        }));
+      }
+    }
+    if(e.target.id === "email") {
+      if(!validateEmail(value)) {
+        setState((prevState) => ({
+          ...prevState,
+          emailErrorMessage:
+              `Please enter a valid email`,
+          emailFalse: true,
+        }));
+      }else {
+        setState((prevState) => ({
+          ...prevState,
+          emailErrorMessage:
+              null,
+          emailFalse: false,
+        }));
+      }
+    }
     setState((prevState) => ({
       ...prevState,
       [id]: value,
     }));
   };
   const sendDetailsToServer = () => {
-    if (state.email.length && state.password.length) {
+    if (state.email.length && state.password.length && state.username.length) {
       props.showError(null);
       const payload = {
         username: state.username,
@@ -29,31 +113,32 @@ function RegistrationForm(props) {
         password: state.password,
       };
       axios
-        .post(API_URL + API_REG_URL, payload)
-        .then(function (response) {
-          if (response.status === 200) {
-            setState((prevState) => ({
-              ...prevState,
-              successMessage:
-                "Registration successful. Redirecting to home page..",
-            }));
+          .post(API_PUB_URL + API_REG_URL, payload)
+          .then(function (response) {
+            if (response.status === 200) {
+              setState((prevState) => ({
+                ...prevState,
+                successMessage:
+                    "Registration successful. Redirecting to login page..",
+              }));
 
-            setTimeout(() => {
-              redirectToHome();
-            }, 1500);
+              setTimeout(() => {
+                redirectToLogin();
+              }, 1500);
 
-            props.showError(null);
-          } else {
-            props.showError("Some error ocurred");
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } else {
-      props.showError("Please enter valid username and password");
+              props.showError(null);
+            }
+          }).catch(err => {
+            if(err.response.data.message) {
+              props.showError(err.response.data.message)
+            }else {
+              err.response.data.map((err) => {
+                props.showError(err)
+              })
+            }
+      })
     }
-  };
+  }
   const redirectToHome = () => {
     props.updateTitle("Home");
     props.history.push("/home");
@@ -91,7 +176,12 @@ function RegistrationForm(props) {
             onChange={handleChange}
           />
         </div>
-
+        <div
+            className="errorMessage mt-2"
+            style={{ display: state.usernameErrorMessage && state.usernameFalse ? "block" : "none" }}
+        >
+          {state.usernameErrorMessage}
+        </div>
         <div className="container text-left">
           <label htmlFor="exampleInputEmail1">Email Address</label>
           <input
@@ -107,6 +197,12 @@ function RegistrationForm(props) {
             We'll never share your email with anyone else.
           </small>
         </div>
+        <div
+            className="errorMessage mt-2"
+            style={{ display: state.emailErrorMessage && state.emailFalse ? "block" : "none" }}
+        >
+          {state.emailErrorMessage}
+        </div>
         <div className="container text-left">
           <label htmlFor="exampleInputPassword1">Password</label>
           <input
@@ -118,6 +214,12 @@ function RegistrationForm(props) {
             onChange={handleChange}
           />
         </div>
+        <div
+            className="errorMessage mt-2"
+            style={{ display: state.passwordErrorMessage && state.passwordFalse ? "block" : "none" }}
+        >
+          {state.passwordErrorMessage}
+        </div>
         <div className="container text-left">
           <label htmlFor="exampleInputPassword1">Confirm Password</label>
           <input
@@ -128,6 +230,12 @@ function RegistrationForm(props) {
             value={state.confirmPassword}
             onChange={handleChange}
           />
+        </div>
+        <div
+            className="errorMessage mt-2"
+            style={{ display: state.confirmPasswordErrorMessage && state.confirmPassword ? "block" : "none" }}
+        >
+          {state.confirmPasswordErrorMessage}
         </div>
         <button
           type="submit"

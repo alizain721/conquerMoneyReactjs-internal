@@ -50,47 +50,102 @@ function BottomNav(props) {
   };
 
   const classes = useStyles();
+  if (props.location.pathname === "/" || props.location.pathname === "/login") {
+    return null;
+  } else {
 
-  return (
-    <BottomNavigation
-      value={value}
-      onChange={handleChange}
-      className={classes.stickToBottom}
-      showLabels
-    >
-      <BottomNavigationAction
-        label="Back"
-        value="back"
-        icon={<BackIcon />}
-        onClick={() => history.goBack()}
-      />
-      <BottomNavigationAction
-        label="Dashboard"
-        value="dashboard"
-        icon={<HomeIcon />}
-        onClick={() => redirectToDash()}
-      />
-      <BottomNavigationAction
-        label="Accounts"
-        value="accounts"
-        icon={<AccountBalanceIcon />}
-        onClick={() => redirectToAccounts()}
-      />
-      <BottomNavigationAction
-        label="Transactions"
-        value="transactions"
-        icon={<MoneyIcon />}
-        onClick={() => redirectToTransactions()}
-      />
+    if(window.hasOwnProperty("cordova")){
+      return (
+        <BottomNavigation
+          value={value}
+          onChange={handleChange}
+          className={classes.stickToBottom}
+          showLabels
+        >
+          <BottomNavigationAction
+            label="Back"
+            value="back"
+            icon={<BackIcon />}
+            onClick={() => history.goBack()}
+          />
+          <BottomNavigationAction
+            label="Dashboard"
+            value="dashboard"
+            icon={<HomeIcon />}
+            onClick={() => redirectToDash()}
+          />
+          <BottomNavigationAction
+            label="Accounts"
+            value="accounts"
+            icon={<AccountBalanceIcon />}
+            onClick={() => redirectToAccounts()}
+          />
+          <BottomNavigationAction
+            label="Transactions"
+            value="transactions"
+            icon={<MoneyIcon />}
+            onClick={() => redirectToTransactions()}
+          />
 
-      <BottomNavigationAction
-        label="Post"
-        value="post"
-        icon={<PostIcon />}
-        onClick={() => redirectToPost()}
-      />
-      <SimpleMenu></SimpleMenu>
-      {/*
+          <BottomNavigationAction
+            label="Post"
+            value="post"
+            icon={<PostIcon />}
+            onClick={() => redirectToPost()}
+          />
+          <SimpleMenu></SimpleMenu>
+          {/*
+        <BottomNavigationAction
+          label="Settings"
+          value="settings"
+          icon={<SettingsIcon />}
+          //onClick={SimpleMenu}
+        />
+    */}
+          <BottomNavigationAction
+            label="Forward"
+            value="forward"
+            icon={<ForwardIcon />}
+            onClick={() => history.goForward()}
+          />
+        </BottomNavigation>
+      );
+    }
+
+    return (
+      <BottomNavigation
+        value={value}
+        onChange={handleChange}
+        className={classes.stickToBottom}
+        showLabels
+      >
+        <BottomNavigationAction
+          label="Dashboard"
+          value="dashboard"
+          icon={<HomeIcon />}
+          onClick={() => redirectToDash()}
+        />
+        <BottomNavigationAction
+          label="Accounts"
+          value="accounts"
+          icon={<AccountBalanceIcon />}
+          onClick={() => redirectToAccounts()}
+        />
+        <BottomNavigationAction
+          label="Transactions"
+          value="transactions"
+          icon={<MoneyIcon />}
+          onClick={() => redirectToTransactions()}
+        />
+
+        <BottomNavigationAction
+          label="Post"
+          value="post"
+          icon={<PostIcon />}
+          onClick={() => redirectToPost()}
+        />
+        <SimpleMenu></SimpleMenu>
+        {/*
       <BottomNavigationAction
         label="Settings"
         value="settings"
@@ -98,13 +153,8 @@ function BottomNav(props) {
         //onClick={SimpleMenu}
       />
   */}
-      <BottomNavigationAction
-        label="Forward"
-        value="forward"
-        icon={<ForwardIcon />}
-        onClick={() => history.goForward()}
-      />
-    </BottomNavigation>
-  );
+      </BottomNavigation>
+    );
+  }
 }
 export default withRouter(BottomNav);

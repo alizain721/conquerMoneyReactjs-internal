@@ -1,9 +1,20 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen, act, cleanup, waitForDomChange } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+// about before and after
+// https://jestjs.io/docs/en/setup-teardown
+afterEach(() => {
+  cleanup();
+})
+
+describe('App', () => {
+  it('shows LoginForm after SplashScreen', async () => {
+    render(<App />);
+    await act(async () => {
+      await waitForDomChange();
+    })
+    const usernameField = screen.queryByText(/Username/i);
+    expect(usernameField).toBeInTheDocument();
+  });
 });

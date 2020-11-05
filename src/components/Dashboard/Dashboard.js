@@ -5,7 +5,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 
 import { API_GENTILES_URL, API_URL } from "../../constants/apiConstants";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Tile from "../Tile/Tile.js";
 
 class Dashboard extends Component {
@@ -41,7 +41,7 @@ class Dashboard extends Component {
   }
 
   redirectToLogin() {
-    this.props.history.push("/login");
+    this.props.history.push("/");
     this.props.updateTitle("Login");
   }
 
@@ -65,6 +65,7 @@ class Dashboard extends Component {
                 title={d.title}
                 description={d.description}
                 typeid={d.typeid}
+                data={d}
                 updateTitle={this.props.updateTitle}
               />
             )),

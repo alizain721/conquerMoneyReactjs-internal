@@ -9,6 +9,11 @@
   font-weight: bold;
 }
 
+.errorMessage {
+  color: red;
+  font-weight: bold;
+}
+
 .regForm {
   min-height: 80vh;
   padding: 20px;

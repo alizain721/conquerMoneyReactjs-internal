@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import avatar from "../../img/SpartanLogo.jpg";
+import avatar from "../../img/Logo_v3.png";
 import Loader from "react-loader-spinner";
 import "./withSplashScreen.css";
 
@@ -40,7 +40,7 @@ function withSplashScreen(WrappedComponent) {
     async componentDidMount() {
       try {
         await testFunction();
-        setTimeout(() => {
+        this.task = setTimeout(() => {
           this.setState({
             loading: false,
           });
@@ -51,6 +51,10 @@ function withSplashScreen(WrappedComponent) {
           loading: false,
         });
       }
+    }
+
+    async componentWillUnmount() {
+      clearTimeout(this.task);
     }
 
     render() {
