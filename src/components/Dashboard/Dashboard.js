@@ -41,7 +41,7 @@ class Dashboard extends Component {
   }
 
   redirectToLogin() {
-    this.props.history.push("/login");
+    this.props.history.push("/");
     this.props.updateTitle("Login");
   }
 

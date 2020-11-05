@@ -36,10 +36,9 @@ function LoginForm(props) {
         .then((response) => {
           if (response.status === 200) {
             var accessToken = response.data.accessToken;
-
+            
             console.log("token " + accessToken);
-
-            Cookie.set("token", accessToken, { expires: 0.0104 }); //15 minutes
+            Cookie.set("token", accessToken, { expires: 6.9888 }); //a week or 168 hours
             console.log("cookie " + Cookie.get("token"));
             console.log(token);
             setState((prevState) => ({
