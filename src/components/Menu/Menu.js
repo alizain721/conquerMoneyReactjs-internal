@@ -1,17 +1,38 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
-import axios from "axios"
-import Cookie from "js-cookie"
+
+import { useHistory } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import SettingsIcon from "@material-ui/icons/Settings";
-import { useHistory } from 'react-router-dom'
-import {API_LOGOUT_URL, API_URL} from "../../constants/apiConstants";
+import {API_URL,API_LOGOUT} from "../../constants/apiConstants.js";
+import Cookie from "js-cookie";
+import axios from "axios";
 
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
-  const history = useHistory();
+  var history = useHistory();
+  const logoutReq = () => {
+    const token = Cookie.get("token");
+    const payload = {
+      token: token
+    };
+    axios
+    .post(API_URL + API_LOGOUT, payload)
+    .then((response) => {
+      if (response.status === 200) {
+        console.log("logout response received");
+        history.push('/');//returns to home
+      }
+      else {
+        console.log("Error while attempting logout");
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,6 +40,9 @@ export default function SimpleMenu() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    logoutReq();
+    Cookie.set("token", {expires: 0.0 });
+    console.log("logout complete");
   };
   const HandleLogout = () => {
     const payload = {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./LoginForm.css";
-import { API_BASE_URL, API_URL } from "../../constants/apiConstants";
+import { API_BASE_URL, API_PUB_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/Logo_v3.png";
 
@@ -32,14 +32,13 @@ function LoginForm(props) {
         password: state.password,
       };
       axios
-        .post(API_URL + API_BASE_URL, payload) //(API_BASE_URL + "login", payload)
+        .post(API_PUB_URL + API_BASE_URL, payload) //(API_BASE_URL + "login", payload)
         .then((response) => {
           if (response.status === 200) {
             var accessToken = response.data.accessToken;
-
+            
             console.log("token " + accessToken);
-
-            Cookie.set("token", accessToken, { expires: 0.0104 }); //15 minutes
+            Cookie.set("token", accessToken, { expires: 6.9888 }); //a week or 168 hours
             console.log("cookie " + Cookie.get("token"));
             console.log(token);
             setState((prevState) => ({
