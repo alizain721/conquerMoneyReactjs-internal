@@ -28,6 +28,7 @@ class Accounts extends Component {
       totalLoanDebt: null,
     };
 
+    
     this.loadAccountButtons = this.loadAccountButtons.bind(this);
     this.loadCash = this.loadCash.bind(this);
   }
@@ -144,17 +145,17 @@ class Accounts extends Component {
         if (response.status === 200) {
           this.setState({
             accountList: response.data.map((d) => (
-              <button
-                key={d.id}
-                onClick={() => {
-                  this.loadOneTable(d.accountID, d.officialname, d.accountname);
-                }}
-              >
-                {d.officialname} {d.accountname}
-                <br></br>Current Balance: {d.currentbalance}
-              </button>
-            )),
-          });
+              <div className="largeText"
+              key = {d.id}>
+              <div className="leftText">{d.accountname}</div>
+              <div className="rightText">${d.currentbalance}</div>
+              <br />
+              <div className="bankText">{d.officialname}</div>
+            </div>
+            )
+            
+            ),
+          })
         } else {
           console.log("else");
           this.props.showError("Some error ocurred");
@@ -175,9 +176,7 @@ class Accounts extends Component {
   render() {
     return (
       <div className="accountsPage">
-        <div className="split left">{this.state.accountList}</div>
-
-        <div className="split right">
+        <div className="center">
           <Card className="cashCard text-center">
             <Card.Header>
               <div className="largeText2">
@@ -185,15 +184,8 @@ class Accounts extends Component {
                 <div className="rightText">${this.state.totalCash}</div>
               </div>
             </Card.Header>
-
-            <div className="largeText">
-              <div className="leftText">Checking</div>
-              <div className="rightText">${this.state.totalChecking}</div>
-            </div>
-            <div className="largeText">
-              <div className="leftText">Savings</div>
-              <div className="rightText">${this.state.totalSavings}</div>
-            </div>
+         
+           {this.state.accountList}
 
             <Card.Footer className="text-muted">2 days ago</Card.Footer>
           </Card>
