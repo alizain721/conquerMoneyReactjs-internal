@@ -23,3 +23,10 @@
   margin-top: 3vh;
   font-size: 14px;
 }
+
+.redDialogText > * {
+  color: red !important;
+}
+.centerSmallText {
+  text-align: center;
+}
