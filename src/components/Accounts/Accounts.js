@@ -148,7 +148,7 @@ class Accounts extends Component {
               <div className="largeText"
               key = {d.id}>
               <div className="leftText">{d.accountname}</div>
-              <div className="rightText">${d.currentbalance}</div>
+              <div className="rightText">${(d.currentbalance).toFixed(2)}</div>
               <br />
               <div className="bankText">{d.officialname}</div>
             </div>
