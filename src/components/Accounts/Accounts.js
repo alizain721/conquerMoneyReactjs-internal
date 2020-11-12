@@ -19,6 +19,7 @@ class Accounts extends Component {
 
     this.state = {
       accountList: [],
+      checkAndSaveList: [],
       cardList: [],
       loanList: [],
       totalCash: null,
@@ -29,7 +30,7 @@ class Accounts extends Component {
     };
 
     
-    this.loadAccountButtons = this.loadAccountButtons.bind(this);
+   // this.loadAccountButtons = this.loadAccountButtons.bind(this);
     this.loadCash = this.loadCash.bind(this);
   }
 
@@ -48,6 +49,17 @@ class Accounts extends Component {
             totalCash: response.data.totalCash,
             totalChecking: response.data.totalChecking,
             totalSavings: response.data.totalSavings,
+            checkAndSaveList: response.data.checkAndSaveList.map((d) => (
+              <div className="largeText"
+              key = {d.id}>
+              <div className="leftText">{d.accountname}</div>
+              <div className="rightText">${(d.currentbalance).toFixed(2)}</div>
+              <br />
+              <div className="bankText">{d.officialname}</div>
+            </div>
+            )
+            
+            ),
           });
           console.log("CASH" + response.data.totalCash);
         } else {
@@ -131,46 +143,11 @@ class Accounts extends Component {
         console.log(error);
       });
   }
-
-  loadAccountButtons() {
-    const token = Cookie.get("token") ? Cookie.get("token") : null;
-
-    const payload = {
-      token: token,
-    };
-
-    axios
-      .post(API_URL + API_GET_ACCOUNTS, payload)
-      .then((response) => {
-        if (response.status === 200) {
-          this.setState({
-            accountList: response.data.map((d) => (
-              <div className="largeText"
-              key = {d.id}>
-              <div className="leftText">{d.accountname}</div>
-              <div className="rightText">${(d.currentbalance).toFixed(2)}</div>
-              <br />
-              <div className="bankText">{d.officialname}</div>
-            </div>
-            )
-            
-            ),
-          })
-        } else {
-          console.log("else");
-          this.props.showError("Some error ocurred");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
+  
   componentDidMount() {
-    this.loadAccountButtons();
     this.loadCash();
     this.loadCards();
-    // this.loadLoans();
+    this.loadLoans();
   }
 
   render() {
@@ -185,7 +162,7 @@ class Accounts extends Component {
               </div>
             </Card.Header>
          
-           {this.state.accountList}
+           {this.state.checkAndSaveList}
 
             <Card.Footer className="text-muted">2 days ago</Card.Footer>
           </Card>
