@@ -23,7 +23,12 @@ class Profile extends Component{
 
     render(){
         return (
-            <div classname="profilePage"></div>
-        )
+            <div classname="profilePage">
+                <div classname="header">
+                    <p>Test</p>
+                </div>
+            </div>
+        );
     }
 }
+export default withRouter(Profile);

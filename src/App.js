@@ -145,6 +145,10 @@ function App() {
                 updateTitle={updateTitle}
               />
             </Route>
+
+            <Route path="/profile">
+              
+            </Route>
           </Switch>
 
           <AlertComponent
