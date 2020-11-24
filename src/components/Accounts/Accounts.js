@@ -12,6 +12,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import "./Accounts.css";
 import Card from "react-bootstrap/Card";
+import Link from "../Plaid/Link.js";
 
 class Accounts extends Component {
   constructor() {
@@ -219,6 +220,20 @@ class Accounts extends Component {
           </Card>
             ]
           }
+        <div className="tile_no_btn bg-white my-2">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="tile_no_btn_top">
+                  <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
+                    Get Started with Plaid!
+                  </h4>
+                  <Link updateTitle={this.props.updateTitle}></Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     );
