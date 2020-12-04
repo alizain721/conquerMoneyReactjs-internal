@@ -67,6 +67,9 @@ function App() {
 
   const [isLoggedIn, updateIsLoggedIn] = useState(false);
 
+  const [movement, updateMovement] = useState(false);
+
+ console.log(movement);
   return (
     <Router>
       <DisplayHeader
@@ -158,6 +161,7 @@ function App() {
             updateTitle={updateTitle}
           ></BottomNav>
         </footer>
+        
       </div>
     </Router>
   );

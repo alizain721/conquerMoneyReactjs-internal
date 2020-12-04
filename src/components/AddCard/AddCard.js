@@ -49,7 +49,7 @@ function AddCard(props) {
             }, 1500);
 
             props.showError(null);
-          } else if (response.status === 204) {
+          } else if (response.status == 401) {
             props.showError(
               "Token has expired you are being redirected to login..."
             );

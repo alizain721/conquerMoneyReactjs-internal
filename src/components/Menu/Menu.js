@@ -22,14 +22,17 @@ export default function SimpleMenu() {
       .then((response) => {
         if (response.status === 200) {
           console.log("logout response received");
-          history.push("/"); //returns to home
+          
         } else {
           console.log("Error while attempting logout");
         }
+        Cookie.set("token", { expires: 0.0 });
+        history.push("/"); //returns to home
       })
       .catch(function (error) {
         console.log(error);
       });
+      console.log("logout complete");
   };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -37,13 +40,9 @@ export default function SimpleMenu() {
 
   const handleClose = () => {
     setAnchorEl(null);
-    logoutReq();
-    Cookie.set("token", { expires: 0.0 });
-    console.log("logout complete");
   };
 
-  return (
-    <div>
+  return (<div>
       <BottomNavigationAction
         label="Settings"
         value="settings"
@@ -60,8 +59,8 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={logoutReq}>Logout</MenuItem>
       </Menu>
-    </div>
+      </div>
   );
 }
