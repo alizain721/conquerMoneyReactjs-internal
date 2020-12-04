@@ -19,6 +19,7 @@ class Accounts extends Component {
 
     this.state = {
       accountList: [],
+      checkAndSaveList: [],
       cardList: [],
       loanList: [],
       totalCash: null,
@@ -28,8 +29,8 @@ class Accounts extends Component {
       totalLoanDebt: null,
     };
 
-    
-    this.loadAccountButtons = this.loadAccountButtons.bind(this);
+
+    // this.loadAccountButtons = this.loadAccountButtons.bind(this);
     this.loadCash = this.loadCash.bind(this);
   }
 
@@ -48,9 +49,21 @@ class Accounts extends Component {
             totalCash: response.data.totalCash,
             totalChecking: response.data.totalChecking,
             totalSavings: response.data.totalSavings,
+            checkAndSaveList: response.data.checkAndSaveList.map((d) => (
+              <div className="largeText"
+                key={d.id}>
+                <div className="leftText">{d.accountname}</div>
+                <div className="rightText">${(d.currentbalance).toFixed(2)}</div>
+                <br />
+                <div className="bankText">{d.officialname}</div>
+              </div>
+            )
+
+            ),
           });
           console.log("CASH" + response.data.totalCash);
-        } else {
+        }
+        else {
           console.log("else");
           this.props.showError("Some error ocurred");
         }
@@ -132,78 +145,67 @@ class Accounts extends Component {
       });
   }
 
-  loadAccountButtons() {
-    const token = Cookie.get("token") ? Cookie.get("token") : null;
-
-    const payload = {
-      token: token,
-    };
-
-    axios
-      .post(API_URL + API_GET_ACCOUNTS, payload)
-      .then((response) => {
-        if (response.status === 200) {
-          this.setState({
-            accountList: response.data.map((d) => (
-              <div className="largeText"
-              key = {d.id}>
-              <div className="leftText">{d.accountname}</div>
-              <div className="rightText">${d.currentbalance}</div>
-              <br />
-              <div className="bankText">{d.officialname}</div>
-            </div>
-            )
-            
-            ),
-          })
-        } else {
-          console.log("else");
-          this.props.showError("Some error ocurred");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
   componentDidMount() {
-    this.loadAccountButtons();
     this.loadCash();
     this.loadCards();
-    // this.loadLoans();
+    this.loadLoans();
   }
 
   render() {
+    var noAccounts = 0;
+    var noCards = 0;
+    var noLoans = 0;
+    if (this.state.checkAndSaveList === undefined || this.state.checkAndSaveList.length == 0) {
+      noAccounts = 1;
+    }
+    if (this.state.cardList === undefined || this.state.cardList.length == 0) {
+      noCards = 1;
+    }
+    if (this.state.loanList === undefined || this.state.loanList.length == 0) {
+      noLoans = 1;
+    }
+
+
     return (
       <div className="accountsPage">
         <div className="center">
-          <Card className="cashCard text-center">
-            <Card.Header>
-              <div className="largeText2">
-                <div className="leftText">Total Cash</div>
-                <div className="rightText">${this.state.totalCash}</div>
-              </div>
-            </Card.Header>
-         
-           {this.state.accountList}
+          {noAccounts ? null :
+            [
+              <Card className="cashCard text-center">
+                <Card.Header>
+                  <div className="largeText2">
+                    <div className="leftText">Total</div>
+                  <div className="rightText">${this.state.totalCash}</div>
+                  </div>
+                </Card.Header>
 
-            <Card.Footer className="text-muted">2 days ago</Card.Footer>
-          </Card>
+                {this.state.checkAndSaveList}
 
-          <Card className="creditCard text-center">
-            <Card.Header>
-              <div className="largeText2">
-                <div className="leftText">Credit Cards</div>
-                <div className="rightText">-${this.state.totalCardDebt}</div>
-              </div>
-            </Card.Header>
+                <Card.Footer className="text-muted">2 days ago</Card.Footer>
+              </Card>
+            ]
+          }
+          {
+            noCards ? null :
+              [
+                <Card className="creditCard text-center">
+                  <Card.Header>
+                    <div className="largeText2">
+                      <div className="leftText">Credit Cards</div>
+                      <div className="rightText">-${this.state.totalCardDebt}</div>
+                    </div>
+                  </Card.Header>
 
-            {this.state.cardList}
+                  {this.state.cardList}
 
-            <Card.Footer className="text-muted">2 days ago</Card.Footer>
-          </Card>
-
-          <Card className="loanCard text-center">
+                  <Card.Footer className="text-muted">2 days ago</Card.Footer>
+                </Card>
+              ]
+          }
+          {
+            noLoans ? null :
+            [
+              <Card className="loanCard text-center">
             <Card.Header>
               <div className="largeText2">
                 <div className="leftText">Loans</div>
@@ -215,6 +217,8 @@ class Accounts extends Component {
 
             <Card.Footer className="text-muted"></Card.Footer>
           </Card>
+            ]
+          }
         </div>
       </div>
     );
