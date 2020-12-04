@@ -142,22 +142,7 @@ class Tile extends Component {
       );
     } else if (this.props.typeid === 4) {
       //PLAID TILE
-      return (
-        <div className="tile_no_btn bg-white my-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="tile_no_btn_top">
-                  <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-                    Get Started with Plaid!
-                  </h4>
-                  <Link updateTitle={this.props.updateTitle}></Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      return (null)
     } else if (this.props.typeid === 5) {
       return (
         <div className="spending_descreases bg-white my-2">
