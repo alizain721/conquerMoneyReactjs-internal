@@ -14,6 +14,7 @@ import { useHistory } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 
+import Extendtoken from "../Refresh/Refresh.js";
 import SimpleMenu from "../Menu/Menu.js";
 
 const useStyles = makeStyles({
@@ -100,8 +101,8 @@ function BottomNav(props) {
           value="settings"
           icon={<SettingsIcon />}
           //onClick={SimpleMenu}
-        />
-    */}
+        />*/
+    }
           <BottomNavigationAction
             label="Forward"
             value="forward"
@@ -111,7 +112,6 @@ function BottomNav(props) {
         </BottomNavigation>
       );
     }
-
     return (
       <BottomNavigation
         value={value}
@@ -145,6 +145,8 @@ function BottomNav(props) {
           onClick={() => redirectToPost()}
         />
         <SimpleMenu></SimpleMenu>
+        {//<Extendtoken></Extendtoken>
+        }
         {/*
       <BottomNavigationAction
         label="Settings"
