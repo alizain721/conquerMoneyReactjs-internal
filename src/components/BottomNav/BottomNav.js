@@ -101,14 +101,14 @@ function BottomNav(props) {
           value="settings"
           icon={<SettingsIcon />}
           //onClick={SimpleMenu}
-        />*/
-    }
+        />*/ }
           <BottomNavigationAction
             label="Forward"
             value="forward"
             icon={<ForwardIcon />}
             onClick={() => history.goForward()}
           />
+          <Extendtoken/>
         </BottomNavigation>
       );
     }
@@ -145,16 +145,14 @@ function BottomNav(props) {
           onClick={() => redirectToPost()}
         />
         <SimpleMenu></SimpleMenu>
-        {//<Extendtoken></Extendtoken>
-        }
         {/*
-      <BottomNavigationAction
+        <BottomNavigationAction
         label="Settings"
         value="settings"
         icon={<SettingsIcon />}
         //onClick={SimpleMenu}
-      />
-  */}
+        />*/}
+        <Extendtoken/>
       </BottomNavigation>
     );
   }

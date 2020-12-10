@@ -93,13 +93,13 @@ class Tile extends Component {
           </div>
 
           <div className="like_comt_share">
-            <a className="comment_a">
+            <a>
               <div className="like_comt_share_imgs">
                 <img src={like} alt="like" />
               </div>
               <span>like</span>
             </a>
-            <a className="comment_a">
+            <a>
               {" "}
               {/*href="www.etc.com"*/}
               <div className="like_comt_share_imgs">
@@ -107,7 +107,7 @@ class Tile extends Component {
               </div>
               <span>Comment</span>
             </a>
-            <a className="comment_a">
+            <a>
               <div className="like_comt_share_imgs">
                 <img src={share} alt="share" />
               </div>
@@ -197,19 +197,19 @@ class Tile extends Component {
             </div>
           </div>
           <div className="like_comt_share">
-            <a className="comment_a">
+            <a>
               <div className="like_comt_share_imgs">
                 <img src={like} alt="like" />
               </div>
               <span>like</span>
             </a>
-            <a className="comment_a">
+            <a>
               <div className="like_comt_share_imgs">
                 <img src={comment} alt="comment" />
               </div>
               <span>Comment</span>
             </a>
-            <a className="comment_a">
+            <a>
               <div className="like_comt_share_imgs">
                 <img src={share} alt="share" />
               </div>
