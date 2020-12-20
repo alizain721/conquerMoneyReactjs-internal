@@ -59,15 +59,6 @@ class Profile extends Component {
     componentDidMount() {
         this.getProfile()
     }
-
-
-
-
-
-
-
-
-
       render() {
         return (
           <div className= "Profile">
@@ -104,9 +95,4 @@ class Profile extends Component {
       )
     }        
   }  
-    
-
-       
-    
-
 export default withRouter(Profile);
