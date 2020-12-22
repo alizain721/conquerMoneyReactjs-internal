@@ -7,6 +7,7 @@ import Cookie from "js-cookie";
 import { API_GENTILES_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter, Link } from "react-router-dom";
 import Tile from "../Tile/Tile.js";
+import Extendtoken from "../Refresh/Refresh.js";
 
 class Dashboard extends Component {
   constructor() {
@@ -77,8 +78,8 @@ class Dashboard extends Component {
           }));
 */
           this.props.showError(null);
-        } else if (response.status === 204) {
-          console.log("204");
+        } else if (response.status === 401) {
+          console.log("UNAUTHORIZED");
           this.props.showError(
             "Token has expired you are being redirected to login..."
           );
@@ -140,6 +141,8 @@ class Dashboard extends Component {
         >
           {this.state.successMessage}
         </div>
+        {//<Extendtoken></Extendtoken>
+  }
       </div>
     );
   }

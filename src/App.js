@@ -175,6 +175,7 @@ function App() {
             updateTitle={updateTitle}
           ></BottomNav>
         </footer>
+        
       </div>
     </Router>
   );

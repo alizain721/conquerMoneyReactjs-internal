@@ -72,7 +72,7 @@ class AddPost extends Component {
           }, 1500);
 
           this.props.showError(null);
-        } else if (response.status === 204) {
+        } else if (response.status == 401) {
           this.props.showError(
             "Token has expired you are being redirected to login..."
           );
