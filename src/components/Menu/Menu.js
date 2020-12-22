@@ -42,7 +42,7 @@ export default function SimpleMenu() {
     setAnchorEl(null);
   };
 
-  return (<div>
+  return (<>
       <BottomNavigationAction
         label="Settings"
         value="settings"
@@ -61,6 +61,6 @@ export default function SimpleMenu() {
       >
         <MenuItem onClick={logoutReq}>Logout</MenuItem>
       </Menu>
-      </div>
+      </>
   );
 }

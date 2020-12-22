@@ -1,29 +1,11 @@
-import { API_URL, API_REFRESH, SetMovement, GetMovement } from "../../constants/apiConstants.js";
+import { API_URL, API_REFRESH} from "../../constants/apiConstants.js";
 import Cookie from "js-cookie";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import React, {useState, useEffect, useRef} from 'react';
-import Button from "@material-ui/core/Button";
-export const global_timer_value = 300000;//5 minutes
-export var global_movement = false;//should be false
-let end = false;
 
+var movement = false;
 const Extendtoken = () =>{
-  /*function promiseAsync()
-  {
-    RefreshReq();
-    return new Promise(resolve => {
-      if(end===true)
-      {
-        resolve('resolved');
-      }
-    });
-    
-  }
-  async function AsyncFuncCall()
-  {
-    await(promiseAsync());
-  }*/
   const [hasMovement,setMovement]= useState(false);
   var history = useHistory();
   const redir = () => {        
@@ -31,41 +13,42 @@ const Extendtoken = () =>{
     history.push("/"); //returns to login
   }
   const interval = useRef(null);
-  useEffect(() => {
-    window.addEventListener("mousemove", setMovement);
-    return () => window.removeEventListener("mousemove", setMovement);
-  }, []);
   useEffect(()=>{
+    window.addEventListener("mousemove", setMovement);
+    RefreshReq();
+    return () => window.removeEventListener("mousemove", setMovement);
   }, [interval])
+
   const stopRefreshing = () =>
   {
-      console.log("Stopping Refresh...");
+      console.log("Stopping Refresh Interval...");
     clearInterval(interval.current);  
-    end = true;
-    return "end";
   }
-  const RefreshReq = () => {
-    console.log("Calling Refresh");
-    //interval.current = setInterval(() => {
-      //refreshT();
-    //}, 10000)
 
+  function RefreshReq(){
+    console.log("Refresh Interval Called");
+    interval.current = setInterval(() => {
+      refreshT();
+    }, 10000)
+    return(null)
+    }
     const refreshT = () =>
     {    
       console.log("refresh extend tests");
-      var movement = global_movement;
       console.log("movement: "+movement);
       if(movement)
       {
+        console.log("attempting refresh!!");
         axios
         .post(API_URL + API_REFRESH, {
             movement: movement,  
             token: Cookie.get("token"),
         })
         .then((response) => {
+          console.log("refresh!!");
           if(response.status === 200){
             var accessToken = response.data.accessToken;
-            global_movement = response.data.movement;
+            setMovement(response.data.movement);
             Cookie.set("token", accessToken, { expires: 0.015 });
             console.log("refresh complete @"+accessToken);
           }
@@ -76,22 +59,12 @@ const Extendtoken = () =>{
         });
       }         
       else
-      {
-        stopRefreshing();
-        redir();
-        console.log("Logging out");
-      }
+      {stopRefreshing();
+      redir();
+      console.log("Logging out");}
     }
-    
-  };
-  RefreshReq();
-/*return (<div class={global_movement = hasMovement? "true":"false"}>
-  <div class={AsyncFuncCall()}></div>
-</div>
-)*/
-return (<div>
-  <p>Movement:{global_movement = hasMovement? "true":"false"}</p>
-  <button onClick={RefreshReq}>refresh</button>
-</div>)
-}
+    return (<>
+      {movement = hasMovement? true:false}
+    </>)
+  }
 export default Extendtoken;
