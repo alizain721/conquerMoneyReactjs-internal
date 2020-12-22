@@ -1,14 +1,9 @@
-import {osiris_stub} from "../EditProfile/EditProfile.js"
 import "./Profile.css";
-import "../HeaderDash/HeaderDash.css"
-import "../HeaderDash/HeaderDash"
 import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
-import { API_GENTILES_URL, API_URL, API_PROFILE, API_GET_PROFILE } from "../../constants/apiConstants";
+import {  API_URL,  API_GET_PROFILE } from "../../constants/apiConstants";
 import { withRouter, Link } from "react-router-dom";
-import { Height } from "@material-ui/icons";
-
 
 
 
@@ -59,14 +54,6 @@ class Profile extends Component {
     componentDidMount() {
         this.getProfile()
     }
-
-
-
-
-
-
-
-
 
       render() {
         return (

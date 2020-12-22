@@ -7,13 +7,13 @@ import { API_GENTILES_URL, API_URL, API_PROFILE, API_GET_PROFILE } from "../../c
 import { withRouter, Link } from "react-router-dom";
 
 var osiris_stub ={
-  First_Name: "Kelly ",
-  Last_Name: "Ngaruko",
-  title:"Recent grad",
+  First_Name: "your first name ",
+  Last_Name: "your last name",
+  title:"your current title",
   description: null ,
   number_posts: 0,
   number_connec: 0,
-  location:"Dallas,TX"
+  location:"your current location"
   };
 
 class EditProfile extends Component {
@@ -36,8 +36,7 @@ class EditProfile extends Component {
       redirectToProfile()  {
         this.props.history.push("/profile");
       }
-    
-            
+      
       render(){
           return(
         
@@ -70,7 +69,10 @@ class EditProfile extends Component {
         />
         <input 
         type="submit"
-        onClick={this.sendDetailsToServer()}
+       // onClick={this.sendDetailsToServer()} 
+       /*we will need to define a sendDetailsTo Server function
+       that stores the data in our DB
+       */
         />
       </form>
       </div>
