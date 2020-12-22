@@ -15,6 +15,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PersonIcon from "@material-ui/icons/Person"
 
+import Extendtoken from "../Refresh/Refresh.js";
 import SimpleMenu from "../Menu/Menu.js";
 
 const useStyles = makeStyles({
@@ -114,18 +115,17 @@ function BottomNav(props) {
           value="settings"
           icon={<SettingsIcon />}
           //onClick={SimpleMenu}
-        />
-    */}
+        />*/ }
           <BottomNavigationAction
             label="Forward"
             value="forward"
             icon={<ForwardIcon />}
             onClick={() => history.goForward()}
           />
+          <Extendtoken/>
         </BottomNavigation>
       );
     }
-
     return (
       <BottomNavigation
         value={value}
@@ -167,13 +167,13 @@ function BottomNav(props) {
         />
         <SimpleMenu></SimpleMenu>
         {/*
-      <BottomNavigationAction
+        <BottomNavigationAction
         label="Settings"
         value="settings"
         icon={<SettingsIcon />}
         //onClick={SimpleMenu}
-      />
-  */}
+        />*/}
+        <Extendtoken/>
       </BottomNavigation>
     );
   }

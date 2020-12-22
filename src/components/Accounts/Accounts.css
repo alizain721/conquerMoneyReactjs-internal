@@ -1,6 +1,26 @@
-.center {
+@media screen and (max-width: 767px) {
+  .center {
   height: 80px;
-  width: 500px;
+  width: 300px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .center {
+  height: 80px;
+  width: 502px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .center {
+  height: 120px;
+  width: 600px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .center {
+  height: 120px;
+  width: 750px;
+  }
 }
 
 .leftText {
