@@ -28,6 +28,8 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import AddPost from "./components/AddPost/AddPost";
 import Accounts from "./components/Accounts/Accounts";
+import Profile from "./components/Profile/Profile";
+import EditProfile from "./components/EditProfile/EditProfile";
 
 const LoadingIndicator = (props) => {
   const { promiseInProgress } = usePromiseTracker();
@@ -145,6 +147,21 @@ function App() {
                 updateTitle={updateTitle}
               />
             </Route>
+
+            <Route path="/profile">
+              <Profile
+                showError={updateErrorMessage}
+                
+              />
+            </Route>
+            <Route path="/editprofile">
+              <EditProfile
+                showError={updateErrorMessage}
+                
+              />
+            </Route>
+            
+
           </Switch>
 
           <AlertComponent

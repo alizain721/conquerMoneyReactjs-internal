@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import PersonIcon from "@material-ui/icons/Person"
 
 import Extendtoken from "../Refresh/Refresh.js";
 import SimpleMenu from "../Menu/Menu.js";
@@ -48,6 +49,11 @@ function BottomNav(props) {
   const redirectToPost = () => {
     props.history.push("/addpost");
     props.updateTitle("Add Post");
+  };
+
+  const redirectToProfile = () => {
+    props.history.push("/profile");
+    props.updateTitle("Profile");
   };
 
   const classes = useStyles();
@@ -94,6 +100,14 @@ function BottomNav(props) {
             icon={<PostIcon />}
             onClick={() => redirectToPost()}
           />
+
+          <BottomNavigationAction
+            label="Profile"
+            value="profile"
+            icon={<PostIcon />}
+            onClick={() => redirectToProfile()}
+          />
+
           <SimpleMenu></SimpleMenu>
           {/*
         <BottomNavigationAction
@@ -143,6 +157,13 @@ function BottomNav(props) {
           value="post"
           icon={<PostIcon />}
           onClick={() => redirectToPost()}
+        />
+
+        <BottomNavigationAction
+          label="Profile"
+          value="profile"
+          icon={<PersonIcon />}
+          onClick={() => redirectToProfile()}
         />
         <SimpleMenu></SimpleMenu>
         {/*
