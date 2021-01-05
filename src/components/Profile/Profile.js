@@ -1,4 +1,3 @@
-import {osiris_stub} from "../EditProfile/EditProfile.js"
 import "./Profile.css";
 import "../HeaderDash/HeaderDash.css"
 import "../HeaderDash/HeaderDash"
