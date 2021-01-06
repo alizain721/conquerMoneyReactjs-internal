@@ -14,7 +14,11 @@ function DisplayHeader(props) {
   ) {
     return <HeaderDash updateCredit={"2555"} updateTitle={props.updateTitle} />;
   }
-
+  if (
+    props.location.pathname === "/" || props.location.pathname ==="/login"
+  ) {
+    return "";
+  }
   /*
   if (props.isLoggedIn) {
     return <HeaderDash />;
