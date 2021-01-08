@@ -51,8 +51,10 @@ class Profile extends Component {
             e.preventDefault();
         }
         else{
-          this.state.locationErrorMessage = null;
-          this.state.locationFalse = false;
+          this.setState({
+            locationErrorMessage: null,
+            locationFalse: false
+          })
           this.sendDetailsToServer();   
         }   
       }
