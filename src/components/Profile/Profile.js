@@ -10,7 +10,7 @@ import { Height } from "@material-ui/icons";
 
 
 function validateLocationChange(value) {
-  const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}/;
+  const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
   return re.test(String(value).toLowerCase());
 }
 
@@ -44,8 +44,10 @@ class Profile extends Component {
 
       handleSubmitClick(e) {
         if(!validateLocationChange(this.state.location)){
-            this.state.locationErrorMessage = "Location must be of the form: \"New York, NY\"";
-            this.state.locationFalse = true;
+          this.setState({
+            locationErrorMessage: "Location must be of the form: \"New York, NY\"",
+            locationFalse: true
+          })
             e.preventDefault();
         }
         else{
@@ -102,7 +104,7 @@ class Profile extends Component {
 
                 <div className= "edit_profile_form_group">
                   <p>Description:</p>
-                  <textarea className= "form_control" type= "description" id= "description" value={this.state.description} onChange={this.handleDescriptionChange} maxLength= "100"></textarea>
+                  <textarea className= "form_control" type= "description" id= "description" value={this.state.description} onChange={this.handleDescriptionChange} maxLength= "150"></textarea>
                 </div>
 
                 <div className= "edit_profile_form_group"> 
@@ -112,7 +114,7 @@ class Profile extends Component {
                 
                 <div
                   className="loctationErrorMessage"
-                  style={{ display: this.state.locationErrorMessage && this.state.locationFalse ? "block" : "none" }}
+                  style= {{display: this.state.locationFalse ? "block" : "none" }}
                 >
                   <p>{this.state.locationErrorMessage}</p>
                 </div>

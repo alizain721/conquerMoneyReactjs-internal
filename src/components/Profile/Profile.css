@@ -82,8 +82,12 @@
   margin-left: auto;
   margin-right: auto;
   position: absolute;
-  font-size: medium;  
+  font-size: medium; 
+  max-width: 500px; 
   word-wrap: break-word;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .lower_line{
   height:2px;
@@ -194,6 +198,7 @@
   border: 1px solid #ced4da;
   border-radius: .25rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  max-height: 100px;
 }
 
 .loctationErrorMessage {
