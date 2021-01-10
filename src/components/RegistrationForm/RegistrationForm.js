@@ -18,18 +18,26 @@ function validateEmail(email) {
 }
 
 function RegistrationForm(props) {
+  const minFirstNameLength = 2;
+  const minLastNameLength = 2;
   const minUsernameLength = 6;
   const minPasswordLength = 6;
   const [state, setState] = useState({
+    firstName: "",
+    lastName: "",
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
     successMessage: null,
+    firstNameFalse: null,
+    lastNameFalse: null,
     usernameFalse: null,
     passwordFalse: null,
     emailFalse: null,
     confirmPasswordFalse: null,
+    firstNameErrorMessage: null,
+    lastNameErrorMessage: null,
     passWordErrorMessage: null,
     usernameErrorMessage: null,
     emailErrorMessage: null,
@@ -39,6 +47,39 @@ function RegistrationForm(props) {
   });
   const handleChange = (e) => {
     const { id, value } = e.target;
+
+    if(e.target.id === "firstName") {
+      if(value.length < minFirstNameLength) {
+        setState((prevState) => ({
+          ...prevState,
+          firstNameErrorMessage: `First Name must be ${minFirstNameLength} characters or more`,          
+          firstNameFalse: true
+        }));
+      }
+    }else {
+        setState((prevState) => ({
+          ...prevState,
+          firstNameErrorMessage: null,
+          firstNameFalse: false
+        }))
+    }
+
+    if(e.target.id === "lastName") {
+      if(value.length < minLastNameLength) {
+        setState((prevState) => ({
+          ...prevState,
+          lastNameErrorMessage: `Last Name must be ${minLastNameLength} characters or more`,         
+          lastNameFalse: true
+        }));
+      }
+    }else {
+        setState((prevState) => ({
+          ...prevState,
+          lastNameErrorMessage: null,           
+          lastNameFalse: false
+        }))
+    }
+
     if(e.target.id === "username") {
       if(value.length < minUsernameLength) {
         setState((prevState) => ({
@@ -113,9 +154,11 @@ function RegistrationForm(props) {
     }));
   };
   const sendDetailsToServer = () => {
-    if (state.email.length && state.password.length && state.username.length) {
+    if (state.email.length && state.password.length && state.username.length && state.firstName.length && state.lastName.length) {
       props.showError(null);
       const payload = {
+        firstName: state.firstName,
+        lastName: state.lastName,
         username: state.username,
         email: state.email,
         password: state.password,
@@ -192,6 +235,48 @@ function RegistrationForm(props) {
         <h1>
           <b>Conquer Money</b>
         </h1>
+
+        <div className="container text-left">
+          <label>First Name</label>
+          <input
+            //type="firstName"
+            className="form-control"
+            id="firstName"
+            placeholder="First Name"
+            value={state.firstName}
+            onChange={handleChange}
+          />
+          <small id="firstNameHelp" className="form-text text-muted centerSmallText">
+            Please input First Name carefully as you will NOT be able to change it later.
+          </small>
+        </div>
+        <div 
+          className="errorMessage mt-2"
+          style={{ display: state.firstNameFalse ? "block" : "none" }}
+        >
+          {state.firstNameErrorMessage}
+        </div>
+
+        <div className="container text-left">
+          <label>Last Name</label>
+          <input
+            //type="lastName"
+            className="form-control"
+            id="lastName"
+            placeholder="Last Name"
+            value={state.lastName}
+            onChange={handleChange}
+          />
+          <small id="lastNameHelp" className="form-text text-muted centerSmallText">
+            Please input Last Name carefully as you will NOT be able to change it later.
+          </small>
+        </div>
+        <div 
+          className="errorMessage mt-2"
+          style={{ display: state.lastNameFalse ? "block" : "none" }}
+        >
+          {state.lastNameErrorMessage}
+        </div>
 
         <div className="container text-left">
           <label htmlFor="exampleInputUsername1">Username</label>
