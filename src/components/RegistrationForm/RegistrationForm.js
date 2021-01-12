@@ -239,7 +239,6 @@ function RegistrationForm(props) {
         <div className="container text-left">
           <label>First Name</label>
           <input
-            //type="firstName"
             className="form-control"
             id="firstName"
             placeholder="First Name"
@@ -260,7 +259,6 @@ function RegistrationForm(props) {
         <div className="container text-left">
           <label>Last Name</label>
           <input
-            //type="lastName"
             className="form-control"
             id="lastName"
             placeholder="Last Name"
