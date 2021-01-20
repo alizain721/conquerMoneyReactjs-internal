@@ -57,7 +57,7 @@ function BottomNav(props) {
   };
 
   const classes = useStyles();
-  if (props.location.pathname === "/" || props.location.pathname === "/login") {
+  if (props.location.pathname === "/" || props.location.pathname === "/login" || props.location.pathname === "/register") {
     return null;
   } else {
 

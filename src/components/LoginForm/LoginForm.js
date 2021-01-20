@@ -88,9 +88,6 @@ function LoginForm(props) {
         <div className="imgcontainer">
           <img src={avatar} alt="avatar" className="avatar" />
         </div>
-        <h1>
-          <b>Conquer Money</b>
-        </h1>
 
         <div className="container text-left">
           <label htmlFor="exampleInputEmail1">Username</label>
