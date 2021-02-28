@@ -185,14 +185,6 @@ class Profile extends Component {
                 </button>
                 {this.state.showForm ? this.showForm() : null}
               </div>
-              <button
-              type="button"
-              className="display_user"
-              onClick={() => {
-                alert("Hi " + this.state.FirstName+" "+this.state.LastName);
-              }}
-              > Display User
-              </button>
               <div className= "random_container"></div>
               
         </div>       
