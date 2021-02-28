@@ -85,6 +85,14 @@ class Profile extends Component {
               }}
               > Edit Profile
               </button>
+              <button
+              type="button"
+              className="display_user"
+              onClick={() => {
+                alert("Hi " + this.state.FirstName+" "+this.state.LastName);
+              }}
+              > Display User
+              </button>
               <div className= "random_container"></div>
               
         </div>       
