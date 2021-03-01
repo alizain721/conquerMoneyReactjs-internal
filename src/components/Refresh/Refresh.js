@@ -29,29 +29,36 @@ const Extendtoken = () =>{
     console.log("Refresh Interval Called");
     interval.current = setInterval(() => {
       refreshT();
-    }, 10000)
+    }, 15*60*1000)
     return(null)
     }
     const refreshT = () =>
     {    
       console.log("refresh extend tests");
       console.log("movement: "+movement);
-      if(movement)
+      var authcookie = Cookie.get("token");
+      if(movement && authcookie != "")
       {
         console.log("attempting refresh!!");
         axios
         .post(API_URL + API_REFRESH, {
             movement: movement,  
-            token: Cookie.get("token"),
+            token: authcookie,
         })
         .then((response) => {
-          console.log("refresh!!");
+          
           if(response.status === 200){
+            console.log("refresh!!");
             var accessToken = response.data.accessToken;
             setMovement(response.data.movement);
             Cookie.set("token", accessToken, { expires: 0.015 });
             console.log("refresh complete @"+accessToken);
-          }
+          }else
+          {
+            console.log("refresh failed");
+            stopRefreshing();
+          redir();
+          console.log("Logging out");}
         })
         .catch(function (error) {
           console.log("Error while attempting refresh!!");
