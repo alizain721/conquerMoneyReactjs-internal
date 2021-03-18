@@ -160,7 +160,7 @@ class Link extends Component {
     );
     //console.log(public_token);
   }
-
+  
   handleOnExit() {
     // handle the case when user exits Link
   }
@@ -197,6 +197,8 @@ class Link extends Component {
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}
           className="test"
+          //link webhook to our actual domain
+          //webhook="https://www.<CM_Domain_Name>.com/api/auth/webhook"
         >
           Click this link and connect your bank!
         </PlaidLink>
