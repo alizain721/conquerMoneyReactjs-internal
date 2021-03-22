@@ -60,3 +60,8 @@ h5 {
   font-size: calc(18px + (30 - 18) * (100vw - 320px) / (1920 - 320));
   font-weight: 600;
 }
+
+.likes_message{
+  text-align: left;
+  padding-left: 30px;
+}
