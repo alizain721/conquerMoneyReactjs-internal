@@ -61,13 +61,17 @@ class Dashboard extends Component {
         console.log("res:"+response.status);
         if (response.status === 200) {
           this.setState({
-            tileList: response.data.map((d) => (
+            tileList: response.data.map((tile) => (
               <Tile
-                key={d.id}
-                title={d.title}
-                description={d.description}
-                typeid={d.typeid}
-                data={d}
+                key = {tile.id}
+                tileId = {tile.id}
+                postId = {tile.post.id}
+                title = {tile.post.title}
+                content = {tile.post.content}
+                postType = {tile.post.postType}
+                likesCount = {tile.post.likesCount}
+                isLiked = {tile.isLiked}
+                insightId = {tile.post.postContentType}
                 updateTitle={this.props.updateTitle}
               />
             )),
@@ -127,8 +131,10 @@ class Dashboard extends Component {
           <div className="accountListDiv">{this.state.listItems}</div>
         </div>
       */}
-        <Tile typeid={6} updateTitle={this.props.updateTitle} />
+        <Tile postType={"SIX"} updateTitle={this.props.updateTitle} />
         {this.state.tileList}
+        <Tile postType={"ONE"} updateTitle={this.props.updateTitle} />
+        <Tile postType={"FIVE"} updateTitle={this.props.updateTitle} />
 
         {/*<Tile title={this.state.title} description={this.state.description} />*/}
         {/*
