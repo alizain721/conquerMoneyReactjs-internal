@@ -7,10 +7,24 @@ import { API_GENTILES_URL, API_URL, API_PROFILE, API_GET_PROFILE, API_UPDATE_PRO
 
 import { withRouter, Link } from "react-router-dom";
 
+import anonAvatar from "../../img/anonProfilePicture.png";
+
 function validateLocationChange(value) {
   const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
   return re.test(String(value).toLowerCase());
 }
+/*
+ *Currently testing, function appears to be called more than once on the interval
+ *More information in Trello.
+function isDescriptionEmpty(description){
+
+  console.log("Im here: " + description);
+  if(description === ""){
+    return "Hi! I'm new to Conquer Money!";
+  }else{
+    return description;
+  }
+}*/
 
 class Profile extends Component {
     constructor() {
@@ -158,8 +172,10 @@ class Profile extends Component {
         return (
           <div className= "Profile">
               <div className="top_sec">
-                <div className= "circle">
-                </div> 
+                <div class="hover11">
+                  {/*Current bug: Hover effect is applied outside of the img might be a problem with Top sec, hover 11 or img */}
+                  <figure><img src= {anonAvatar} alt ="anonAvatar" className= "anonAvatar" /></figure>
+                 </div> 
               </div> 
               <div className="name_box"
               >{this.state.FirstName+" "+this.state.LastName}</div>  
@@ -167,7 +183,7 @@ class Profile extends Component {
               >{this.state.title}</div> 
               <div className="upper_line"></div>
               <div className="description_box"
-              >{this.state.description}</div>
+              >{this.state.description} </div>
               <div className="location_box"
               >{this.state.location}</div>
               <div className="num_post"
