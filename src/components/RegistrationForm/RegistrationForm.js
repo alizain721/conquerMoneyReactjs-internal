@@ -71,7 +71,7 @@ function RegistrationForm(props) {
     const { id, value } = e.target;
 
     if(e.target.id === "firstName") {
-      if(value.length < minFirstNameLength) {
+      if(!validateName(value)) {
         setState((prevState) => ({
           ...prevState,
           firstNameErrorMessage: `First Name must be atleast ${minFirstNameLength} characters long and have atleast one lower case letter`,          
@@ -87,7 +87,7 @@ function RegistrationForm(props) {
     }
 
     if(e.target.id === "lastName") {
-      if(value.length < minLastNameLength) {
+      if(!validateName(value)) {
         setState((prevState) => ({
           ...prevState,
           lastNameErrorMessage: `Last Name must be atleast ${minLastNameLength} characters long and have atleast one lower case letter`,         
@@ -102,6 +102,7 @@ function RegistrationForm(props) {
         }))
     }
 
+    /* Needs to be unique */
     if(e.target.id === "username") {
       if(value.length < minUsernameLength) {
         setState((prevState) => ({
@@ -120,7 +121,7 @@ function RegistrationForm(props) {
       }
     }
     if(e.target.id === "password") {
-      if(value.length < minPasswordLength) {
+      if(!validatePassword(value)) {
         setState((prevState) => ({
           ...prevState,
           passwordErrorMessage:
