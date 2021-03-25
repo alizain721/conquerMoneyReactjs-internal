@@ -17,6 +17,28 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+function validatePassword(password){
+
+  /*
+  * ^ Marks beginning of the regex expression
+  * ?= LookAhead
+  * (?=.*[a-z]) Checks that there is at least one lower case character
+  * (?=.*[A-Z]) Checks that there is at least one upper case character
+  * (?=.*\d) Checks that there is at least one digit
+  * (?=.*[$-/:-?{-~!"^_`\[\]]) Checks that there is at least one symbol (needs further testing)
+  * [a-zA-z$-/:-?{-~!"^_`\[\]]{6,} Characters Allowed
+  * $ Marks the end of the expression
+  */
+  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d$-/:-?{-~!"^_`\[\]]{8,}$/;
+  return re.test(String(password));
+}
+
+function validateName(name){
+
+  const re = /^(?=.*[a-z])[a-zA-z$-/:-?{-~!"^_`\[\]]{2,}$/;
+  return re.test(String(name));
+}
+
 function RegistrationForm(props) {
   const minFirstNameLength = 2;
   const minLastNameLength = 2;
@@ -52,7 +74,7 @@ function RegistrationForm(props) {
       if(value.length < minFirstNameLength) {
         setState((prevState) => ({
           ...prevState,
-          firstNameErrorMessage: `First Name must be ${minFirstNameLength} characters or more`,          
+          firstNameErrorMessage: `First Name must be atleast ${minFirstNameLength} characters long and have atleast one lower case letter`,          
           firstNameFalse: true
         }));
       }
@@ -68,7 +90,7 @@ function RegistrationForm(props) {
       if(value.length < minLastNameLength) {
         setState((prevState) => ({
           ...prevState,
-          lastNameErrorMessage: `Last Name must be ${minLastNameLength} characters or more`,         
+          lastNameErrorMessage: `Last Name must be atleast ${minLastNameLength} characters long and have atleast one lower case letter`,         
           lastNameFalse: true
         }));
       }
@@ -207,9 +229,28 @@ function RegistrationForm(props) {
   };
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    if (state.password === state.confirmPassword) {
+    if ((state.password === state.confirmPassword)) {
       sendDetailsToServer();
-    } else {
+    } 
+    if((state.firstName === "") || (state.lastName === "") || (state.username === "") || (state.email === "") || (state.password === "") || (state.confirmPassword === "")){
+      props.showError("Please fill out all the required fields");
+    }
+    else if(!validateName(state.firstName)){
+      props.showError("First Name doesn't match the requirements");
+    }
+    else if(!validateName(state.lastName)){
+      props.showError("Last Name doesn't match the requirements");
+    }
+    else if(state.username < minUsernameLength){
+      props.showError("Username doesn't match the requirements");
+    }
+    else if (!validateEmail(state.email)){
+      props.showError("Email  is not valid");
+    }
+    else if(!validatePassword(state.password)){
+      props.showError("Password doesn't match the requirements");
+    }
+  else {
       props.showError("Passwords do not match");
     }
   };
@@ -237,7 +278,7 @@ function RegistrationForm(props) {
         </h1>
 
         <div className="container text-left">
-          <label>First Name</label>
+          <label>First Name <dialogue style={{color: 'red'}}> * </dialogue> </label>
           <input
             className="form-control"
             id="firstName"
@@ -257,7 +298,7 @@ function RegistrationForm(props) {
         </div>
 
         <div className="container text-left">
-          <label>Last Name</label>
+          <label>Last Name <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             className="form-control"
             id="lastName"
@@ -277,7 +318,7 @@ function RegistrationForm(props) {
         </div>
 
         <div className="container text-left">
-          <label htmlFor="exampleInputUsername1">Username</label>
+          <label htmlFor="exampleInputUsername1">Username <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             type="username"
             className="form-control"
@@ -294,7 +335,7 @@ function RegistrationForm(props) {
           {state.usernameErrorMessage}
         </div>
         <div className="container text-left">
-          <label htmlFor="exampleInputEmail1">Email Address</label>
+          <label htmlFor="exampleInputEmail1">Email Address <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             type="email"
             className="form-control"
@@ -315,7 +356,7 @@ function RegistrationForm(props) {
           {state.emailErrorMessage}
         </div>
         <div className="container text-left">
-          <label htmlFor="exampleInputPassword1">Password</label>
+          <label htmlFor="exampleInputPassword1">Password <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             type="password"
             className="form-control"
@@ -325,6 +366,9 @@ function RegistrationForm(props) {
             onChange={handleChange}
           />
         </div>
+        <small id="lastNameHelp" className="form-text text-muted centerSmallText">
+            Your password MUST be atleast 6 characters long and MUST contain: At least one uppercase character, lowercase character, a number, and a special symbol
+          </small>
         <div
             className="errorMessage mt-2"
             style={{ display: state.passwordErrorMessage && state.passwordFalse ? "block" : "none" }}
@@ -332,7 +376,7 @@ function RegistrationForm(props) {
           {state.passwordErrorMessage}
         </div>
         <div className="container text-left">
-          <label htmlFor="exampleInputPassword1">Confirm Password</label>
+          <label htmlFor="exampleInputPassword1">Confirm Password <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             type="password"
             className="form-control"
