@@ -2,10 +2,29 @@ import "./Profile.css";
 import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
-import {  API_URL,  API_GET_PROFILE } from "../../constants/apiConstants";
+
+import { API_GENTILES_URL, API_URL, API_PROFILE, API_GET_PROFILE, API_UPDATE_PROFILE } from "../../constants/apiConstants";
+
 import { withRouter, Link } from "react-router-dom";
 
+import anonAvatar from "../../img/anonProfilePicture.png";
 
+function validateLocationChange(value) {
+  const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
+  return re.test(String(value).toLowerCase());
+}
+/*
+ *Currently testing, function appears to be called more than once on the interval
+ *More information in Trello.
+function isDescriptionEmpty(description){
+
+  console.log("Im here: " + description);
+  if(description === ""){
+    return "Hi! I'm new to Conquer Money!";
+  }else{
+    return description;
+  }
+}*/
 
 class Profile extends Component {
     constructor() {
@@ -19,16 +38,110 @@ class Profile extends Component {
         num_post: 0,
         num_connection: 0,
         location: "",
+        showForm: false,
+        locationFalse: null,
+        locationErrorMessage: ""
       };
+
+      this.handleSubmitClick= this.handleSubmitClick.bind(this);
+      this.handleTitleChange= this.handleTitleChange.bind(this);
+      this.handleDescriptionChange= this.handleDescriptionChange.bind(this);
+      this.handleLocationChange= this.handleLocationChange.bind(this);
     }
 
-      redirectToEditProfile()  {
-        this.props.history.push("/editprofile");
-      }
+      
       handleClick() {
         console.log("CLICK");
       }
 
+      handleSubmitClick(e) {
+        if(!validateLocationChange(this.state.location)){
+          this.setState({
+            locationErrorMessage: "Location must be of the form: \"New York, NY\"",
+            locationFalse: true
+          })
+            e.preventDefault();
+        }
+        else{
+          this.setState({
+            locationErrorMessage: null,
+            locationFalse: false
+          })
+          this.sendDetailsToServer();   
+        }   
+      }
+
+      handleTitleChange(e){
+        this.setState({
+          title: e.target.value
+        })
+      }
+
+      handleDescriptionChange(e){
+        this.setState({
+          description: e.target.value
+        })
+      }
+
+      handleLocationChange(e){
+          this.setState({
+            location: e.target.value,
+          });
+      }
+
+      sendDetailsToServer() {
+        const token = Cookie.get("token") ? Cookie.get("token") : null;
+        const payload = {
+          token : token,
+          title: this.state.title,
+          description: this.state.description,
+          location: this.state.location
+        };
+        axios
+        .post(API_URL + API_UPDATE_PROFILE, payload)
+        .then((response) => {
+          if (response.status === 200) {
+            this.getProfile();
+          }
+        }).catch(() => {
+          this.props.showError("An error has occured")
+        })
+      }
+
+      showForm (){
+        return(
+            <form className= "edit_profile_form">
+                <div className= "edit_profile_form_group">
+                  <p>Title:</p>
+                  <textarea className= "form_control" type= "title" id = "title" value={this.state.title} onChange={this.handleTitleChange} maxLength= "50"></textarea>
+                </div>
+
+                <div className= "edit_profile_form_group">
+                  <p>Description:</p>
+                  <textarea className= "form_control" type= "description" id= "description" value={this.state.description} onChange={this.handleDescriptionChange} maxLength= "150"></textarea>
+                </div>
+
+                <div className= "edit_profile_form_group"> 
+                  <p>Location:</p>
+                  <textarea className= "form_control" type= "location" id= "location" value={this.state.location} onChange={this.handleLocationChange} maxLength= "20"></textarea>
+                </div>
+                
+                <div
+                  className="loctationErrorMessage"
+                  style= {{display: this.state.locationFalse ? "block" : "none" }}
+                >
+                  <p>{this.state.locationErrorMessage}</p>
+                </div>
+
+              <button
+                type="submit"
+                onClick={this.handleSubmitClick}
+              >
+                Submit
+              </button>
+            </form>
+        );
+      }
 
       getProfile() {
         const token = Cookie.get("token") ? Cookie.get("token") : null;
@@ -50,17 +163,19 @@ class Profile extends Component {
             }).catch(() => {
             this.props.showError("An error has occured")
         })
-    }
+      }
+
     componentDidMount() {
         this.getProfile()
     }
-
       render() {
         return (
           <div className= "Profile">
               <div className="top_sec">
-                <div className= "circle">
-                </div> 
+                <div class="hover11">
+                  {/*Current bug: Hover effect is applied outside of the img might be a problem with Top sec, hover 11 or img */}
+                  <figure><img src= {anonAvatar} alt ="anonAvatar" className= "anonAvatar" /></figure>
+                 </div> 
               </div> 
               <div className="name_box"
               >{this.state.FirstName+" "+this.state.LastName}</div>  
@@ -68,7 +183,7 @@ class Profile extends Component {
               >{this.state.title}</div> 
               <div className="upper_line"></div>
               <div className="description_box"
-              >{this.state.description}</div>
+              >{this.state.description} </div>
               <div className="location_box"
               >{this.state.location}</div>
               <div className="num_post"
@@ -76,24 +191,20 @@ class Profile extends Component {
               <div className="num_connect"
               >{this.state.num_connection}</div>
               <div  className="lower_line"></div>
-              <button
-              type="button"
-              name="edit profile"
-              className="edit_profile"
-              onClick={() => {
-                this.redirectToEditProfile();
-              }}
-              > Edit Profile
-              </button>
+              <div>
+                <button
+                  type="button"
+                  name="edit profile"
+                  className="edit_profile_button"
+                  onClick={() => this.setState({showForm: true}) }
+                > Edit Profile
+                </button>
+                {this.state.showForm ? this.showForm() : null}
+              </div>
               <div className= "random_container"></div>
               
         </div>       
       )
     }        
   }  
-    
-
-       
-    
-
 export default withRouter(Profile);

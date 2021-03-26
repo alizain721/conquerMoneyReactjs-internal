@@ -14,8 +14,8 @@ class AddPost extends Component {
 
     this.state = {
       title: "",
-      description: "",
-      typeid: "2",
+      content: "",
+      postType: "TWO",
       //messagetypeid: "1",
       //posttypeid: "",
       successMessage: "",
@@ -23,13 +23,13 @@ class AddPost extends Component {
 
     this.handleOptionChange = this.handleOptionChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleDescChange = this.handleDescChange.bind(this);
+    this.handleContentChange = this.handleContentChange.bind(this);
     this.sendDetailsToServer = this.sendDetailsToServer.bind(this);
   }
 
   handleOptionChange(changeEvent) {
     this.setState({
-      posttypeid: changeEvent.target.value,
+      postType: changeEvent.target.value,
     });
   }
 
@@ -39,22 +39,22 @@ class AddPost extends Component {
     });
   }
 
-  handleDescChange(changeEvent) {
+  handleContentChange(changeEvent) {
     this.setState({
-      description: changeEvent.target.value,
+      content: changeEvent.target.value,
     });
   }
 
   sendDetailsToServer() {
     const token = Cookie.get("token") ? Cookie.get("token") : null;
-    console.log("DESC: " + this.state.description);
+    console.log("CONTENT: " + this.state.content);
     //console.log("POSTTYPEID: " + this.state.posttypeid);
 
     this.props.showError(null);
     const payload = {
       title: this.state.title,
-      description: this.state.description,
-      typeid: this.state.typeid,
+      content: this.state.content,
+      postType: this.state.postType,
       //messagetypeid: "1",
       //posttypeid: this.state.posttypeid,
       token: token,
@@ -115,14 +115,14 @@ class AddPost extends Component {
           <div className="form-group">
             <textarea
               className="form-control"
-              type="description"
-              id="description"
+              type="content"
+              id="content"
               placeholder="What's happening?"
               maxLength="140"
               rows="7"
               cols="60"
-              value={this.state.description}
-              onChange={this.handleDescChange}
+              value={this.state.content}
+              onChange={this.handleContentChange}
             ></textarea>
           </div>
 
@@ -132,8 +132,8 @@ class AddPost extends Component {
                 <input
                   type="radio"
                   name="category"
-                  value="1"
-                  //onChange={this.handleOptionChange}
+                  value="ONE"
+                  onChange={this.handleOptionChange}
                   //checked={this.state.posttypeid === "1"}
                 />
                 Option 1
@@ -142,8 +142,8 @@ class AddPost extends Component {
                 <input
                   type="radio"
                   name="category"
-                  value="2"
-                  //onChange={this.handleOptionChange}
+                  value="TWO"
+                  onChange={this.handleOptionChange}
                   //checked={this.state.posttypeid === "2"}
                 />
                 Option 2
@@ -152,8 +152,8 @@ class AddPost extends Component {
                 <input
                   type="radio"
                   name="category"
-                  value="3"
-                  //onChange={this.handleOptionChange}
+                  value="THREE"
+                  onChange={this.handleOptionChange}
                   //checked={this.state.posttypeid === "3"}
                 />
                 Option 3
@@ -162,8 +162,8 @@ class AddPost extends Component {
                 <input
                   type="radio"
                   name="category"
-                  value="4"
-                  //onChange={this.handleOptionChange}
+                  value="FOUR"
+                  onChange={this.handleOptionChange}
                   //checked={this.state.posttypeid === "4"}
                 />
                 Option 4
