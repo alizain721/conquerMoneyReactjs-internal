@@ -29,7 +29,7 @@ function validatePassword(password){
   * [a-zA-z$-/:-?{-~!"^_`\[\]]{6,} Characters Allowed
   * $ Marks the end of the expression
   */
-  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_`+*~¨´¿¡=])[A-Za-z\d$-/:-?{-~!"^_`\[\]]{8,}$/;
+  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d$-/:-?{-~!"^_`\[\]]{8,}$/;
   return re.test(String(password));
 }
 
@@ -81,7 +81,7 @@ function RegistrationForm(props) {
     }else {
         setState((prevState) => ({
           ...prevState,
-          firstNameErrorMessage: "Heeeeeeeloooooo", //I forgot what this was Better ask andrew
+          firstNameErrorMessage: null,
           firstNameFalse: false
         }))
     }
@@ -102,6 +102,7 @@ function RegistrationForm(props) {
         }))
     }
 
+    /* Needs to be unique */
     if(e.target.id === "username") {
       if(value.length < minUsernameLength) {
         setState((prevState) => ({
@@ -124,7 +125,7 @@ function RegistrationForm(props) {
         setState((prevState) => ({
           ...prevState,
           passwordErrorMessage:
-              `Password must match the requirements`,
+              `Password must be ${minPasswordLength} characters or more`,
           passwordFalse: true,
         }));
       }else {
@@ -253,8 +254,6 @@ function RegistrationForm(props) {
   else {
       props.showError("Passwords do not match");
     }
-
-
   };
   const handleDialogOpen = () => {
     setState((prevState) => ({
@@ -280,7 +279,7 @@ function RegistrationForm(props) {
         </h1>
 
         <div className="container text-left">
-          <label>First Name <span>*</span></label>
+          <label>First Name <dialogue style={{color: 'red'}}> * </dialogue> </label>
           <input
             className="form-control"
             id="firstName"
@@ -300,7 +299,7 @@ function RegistrationForm(props) {
         </div>
 
         <div className="container text-left">
-          <label>Last Name <span>*</span></label>
+          <label>Last Name <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             className="form-control"
             id="lastName"
@@ -320,7 +319,7 @@ function RegistrationForm(props) {
         </div>
 
         <div className="container text-left">
-          <label htmlFor="exampleInputUsername1">Username <span>*</span></label>
+          <label htmlFor="exampleInputUsername1">Username <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             type="username"
             className="form-control"
@@ -337,7 +336,7 @@ function RegistrationForm(props) {
           {state.usernameErrorMessage}
         </div>
         <div className="container text-left">
-          <label htmlFor="exampleInputEmail1">Email Address <span>*</span></label>
+          <label htmlFor="exampleInputEmail1">Email Address <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             type="email"
             className="form-control"
@@ -358,7 +357,7 @@ function RegistrationForm(props) {
           {state.emailErrorMessage}
         </div>
         <div className="container text-left">
-          <label htmlFor="exampleInputPassword1">Password <span>*</span></label>
+          <label htmlFor="exampleInputPassword1">Password <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             type="password"
             className="form-control"
@@ -378,7 +377,7 @@ function RegistrationForm(props) {
           {state.passwordErrorMessage}
         </div>
         <div className="container text-left">
-          <label htmlFor="exampleInputPassword1">Confirm Password <span>*</span></label>
+          <label htmlFor="exampleInputPassword1">Confirm Password <dialogue style={{color: 'red'}}> * </dialogue></label>
           <input
             type="password"
             className="form-control"
