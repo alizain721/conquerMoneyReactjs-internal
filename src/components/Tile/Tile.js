@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { API_URL } from "../../constants/apiConstants";
+import axios from "axios";
+import Cookie from "js-cookie";
 import "./Tile.css";
+import LikeCommentShare from "./LikeCommentShare.js";
 import test_pic from "../../img/Map.png";
 import g1 from "../../img/ProHTML/g1.png";
 import g2 from "../../img/ProHTML/g2.png";
 import g3 from "../../img/ProHTML/g3.png";
-import like from "../../img/ProHTML/like.png";
+import hollowLikePic from "../../img/ProHTML/like.png";
+import userLikedPic from "../../img/ProHTML/liked_big.png";
+import othersLikedPic from "../../img/ProHTML/liked.png";
 import comment from "../../img/ProHTML/comment.png";
 import share from "../../img/ProHTML/share.png";
 import Link from "../Plaid/Link.js";
@@ -14,9 +20,13 @@ import expense from "../../img/ProHTML/Expense.png";
 
 class Tile extends Component {
   constructor(props) {
-    super();
-
-    this.state = {};
+    super(props);
+    this.state = {
+      likesCount: this.props.likesCount,
+      isLiked: this.props.isLiked, 
+    };
+    this.addLike = this.addLike.bind(this)
+    this.removeLike = this.removeLike.bind(this)
   }
 
   componentDidUpdate() {
@@ -38,15 +48,60 @@ class Tile extends Component {
     }
   }
   handleClick = () => {
-    this.props.history.push(`/post/${this.props.data.id}/${this.props.data.title}`);
+    this.props.history.push(`/post/${this.props.key}/${this.props.title}`);
   }
 
   //typeid = 1 Tile with button
   //typeid = 2 Tile with no button (informational)
   //typeid else Image Tile
+  addLike = () => {
+    this.setState({
+      likesCount: this.state.likesCount + 1,
+      isLiked: true
+    });
+    const token = Cookie.get("token") ? Cookie.get("token") : null;
+    const payload = {
+        token: token,
+        postId: this.props.postId,
+        tileId: this.props.tileId
+      };
+    axios
+        .post(API_URL + "/addlike", payload)
+        .then((response) => {
+            if (response.status !== 200) {
+                this.setState({
+                    likesCount: this.state.likesCount - 1,
+                    isLiked: false
+                });
+            }
+        })
+  }
+
+  removeLike = () => {
+    this.setState({
+      likesCount: this.state.likesCount - 1,
+      isLiked: false
+    });
+    const token = Cookie.get("token") ? Cookie.get("token") : null;
+    const payload = {
+        token: token,
+        postId: this.props.postId,
+        tileId: this.props.tileId
+      };
+    axios
+        .post(API_URL + "/deletelike", payload)
+        .then((response) => {
+            if (response.status !== 200) {
+                this.setState({
+                    likesCount: this.state.likesCount + 1,
+                    isLiked: true
+                });
+            }
+        })
+    }
 
   render() {
-    if (this.props.typeid === 1) {
+    if (this.props.postType === "ONE") {
       return (
         <div className="tile_no_btn bg-white my-2">
           <div className="container">
@@ -57,7 +112,7 @@ class Tile extends Component {
                     {this.props.title}
                   </h4>
                   <h5 className="financial_sub_text text-capitalize mb-0 grey-color">
-                    {this.props.description}
+                    {this.props.content}
                   </h5>
                 </div>
               </div>
@@ -72,7 +127,7 @@ class Tile extends Component {
           </div>
         </div>
       );
-    } else if (this.props.typeid === 2) {
+    } else if (this.props.postType === "TWO") {
       return (
         <div className="tile_no_btn bg-white my-2">
           <div className="container">
@@ -85,38 +140,22 @@ class Tile extends Component {
                   <h5 className="financial_sub_text text-capitalize mb-0 grey-color"
                       onClick={this.handleClick}
                   >
-                    {this.props.description}
+                    {this.props.content}
                   </h5>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="like_comt_share">
-            <a>
-              <div className="like_comt_share_imgs">
-                <img src={like} alt="like" />
-              </div>
-              <span>like</span>
-            </a>
-            <a>
-              {" "}
-              {/*href="www.etc.com"*/}
-              <div className="like_comt_share_imgs">
-                <img src={comment} alt="comment" />
-              </div>
-              <span>Comment</span>
-            </a>
-            <a>
-              <div className="like_comt_share_imgs">
-                <img src={share} alt="share" />
-              </div>
-              <span>Share</span>
-            </a>
-          </div>
+          </div>          
+          <LikeCommentShare 
+            key = {this.props.key}
+            likesCount = {this.state.likesCount}
+            isLiked = {this.state.isLiked}
+            removeLike = {this.removeLike}
+            addLike = {this.addLike}
+          />
         </div>
       );
-    } else if (this.props.typeid === 3) {
+    } else if (this.props.postType === "THREE") {
       //IMG TILE
       return (
         <div className="tile_no_btn bg-white my-2">
@@ -138,12 +177,19 @@ class Tile extends Component {
               </div>
             </div>
           </div>
+          <LikeCommentShare 
+            key = {this.props.key}
+            likesCount = {this.state.likesCount}
+            isLiked = {this.state.isLiked}
+            removeLike = {this.removeLike}
+            addLike = {this.addLike}
+          />
         </div>
       );
-    } else if (this.props.typeid === 4) {
+    } else if (this.props.postType === "FOUR") {
       //PLAID TILE
       return (null)
-    } else if (this.props.typeid === 5) {
+    } else if (this.props.postType === "FIVE") {
       return (
         <div className="spending_descreases bg-white my-2">
           <div className="container">
@@ -181,29 +227,9 @@ class Tile extends Component {
               </div>
             </div>
           </div>
-          <div className="like_comt_share">
-            <a>
-              <div className="like_comt_share_imgs">
-                <img src={like} alt="like" />
-              </div>
-              <span>like</span>
-            </a>
-            <a>
-              <div className="like_comt_share_imgs">
-                <img src={comment} alt="comment" />
-              </div>
-              <span>Comment</span>
-            </a>
-            <a>
-              <div className="like_comt_share_imgs">
-                <img src={share} alt="share" />
-              </div>
-              <span>Share</span>
-            </a>
-          </div>
         </div>
       );
-    } else if (this.props.typeid === 6) {
+    } else if (this.props.postType === "SIX") {
       return (
         <div className="financial_feed mb-2">
           <div className="container">
