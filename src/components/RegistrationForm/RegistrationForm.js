@@ -125,7 +125,7 @@ function RegistrationForm(props) {
         setState((prevState) => ({
           ...prevState,
           passwordErrorMessage:
-              `Password must be ${minPasswordLength} characters or more`,
+              `Please follow the password requirements`,
           passwordFalse: true,
         }));
       }else {
@@ -176,9 +176,11 @@ function RegistrationForm(props) {
       [id]: value,
     }));
   };
+
   const sendDetailsToServer = () => {
-    if (state.email.length && state.password.length && state.username.length && state.firstName.length && state.lastName.length) {
-      props.showError(null);
+    //if (state.email.length && state.password.length && state.username.length && state.firstName.length && state.lastName.length) {
+      if (validateEmail(state.email) && validatePassword(state.password) && state.username.length && validateName(state.firstName) && validateName(state.firstName)) {  
+    props.showError(null);
       const payload = {
         firstName: state.firstName,
         lastName: state.lastName,
