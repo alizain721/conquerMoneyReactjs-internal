@@ -34,7 +34,7 @@ class Profile extends Component {
         FirstName : "",
         LastName : "",
         title: "",
-        description: "",
+        description: "Hi Im new to conquer Money",
         num_post: 0,
         num_connection: 0,
         location: "",
