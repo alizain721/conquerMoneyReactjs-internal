@@ -13,19 +13,6 @@ function validateLocationChange(value) {
   const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
   return re.test(String(value).toLowerCase());
 }
-/*
- *Currently testing, function appears to be called more than once on the interval
- *More information in Trello.
-function isDescriptionEmpty(description){
-
-  console.log("Im here: " + description);
-  if(description === ""){
-    return "Hi! I'm new to Conquer Money!";
-  }else{
-    return description;
-  }
-}*/
-
 class Profile extends Component {
     constructor() {
       super();
@@ -34,7 +21,7 @@ class Profile extends Component {
         FirstName : "",
         LastName : "",
         title: "",
-        description: "",
+        description: "Hi Im new to conquer Money",
         num_post: 0,
         num_connection: 0,
         location: "",
