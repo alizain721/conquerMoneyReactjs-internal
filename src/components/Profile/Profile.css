@@ -1,5 +1,5 @@
 
-.circle {
+.AvatarEditor {
   height: 200px;
   width: 200px;
   border-radius: 50%;
@@ -201,7 +201,7 @@
   max-height: 100px;
 }
 
-.loctationErrorMessage {
+.locationErrorMessage {
   color: red;
   font-weight: bold;
 }
