@@ -2,6 +2,7 @@ import { ThemeProvider } from "styled-components";
 
 export const API_BASE_URL = "/signin";
 export const API_REG_URL = "/signup";
+export const API_RESET_PASSWORD = "/resetpassword";
 export const API_ADDCARD_URL = "/addcard";
 export const API_GETPOST_URL = "/getpost"
 export const API_POPACCOUNTS_URL = "/popaccounts";
