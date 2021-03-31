@@ -22,17 +22,14 @@ function ResetPassword(props) {
   const minUsernameLength = 6;
   const minPasswordLength = 6;
   const [state, setState] = useState({
-    //email: "",
     password: "",
     username: "",
     confirmPassword: "",
     successMessage: null,
     usernameFalse: null,
     passwordFalse: null,
-    //emailFalse: null,
     confirmPasswordFalse: null,
     passWordErrorMessage: null,
-    //emailErrorMessage: null,
     usernameErrorMessage: null,
     confirmPasswordErrorMessage: null,
     openDialog: false,
@@ -115,15 +112,10 @@ function ResetPassword(props) {
     }));
   };
   const sendDetailsToServer = () => {
-    /*send data to the backend if the user provides a 
-    proper email or username and new password*/
     if (state.username.length && state.password.length) {
       props.showError(null);
-      //const token = Cookie.get("token") ? Cookie.get("token") : null;
       const payload = {
-        //token : token,
         username: state.username, 
-        //email: state.email,
         password: state.password,
       };
       axios
@@ -154,11 +146,6 @@ function ResetPassword(props) {
                   true,
               }));
             }
-            // else {
-            //   err.response.data.map((err) => {
-            //     props.showError(err)
-            //   })
-            // }
       })
     }
   }
@@ -207,21 +194,6 @@ function ResetPassword(props) {
         >
           {state.usernameErrorMessage}
         </div>
-        {/* <div className="container text-left">
-          <label htmlFor="exampleInputEmail1">Email Address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            value={state.email}
-            onChange={handleChange}
-          />
-          <small id="emailHelp" className="form-text text-muted centerSmallText">
-            You will recieve an email to confirm your idenity.
-          </small>
-        </div> */}
         <div
             className="errorMessage mt-2"
             style={{ display: state.emailErrorMessage && state.emailFalse ? "block" : "none" }}
