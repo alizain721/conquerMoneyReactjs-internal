@@ -8,6 +8,8 @@ import { API_GENTILES_URL, API_URL, API_PROFILE, API_GET_PROFILE, API_UPDATE_PRO
 
 import { withRouter, Link } from "react-router-dom";
 
+import anonAvatar from "../../img/anonProfilePicture.png";
+
 function validateLocationChange(value) {
   const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
   return re.test(String(value).toLowerCase());
@@ -21,7 +23,7 @@ class Profile extends Component {
         FirstName : "",
         LastName : "",
         title: "",
-        description: "",
+        description: "Hi Im new to conquer Money",
         num_post: 0,
         num_connection: 0,
         location: "",
@@ -205,12 +207,19 @@ class Profile extends Component {
         return (
           <div className= "Profile">
               <div className="top_sec">
+
                 <button 
                 className= "AvatarEditor"
                 onClick={() => this.setState({showPictureEditor: true})}>
                   <img src={this.state.profilePictureSrc}
                       />
                 </button> 
+
+                <div class="hover11">
+                  {/*Current bug: Hover effect is applied outside of the img might be a problem with Top sec, hover 11 or img */}
+                  <figure><img src= {anonAvatar} alt ="anonAvatar" className= "anonAvatar" /></figure>
+                 </div> 
+
               </div> 
               {this.state.showPictureEditor ? this.editPicture() : null}
               <div className="name_box"
@@ -219,7 +228,7 @@ class Profile extends Component {
               >{this.state.title}</div> 
               <div className="upper_line"></div>
               <div className="description_box"
-              >{this.state.description}</div>
+              >{this.state.description} </div>
               <div className="location_box"
               >{this.state.location}</div>
               <div className="num_post"
