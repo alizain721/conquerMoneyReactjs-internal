@@ -1,8 +1,9 @@
 import "./Profile.css";
+import "./pictureeditor.css"
 import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
-
+import  MyEditor from "./pictureeditor";
 import { API_GENTILES_URL, API_URL, API_PROFILE, API_GET_PROFILE, API_UPDATE_PROFILE } from "../../constants/apiConstants";
 
 import { withRouter, Link } from "react-router-dom";
@@ -13,32 +14,21 @@ function validateLocationChange(value) {
   const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
   return re.test(String(value).toLowerCase());
 }
-/*
- *Currently testing, function appears to be called more than once on the interval
- *More information in Trello.
-function isDescriptionEmpty(description){
-
-  console.log("Im here: " + description);
-  if(description === ""){
-    return "Hi! I'm new to Conquer Money!";
-  }else{
-    return description;
-  }
-}*/
-
 class Profile extends Component {
     constructor() {
       super();
       this.state = {
-        profile_pic: null,
+        profilePicture: null,
+        profilePictureSrc: null,
         FirstName : "",
         LastName : "",
         title: "",
-        description: "",
+        description: "Hi Im new to conquer Money",
         num_post: 0,
         num_connection: 0,
         location: "",
         showForm: false,
+        showPictureEditor: false,
         locationFalse: null,
         locationErrorMessage: ""
       };
@@ -47,9 +37,11 @@ class Profile extends Component {
       this.handleTitleChange= this.handleTitleChange.bind(this);
       this.handleDescriptionChange= this.handleDescriptionChange.bind(this);
       this.handleLocationChange= this.handleLocationChange.bind(this);
-    }
+      //this.handleAvatarChange=this.handleAvatarChange.bind(this);
 
-      
+      this.myEditor= new MyEditor;
+    }
+     
       handleClick() {
         console.log("CLICK");
       }
@@ -70,6 +62,12 @@ class Profile extends Component {
           this.sendDetailsToServer();   
         }   
       }
+      // handleAvatarChange(e){
+      //   this.setState({
+      //     profilePictureSrc: e.target.value,
+          
+      //   })
+      // }
 
       handleTitleChange(e){
         this.setState({
@@ -127,7 +125,7 @@ class Profile extends Component {
                 </div>
                 
                 <div
-                  className="loctationErrorMessage"
+                  className="locationErrorMessage"
                   style= {{display: this.state.locationFalse ? "block" : "none" }}
                 >
                   <p>{this.state.locationErrorMessage}</p>
@@ -141,6 +139,43 @@ class Profile extends Component {
               </button>
             </form>
         );
+      }
+      fetchPictureData=(editorData)=>{
+        this.setState({
+          profilePicture: editorData.picture,
+          profilePictureSrc: editorData.src
+        })
+      }
+      editPicture(){
+        
+        return(
+          <div className="edit_profile_form">
+            <div className="edit_profile_form_group">
+              <MyEditor
+                pictureEditorData={this.fetchPictureData}
+                // value={{
+                // picture: this.state.profilePicture,
+                // src: this.state.profilePictureSrc}} 
+                // onChange={()=> this.uploadPicture}
+                >
+              </MyEditor>
+              <button
+              onClick={() => this.uploadPicture()} 
+              >
+                Upload
+              </button>
+            </div>
+          </div>
+        );
+        
+      }
+      uploadPicture(){
+        
+        this.setState({
+          showPictureEditor: false, 
+          // profilePicture: this.myEditor.state.picture,
+          // profilePictureSrc: this.myEditor.state.src}
+        })
       }
 
       getProfile() {
@@ -172,11 +207,21 @@ class Profile extends Component {
         return (
           <div className= "Profile">
               <div className="top_sec">
+
+                <button 
+                className= "AvatarEditor"
+                onClick={() => this.setState({showPictureEditor: true})}>
+                  <img src={this.state.profilePictureSrc}
+                      />
+                </button> 
+
                 <div class="hover11">
                   {/*Current bug: Hover effect is applied outside of the img might be a problem with Top sec, hover 11 or img */}
                   <figure><img src= {anonAvatar} alt ="anonAvatar" className= "anonAvatar" /></figure>
                  </div> 
+
               </div> 
+              {this.state.showPictureEditor ? this.editPicture() : null}
               <div className="name_box"
               >{this.state.FirstName+" "+this.state.LastName}</div>  
               <div className="title_box"
@@ -193,15 +238,17 @@ class Profile extends Component {
               <div  className="lower_line"></div>
               <div>
                 <button
-                  type="button"
-                  name="edit profile"
                   className="edit_profile_button"
                   onClick={() => this.setState({showForm: true}) }
                 > Edit Profile
                 </button>
                 {this.state.showForm ? this.showForm() : null}
               </div>
-              <div className= "random_container"></div>
+              <div className= "random_container">
+                
+              <img src={this.state.profilePictureSrc}
+                      />
+              </div>
               
         </div>       
       )

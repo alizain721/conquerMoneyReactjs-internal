@@ -18,115 +18,83 @@ test("render is the same as last snapshot", () => {
       className="accountsPage"
     >
       <div
-        className="split left"
-      />
-      <div
-        className="split right"
+        className="center"
       >
         <div
-          className="cashCard text-center card"
+          className="tile_no_btn bg-white my-2"
         >
           <div
-            className="card-header"
+            className="container"
           >
             <div
-              className="largeText2"
+              className="row"
             >
               <div
-                className="leftText"
+                className="col-12"
               >
-                Total Cash
+                <div
+                  className="tile_no_btn_top"
+                >
+                  <h4
+                    className="financial_title proxima-bold text-capitalize mb-2 mt-3"
+                  >
+                    Get Started with Plaid!
+                  </h4>
+                  <div>
+                    <button
+                      className="test"
+                      disabled={false}
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "background": "#FFFFFF",
+                          "border": "2px solid #F1F1F1",
+                          "borderRadius": "4px",
+                          "outline": "none",
+                          "padding": "6px 4px",
+                        }
+                      }
+                      type="button"
+                    >
+                      Click this link and connect your bank!
+                    </button>
+                    <h5>
+                      <b>
+                        Your Accounts
+                      </b>
+                    </h5>
+                    <div
+                      className="accountListContainer"
+                    >
+                      <div
+                        className="accountListDiv"
+                      />
+                    </div>
+                    <div
+                      className="text-center"
+                    />
+                    <div
+                      className="alert alert-success mt-2"
+                      role="alert"
+                      style={
+                        Object {
+                          "display": "none",
+                        }
+                      }
+                    />
+                    <div>
+                      <div
+                        className="viewTrans"
+                        onClick={[Function]}
+                      >
+                        View Transactions
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div
-                className="rightText"
-              >
-                $
-              </div>
             </div>
           </div>
-          <div
-            className="largeText"
-          >
-            <div
-              className="leftText"
-            >
-              Checking
-            </div>
-            <div
-              className="rightText"
-            >
-              $
-            </div>
-          </div>
-          <div
-            className="largeText"
-          >
-            <div
-              className="leftText"
-            >
-              Savings
-            </div>
-            <div
-              className="rightText"
-            >
-              $
-            </div>
-          </div>
-          <div
-            className="text-muted card-footer"
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          className="creditCard text-center card"
-        >
-          <div
-            className="card-header"
-          >
-            <div
-              className="largeText2"
-            >
-              <div
-                className="leftText"
-              >
-                Credit Cards
-              </div>
-              <div
-                className="rightText"
-              >
-                -$
-              </div>
-            </div>
-          </div>
-          <div
-            className="text-muted card-footer"
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          className="loanCard text-center card"
-        >
-          <div
-            className="card-header"
-          >
-            <div
-              className="largeText2"
-            >
-              <div
-                className="leftText"
-              >
-                Loans
-              </div>
-              <div
-                className="rightText"
-              />
-            </div>
-          </div>
-          <div
-            className="text-muted card-footer"
-          />
         </div>
       </div>
     </div>

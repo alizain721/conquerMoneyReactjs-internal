@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "concurrently 'npm:server' 'npm:test'",
-    "build": "react-scripts build",
+    "build": "set \"CI=false\" && react-scripts build",
     "test": "react-scripts test",
     "server": "react-scripts start",
     "eject": "react-scripts eject"
