@@ -11,6 +11,7 @@ import AlertComponent from "./components/AlertComponent/AlertComponent";
 import PurchaseAnalysis from "./components/PurchaseAnalysis/PurchaseAnalysis";
 import AddCard from "./components/AddCard/AddCard";
 import Post from './components/Posts/Post';
+import ResetPassword from "./components/ResetPassword/ResetPassword";
 
 //import { makeStyles } from "@material-ui/core/styles";
 
@@ -29,7 +30,6 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import AddPost from "./components/AddPost/AddPost";
 import Accounts from "./components/Accounts/Accounts";
 import Profile from "./components/Profile/Profile";
-import EditProfile from "./components/EditProfile/EditProfile";
 
 const LoadingIndicator = (props) => {
   const { promiseInProgress } = usePromiseTracker();
@@ -154,10 +154,10 @@ function App() {
                 
               />
             </Route>
-            <Route path="/editprofile">
-              <EditProfile
+            <Route path="/resetPassword">
+              <ResetPassword
                 showError={updateErrorMessage}
-                
+                updateTitle={updateTitle}
               />
             </Route>
             
