@@ -17,7 +17,7 @@ test("render is the same as last snapshot", () => {
         <img
           alt="avatar"
           className="avatar"
-          src="SpartanLogo.jpg"
+          src="Logo_v3.png"
         />
       </div>
       <h1>
