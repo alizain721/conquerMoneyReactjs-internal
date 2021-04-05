@@ -7,7 +7,7 @@ import Cookie from "js-cookie";
 import { API_GENTILES_URL, API_URL } from "../../constants/apiConstants";
 import { withRouter, Link } from "react-router-dom";
 import Tile from "../Tile/Tile.js";
-import Extendtoken from "../Refresh/Refresh.js";
+
 
 class Dashboard extends Component {
   constructor() {
@@ -58,15 +58,20 @@ class Dashboard extends Component {
     axios
       .post(API_URL + API_GENTILES_URL, payload)
       .then((response) => {
+        console.log("res:"+response.status);
         if (response.status === 200) {
           this.setState({
-            tileList: response.data.map((d) => (
+            tileList: response.data.map((tile) => (
               <Tile
-                key={d.id}
-                title={d.title}
-                description={d.description}
-                typeid={d.typeid}
-                data={d}
+                key = {tile.id}
+                tileId = {tile.id}
+                postId = {tile.post.id}
+                title = {tile.post.title}
+                content = {tile.post.content}
+                postType = {tile.post.postType}
+                likesCount = {tile.post.likesCount}
+                isLiked = {tile.isLiked}
+                insightId = {tile.post.postContentType}
                 updateTitle={this.props.updateTitle}
               />
             )),
@@ -78,24 +83,30 @@ class Dashboard extends Component {
           }));
 */
           this.props.showError(null);
-        } else if (response.status === 401) {
-          console.log("UNAUTHORIZED");
-          this.props.showError(
-            "Token has expired you are being redirected to login..."
-          );
-          setTimeout(() => {
-            this.redirectToLogin();
-          }, 1500);
-        } else {
+        }else if(response.status === 401)
+        {
+          this.unauth();
+        }
+        else {
           console.log("else");
           this.props.showError("Some error ocurred");
         }
       })
       .catch(function (error) {
         console.log(error);
-      });
+      })
   }
-
+  unauth(){
+    {
+      console.log("UNAUTHORIZED");
+      this.props.showError(
+        "Token has expired you are being redirected to login..."
+      );
+      setTimeout(() => {
+        this.redirectToLogin();
+      }, 1500);
+    };
+  }
   componentDidMount() {
     this.generateTiles();
   }
@@ -120,8 +131,10 @@ class Dashboard extends Component {
           <div className="accountListDiv">{this.state.listItems}</div>
         </div>
       */}
-        <Tile typeid={6} updateTitle={this.props.updateTitle} />
+        <Tile postType={"SIX"} updateTitle={this.props.updateTitle} />
         {this.state.tileList}
+        <Tile postType={"ONE"} updateTitle={this.props.updateTitle} />
+        <Tile postType={"FIVE"} updateTitle={this.props.updateTitle} />
 
         {/*<Tile title={this.state.title} description={this.state.description} />*/}
         {/*

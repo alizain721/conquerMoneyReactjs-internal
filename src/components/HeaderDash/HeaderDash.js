@@ -108,6 +108,16 @@ class HeaderDash extends Component {
             {/*top section*/}
             <div className="container">
               {/*container*/}
+              <div className="d-flex align-items-center profile_notification_section">
+                  
+                    <div className="profile_img">
+                      <img
+                        className="img-fluid mx-auto d-block"
+                        src={profile}
+                        alt="profile"
+                      />
+                    </div>
+                  </div>
               <div className="row  no-gutters align-items-center">
                 {/*row*/}
                 <div className="col-4 ">
@@ -131,22 +141,7 @@ class HeaderDash extends Component {
                   </div>
                 </div>
                 <div className="col-4">
-                  <div className="d-flex align-items-center profile_notification_section">
-                    <div className="notification mx-4">
-                      <img
-                        className="img-fluid mx-auto d-block"
-                        src={notification}
-                        alt="notification"
-                      />
-                    </div>
-                    <div className="profile_img">
-                      <img
-                        className="img-fluid mx-auto d-block"
-                        src={profile}
-                        alt="profile"
-                      />
-                    </div>
-                  </div>
+                  
                 </div>
               </div>{" "}
               {/*row*/}

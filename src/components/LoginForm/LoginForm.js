@@ -77,6 +77,10 @@ function LoginForm(props) {
     props.updateTitle("Sign Up");
   };
 
+  const reditectToVerification = () => {
+    props.history.push("/resetPassword");
+    props.updateTitle("Reset Your Password");
+  }
   // const redirectToLogin = () => {
   //   props.history.push("/login");
   //   props.updateTitle("Login");
@@ -119,7 +123,7 @@ function LoginForm(props) {
           className="btn btn-primary"
           onClick={handleSubmitClick}
         >
-          Submit
+          Log In
         </button>
       </form>
       <div
@@ -137,7 +141,7 @@ function LoginForm(props) {
       </div>
       <div className="forgotMessage">
         <span>Forgot password? </span>
-        <span className="forgotText" onClick={() => redirectToRegister()}>
+        <span className="forgotText" onClick={() => reditectToVerification()}>
           Click here!
         </span>
       </div>

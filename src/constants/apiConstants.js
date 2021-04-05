@@ -2,6 +2,7 @@ import { ThemeProvider } from "styled-components";
 
 export const API_BASE_URL = "/signin";
 export const API_REG_URL = "/signup";
+export const API_RESET_PASSWORD = "/resetpassword";
 export const API_ADDCARD_URL = "/addcard";
 export const API_GETPOST_URL = "/getpost"
 export const API_POPACCOUNTS_URL = "/popaccounts";
@@ -24,5 +25,6 @@ export const API_LOGOUT = "/logout";
 export const API_PROFILE = "/profile";
 export const API_EDITPROFILE = "/editprofile";
 export const API_REFRESH = "/refresh";
+export const API_UPDATE_PROFILE = "/update_profile";
 export const API_URL = "http://localhost:8080/api/auth";
 export const API_PUB_URL = "http://localhost:8080/api/pub";
