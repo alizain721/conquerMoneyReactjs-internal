@@ -27,29 +27,50 @@
     0% no-repeat padding-box;
 }
 
-.header-top-sec {
-  background: #fff;
-  height: 10%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 90;
+
+@media only screen and (min-width: 768px) {
+    .header-top-sec {
+        background: #fff;
+        height: 10%;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+    }
+
+    .top_section {
+        border-radius: 0px 0px 40px 40px;
+        padding: 50px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        height: 15%;
+        /*color: #fff;*/
+    }
 }
+@media only screen and (max-width: 768px) {
+    .header-top-sec {
+        background: #fff;
+        height: 10%;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+    }
 
-.top_section {
-  border-radius: 0px 0px 40px 40px;
-  padding: 50px 20px;
-
-  position: fixed; /* instead of absolute */
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 90;
-  height: 15%;
-  /*color: #fff;*/
+    .top_section {
+        border-radius: 0px 0px 40px 40px;
+        padding: 50px 20px;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        height: 15%;
+        /*color: #fff;*/
+    }
 }
-
 .profile_img {
   width: 80px;
   height: 80px;

@@ -121,3 +121,72 @@ img.avatar {
   width: 20%;
   border-radius: 20%;
 }
+
+@media only screen and (max-width: 768px) {
+    .smartphone {
+        position: relative;
+        width: 420px;
+        height: 740px;
+        margin: auto;
+        margin-top: 20px;
+        border: 16px black solid;
+        border-top-width: 60px;
+        border-bottom-width: 60px;
+        border-radius: 36px;
+    }
+
+        /* The horizontal line on the top of the device */
+        .smartphone:before {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 5px;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #333;
+            border-radius: 10px;
+        }
+
+        /* The circle on the bottom of the device */
+        .smartphone:after {
+            content: '';
+            display: block;
+            width: 35px;
+            height: 35px;
+            position: absolute;
+            left: 50%;
+            bottom: -65px;
+            transform: translate(-50%, -50%);
+            background: #333;
+            border-radius: 50%;
+        }
+
+        /* The screen (or content) of the device */
+        .smartphone .content {
+            overflow: scroll;
+            height: 578px;
+            background: white;
+        }
+
+    .MuiBottomNavigationAction-root {
+        flex: 1;
+        color: rgba(0, 0, 0, 0.54);
+        padding: 7px 0px 8px;
+        max-width: 168px !important;
+        min-width: 65px !important;
+        transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,padding-top 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    }
+
+    .MuiBottomNavigation-root {
+        height: 56px;
+        display: flex;
+        justify-content: left !important;
+        background-color: #fff;
+    }
+
+    .container {
+        height: 473px;
+    }
+}
