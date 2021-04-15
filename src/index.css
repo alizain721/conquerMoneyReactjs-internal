@@ -131,11 +131,19 @@ img.avatar {
     border-radius: 20%;
 }
 
+
+/* jayesh work */
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .smartphone {}
+}
+
+
+/* @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .smartphone {
         position: relative;
         width: 768px;
-        height: 1024px;
+        height: 850px;
         margin: auto;
         margin-top: 20px;
         border: 16px black solid;
@@ -143,7 +151,6 @@ img.avatar {
         border-bottom-width: 60px;
         border-radius: 36px;
     }
-    /* The horizontal line on the top of the device */
     .smartphone:before {
         content: '';
         display: block;
@@ -156,7 +163,6 @@ img.avatar {
         background: #333;
         border-radius: 10px;
     }
-    /* The circle on the bottom of the device */
     .smartphone:after {
         content: '';
         display: block;
@@ -169,11 +175,9 @@ img.avatar {
         background: #333;
         border-radius: 50%;
     }
-    /* The screen (or content) of the device */
     .smartphone .content {
         overflow: hidden;
-        height: 900px;
-        background: white;
+        height: 700px;
     }
     .smartphone #root {
         overflow: auto;
@@ -188,30 +192,17 @@ img.avatar {
     }
     #root {
         -ms-overflow-style: none;
+        padding-bottom: 30px;
     }
     .top_section {
         position: static !important;
-        /* width: 735px;
-        margin: auto;
-        top: 40px; */
     }
-    /* .MuiBottomNavigation-root { */
-    /* flex: 1;
-        color: rgba(0, 0, 0, 0.54);
-        padding: 7px 0px 8px;
-        max-width: 168px !important;
-        min-width: 65px !important;
-        transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, padding-top 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
-    /* } */
-    /* .MuiBottomNavigation-root { */
-    /* height: 56px;
-        display: flex;
-        justify-content: left !important;
-        background-color: #fff; */
-    /* } */
-    /* .container { */
-    /* height: 900px; */
-    /* } */
+    .dashboard {
+        margin-top: 16% !important;
+    }
+    .container {
+        max-width: 600px;
+    }
     .footer {
         position: absolute !important;
         left: 0;
@@ -219,10 +210,13 @@ img.avatar {
         right: 0;
         z-index: 9999;
     }
-}
+} */
 
 @media only screen and (max-width: 768px) {
     .footer {
         position: relative !important;
     }
 }
+
+
+/* jayesh work End */
