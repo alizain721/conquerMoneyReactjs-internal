@@ -4,6 +4,7 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import "./Link.css";
 import Cookie from "js-cookie";
+import Accounts from "../Accounts/Accounts.js";
 import {
   TRANS_URL,
   GET_ACCESS_URL,
@@ -12,6 +13,7 @@ import {
   API_DELETEACCOUNT_URL,
 } from "../../constants/apiConstants";
 import { trackPromise } from "react-promise-tracker";
+
 
 class Link extends Component {
   constructor() {
@@ -31,6 +33,8 @@ class Link extends Component {
     this.populateAccounts = this.populateAccounts.bind(this);
     this.deleteAccount = this.deleteAccount.bind(this);
     this.redirectToTrans = this.redirectToTrans.bind(this);
+    this.deletePopupWindow = this.deletePopupWindow.bind(this);
+    this.CheckIfDelete = this.CheckIfDelete.bind(this);
   }
 
   redirectToTrans() {
@@ -96,17 +100,39 @@ class Link extends Component {
         if (response.status === 200) {
           this.setState({
             listItems: response.data.map((d) => (
-              <li key={d.id}>
-                {d.accountname} {d.officialname} {d.mask} {"\n"}
-                {d.currentbalance} {""}
+              
+              <div className = "eachAccount" key={d.id}>
+                <hr></hr>
+                <div>
+                <div style={{ display:"inline-block" }}>{d.officialname}{d.accountname} </div>
+                <div style={{ display:"inline-block", float:"right" }}>{" $"}{d.currentbalance} </div>
+                </div>
+                <div>
+                <div style={{ display:"inline-block", color:"#808080",fontSize:"15px" }}>{"xxxx-xxxx-xxxx-"}{d.mask}</div>
+                
                 <button
                   type="button"
                   className="listButton"
-                  onClick={() => this.deleteAccount(d.mask)}
+                  onClick={() =>  this.deletePopupWindow(d.mask)
+                  }
                 >
                   Delete
                 </button>
-              </li>
+                
+                </div>
+              </div>
+              
+              // <li key={d.id}>
+              //   {d.accountname} {d.officialname} {d.mask} {"\n"}
+              //   {d.currentbalance} {""}
+              //   <button
+              //     type="button"
+              //     className="listButton"
+              //     onClick={() => this.deleteAccount(d.mask)}
+              //   >
+              //     Delete
+              //   </button>
+              // </li>
             )),
           });
 
@@ -128,7 +154,30 @@ class Link extends Component {
         console.log(error);
       });
   }
+  deletePopupWindow(mask){
+    var mask2 = mask;
+    var popupwindow = document.getElementById("deletePopupId");
+    popupwindow.style.display = "block";
+    popupwindow.style.zIndex = "110";
+    document.getElementById("ffdelete").value="";
+    //submit button event
+    document.getElementById('CheckSubmit').addEventListener("click",() => {this.CheckIfDelete(mask)})
+    
+  }
+  CheckIfDelete(mask) { 
+    var boxx=document.getElementById("ffdelete").value;
+  if(boxx == "delete"||boxx== "Delete"||boxx== "DELETE"){
+    this.deleteAccount(mask);
+    this.deletePopupWindowClose();
+  }
+  else{document.getElementById("popupText2").style.display = "block";} } 
+  
 
+ 
+  deletePopupWindowClose(){
+    document.getElementById("deletePopupId").style.display = "none";
+    document.getElementById("popupText2").style.display = "none";
+  }
   componentDidMount() {
     this.populateAccounts();
   }
@@ -193,7 +242,8 @@ class Link extends Component {
           clientName="React Plaid Setup"
           env="development"
           product={["auth", "transactions"]}
-          publicKey="4407487a1d95a71cbbe3d3b5186c9b"
+          publicKey="a4ffa3bb07e17a7c4f5d18995bf681"
+          //publicKey="4407487a1d95a71cbbe3d3b5186c9b"
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}
           className="test"
@@ -216,9 +266,12 @@ class Link extends Component {
         <h5>
           <b>Your Accounts</b>
         </h5>
-        <div className="accountListContainer">
-          <div className="accountListDiv">{this.state.listItems}</div>
-        </div>
+        {/* <div className="accountListContainer"> */}
+          <div className="accountListDiv">{
+          this.state.listItems}
+          
+          </div>
+        {/* </div> */}
         <div className="text-center"></div>
 
         <div
@@ -229,7 +282,9 @@ class Link extends Component {
           {this.state.successMessage}
         </div>
         <div>
+        <hr></hr>
           {this.state.isDone ? (
+            
             <p className="viewTrans" onClick={() => this.redirectToTrans()}>
               View Transactions
             </p>
