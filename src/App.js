@@ -16,7 +16,7 @@ import ResetPassword from "./components/ResetPassword/ResetPassword";
 //import { makeStyles } from "@material-ui/core/styles";
 
 import "./App.css";
-
+import "./device.css";
 import "./style.css";
 
 import "./responsive-style.css";
