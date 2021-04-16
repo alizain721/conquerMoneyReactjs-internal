@@ -11,11 +11,12 @@ import AlertComponent from "./components/AlertComponent/AlertComponent";
 import PurchaseAnalysis from "./components/PurchaseAnalysis/PurchaseAnalysis";
 import AddCard from "./components/AddCard/AddCard";
 import Post from './components/Posts/Post';
+import ResetPassword from "./components/ResetPassword/ResetPassword";
 
 //import { makeStyles } from "@material-ui/core/styles";
 
 import "./App.css";
-
+import "./device.css";
 import "./style.css";
 
 import "./responsive-style.css";
@@ -153,7 +154,12 @@ function App() {
                 
               />
             </Route>
-            
+            <Route path="/resetPassword">
+              <ResetPassword
+                showError={updateErrorMessage}
+                updateTitle={updateTitle}
+              />
+            </Route>
             
 
           </Switch>
