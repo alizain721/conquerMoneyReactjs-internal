@@ -11,3 +11,14 @@
   cursor: pointer;
   padding-bottom: 20px;
 }
+.accountListContainer{
+    margin:5%;
+    width: 90%;
+    border: 3px solid #027d85;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+.eachAccount{
+  line-height: 1;
+  margin:5%;
+}

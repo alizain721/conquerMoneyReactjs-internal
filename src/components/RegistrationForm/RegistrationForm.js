@@ -29,7 +29,7 @@ function validatePassword(password){
   * [a-zA-z$-/:-?{-~!"^_`\[\]]{6,} Characters Allowed
   * $ Marks the end of the expression
   */
-  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d$-/:-?{-~!"^_`\[\]]{8,}$/;
+  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#.~+%/-_])[A-Za-z\d$-/:-?{-~!"^_`\[\]]{8,}$/;
   return re.test(String(password));
 }
 
@@ -125,7 +125,7 @@ function RegistrationForm(props) {
         setState((prevState) => ({
           ...prevState,
           passwordErrorMessage:
-              `Password must be ${minPasswordLength} characters or more`,
+              `Please follow the password requirements`,
           passwordFalse: true,
         }));
       }else {
@@ -176,9 +176,11 @@ function RegistrationForm(props) {
       [id]: value,
     }));
   };
+
   const sendDetailsToServer = () => {
-    if (state.email.length && state.password.length && state.username.length && state.firstName.length && state.lastName.length) {
-      props.showError(null);
+    //if (state.email.length && state.password.length && state.username.length && state.firstName.length && state.lastName.length) {
+      if (validateEmail(state.email) && validatePassword(state.password) && state.username.length && validateName(state.firstName) && validateName(state.firstName)) {  
+    props.showError(null);
       const payload = {
         firstName: state.firstName,
         lastName: state.lastName,

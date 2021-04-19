@@ -42,7 +42,7 @@ class Transactions extends Component {
         if (response.status === 200) {
           this.setState({
             accountList: response.data.map((d) => (
-              <button
+              <button className = "splitButton"
                 key={d.id}
                 onClick={() => {
                   this.loadOneTable(d.accountID, d.officialname, d.accountname);
@@ -53,7 +53,7 @@ class Transactions extends Component {
               </button>
             )),
             newAccountList: this.state.accountList.concat(
-              <button
+              <button className = "splitButton"
                 key={new Date().getTime()}
                 onClick={() => {
                   this.loadOneTable();
@@ -82,6 +82,7 @@ class Transactions extends Component {
   loadOneTable(accountID, officialname, accountname) {
     const token = Cookie.get("token") ? Cookie.get("token") : null;
     var title = "All Transactions";
+    
 
     if (officialname && accountname !== undefined) {
       title = officialname + " " + accountname;
@@ -173,14 +174,22 @@ class Transactions extends Component {
   render() {
     return (
       <div className="transPage">
-        <div className="split left">{this.state.newAccountList}</div>
-
-        <div className="split right">
+        
+        <div className="split topp">
+        
+          <div class="transdropdown"><span>transactions</span>
+            <div class="transdropdown-content">
+              {this.state.newAccountList}
+            </div>
+          </div>
+        
+          </div>
+        <div className="split bottom">
           <div
             className="ag-theme-alpine"
             style={{
-              height: "90%",
-              width: "90%",
+              height: "100%",
+              width: "100%",
             }}
           >
             {/* {this.state.tableList}*/}
