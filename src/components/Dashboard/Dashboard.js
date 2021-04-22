@@ -108,7 +108,9 @@ class Dashboard extends Component {
     };
   }
   componentDidMount() {
+    if(Cookie.get("token")){
     this.generateTiles();
+  }
   }
 
   render() {

@@ -147,9 +147,11 @@ class Accounts extends Component {
   }
 
   componentDidMount() {
+    if(Cookie.get("token")){
     this.loadCash();
     this.loadCards();
     this.loadLoans();
+  }
   }
 
 
