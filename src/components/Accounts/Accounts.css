@@ -18,8 +18,8 @@
 }
 @media screen and (min-width: 1200px) {
   .center {
-  height: 120px;
-  width: 750px;
+  height: 100%;
+  width: 100%;
   }
 }
 .accountsPage{
@@ -76,7 +76,7 @@
 .listButton {
   width: 60px;
   font-size: 15px;
-  min-height: 16px;
+  height: 25px;
   float:right;
   margin-top: 5px;
   text-align: center;
@@ -89,13 +89,13 @@
   display:none;
   z-index: 111; ;
   top:20%;
-  left:10%;
+  left:20%;
   text-align:center ;
-  width:80%;
+  width:60%;
   height:auto;
   background:white;
   border:3px solid #027d85;
-  position: fixed;
+  position: absolute;
 }
 .deletePopupText{
   margin:10px;
@@ -111,6 +111,7 @@
   height: 35px;
   
   margin: 10px;
+  margin-bottom: 10%;
   text-align: center;
   background-color: #027d85;
   color: #ffff;
