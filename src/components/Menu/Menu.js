@@ -26,7 +26,7 @@ export default function SimpleMenu() {
         } else {
           console.log("Error while attempting logout");
         }
-        Cookie.set("token", { expires: 0.0 });
+        Cookie.remove("token");
         history.push("/"); //returns to home
       })
       .catch(function (error) {
