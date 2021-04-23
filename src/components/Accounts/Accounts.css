@@ -13,7 +13,7 @@
 @media (min-width: 992px) and (max-width: 1199px) {
   .center {
   height: 120px;
-  width: 600px;
+  width: 100%;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -24,7 +24,7 @@
 }
 .accountsPage{
   position: relative;
-  width: 109%;
+  width: 100%;
 }
 .col-12 {
   padding-right:0;
