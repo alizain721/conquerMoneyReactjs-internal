@@ -79,7 +79,7 @@ function App() {
       <div className="App">
         <LoadingIndicator />
 
-        <div className="container d-flex align-items-center flex-column">
+        <div className="container2 d-flex align-items-center flex-column">
           <Switch>
             <Route  path="/post/:id/:title" exact={true}>
               <Post

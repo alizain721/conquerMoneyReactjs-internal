@@ -33,6 +33,10 @@ code {
     max-width: 50%;
     margin: auto;
 }
+.form-control100 {
+    width: 100%;
+    margin: auto;
+}
 
 label {
     font-size: 16px;
@@ -211,6 +215,10 @@ img.avatar {
 
 @media only screen and (max-width: 768px) {
     .footer {
-        position: relative !important;
+        position: fixed !important;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 9999;
     }
 }

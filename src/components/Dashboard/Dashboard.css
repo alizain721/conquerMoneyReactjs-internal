@@ -5,12 +5,12 @@
 
 .available_balance {
   color: #ffff;
-  padding-top: 2rem;
+  padding-top: .3rem;
 }
 
 .credit_balance {
   color: #ffff;
-  padding-top: 2rem;
+  padding-top: .3rem;
 }
 
 .available_balance_tagline {

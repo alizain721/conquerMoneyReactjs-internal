@@ -3,7 +3,7 @@ h1 {
 
 /* Split the screen in half */
 .split {
-  height: 12%;
+  
   width: 100%;
   position: absolute;
 
@@ -25,7 +25,7 @@ h1 {
 .bottom {
   margin-top:5px;
   width:100%;
-  top:12%;
+  top:15%;
   left:0;
   height:80%;
   overflow-y:hidden;
@@ -34,14 +34,15 @@ h1 {
 }
 .transdropdown {
   position: relative;
-  width:22%;
+  background-color: #302df0;
+  color:white;
   float:left;
   padding:7px 10px 5px ;
   border: 2px solid;
   margin-left:5px;
   z-index: 10;
   font-size:15px;
-  font-weight:bold;
+  
 }
 
 .transdropdown-content {
@@ -64,6 +65,7 @@ h1 {
 }
 .App {
   justify-content:center;
+  
 }
 
 .splitButton{
