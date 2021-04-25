@@ -17,7 +17,7 @@ import EmailVerification from "./components/ResetPassword/EmailVerification";
 //import { makeStyles } from "@material-ui/core/styles";
 
 import "./App.css";
-
+import "./device.css";
 import "./style.css";
 
 import "./responsive-style.css";
@@ -80,7 +80,7 @@ function App() {
       <div className="App">
         <LoadingIndicator />
 
-        <div className="container d-flex align-items-center flex-column">
+        <div className="container2 d-flex align-items-center flex-column">
           <Switch>
             <Route  path="/post/:id/:title" exact={true}>
               <Post

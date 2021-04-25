@@ -147,10 +147,20 @@ class Accounts extends Component {
   }
 
   componentDidMount() {
+    if(Cookie.get("token")){
     this.loadCash();
     this.loadCards();
     this.loadLoans();
   }
+  }
+
+
+  
+  deletePopupWindowClose(){
+    document.getElementById("deletePopupId").style.display = "none";
+    document.getElementById("popupText2").style.display = "none";
+  }
+  
 
   render() {
     var noAccounts = 0;
@@ -169,6 +179,26 @@ class Accounts extends Component {
 
     return (
       <div className="accountsPage">
+        <div id ="deletePopupId"className="deletePopup">
+          <div id = "popupText"className="deletePopupText">
+          Confirm Required</div>
+          <div id = "popupText2" style={{ display:"none", color:"red" }}>
+          Type DELETE to confirm!</div>
+          <input  className="DeteleTypeInBox" id="ffdelete" name="deletebox" placeholder="Type DELETE "></input>
+          <br></br>
+          <button
+                  type="button"
+                  id = "CheckSubmit"
+                  className="SubmiteDeleteButton"
+                  
+                >Submit</button>
+          <button
+                  type="button"
+                  id="CheckCancel"
+                  className="SubmiteDeleteButton"
+                  onClick={() =>  this.deletePopupWindowClose()}
+                >Cancel</button>
+        </div>
         <div className="center">
           {noAccounts ? null :
             [
@@ -220,7 +250,7 @@ class Accounts extends Component {
           </Card>
             ]
           }
-        <div className="tile_no_btn bg-white my-2">
+        <div className="tile_no_btn bg-white my-2 heightAdd">
           <div className="container">
             <div className="row">
               <div className="col-12">

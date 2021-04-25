@@ -19,7 +19,8 @@ class Profile extends Component {
       super();
       this.state = {
         profilePicture: null,
-        profilePictureSrc: null,
+          profilePictureSrc: null,
+          selectedFile: null ,
         FirstName : "",
         LastName : "",
         title: "",
@@ -46,7 +47,8 @@ class Profile extends Component {
         console.log("CLICK");
       }
 
-      handleSubmitClick(e) {
+    handleSubmitClick(e) {
+        debugger
         if(!validateLocationChange(this.state.location)){
           this.setState({
             locationErrorMessage: "Location must be of the form: \"New York, NY\"",
@@ -140,10 +142,10 @@ class Profile extends Component {
             </form>
         );
       }
-      fetchPictureData=(editorData)=>{
-        this.setState({
+    fetchPictureData=(editorData)=>{
+          this.setState({
           profilePicture: editorData.picture,
-          profilePictureSrc: editorData.src
+            profilePictureSrc: editorData.src
         })
       }
       editPicture(){
@@ -169,12 +171,25 @@ class Profile extends Component {
         );
         
       }
-      uploadPicture(){
-        
+    uploadPicture() {
+        console.log(this.state.selectedFile)
+        const token = Cookie.get("token") ? Cookie.get("token") : null;
+        const payload = {
+            token: token,
+        };
+        axios
+            .post(API_URL + API_UPDATE_PROFILE, payload)
+            .then((response) => {
+                if (response.status === 200) {
+                }
+            }).catch(() => {
+                this.props.showError("An error has occured")
+            })
+
         this.setState({
           showPictureEditor: false, 
-          // profilePicture: this.myEditor.state.picture,
-          // profilePictureSrc: this.myEditor.state.src}
+           //profilePicture: this.myEditor.state.picture,
+           //profilePictureSrc: this.myEditor.state.src,
         })
       }
 
@@ -205,7 +220,10 @@ class Profile extends Component {
     }
       render() {
         return (
-          <div className= "Profile">
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+          {/*<div className= "Profile">*/}
               <div className="top_sec">
 
                 <button 
@@ -222,10 +240,12 @@ class Profile extends Component {
 
               </div> 
               {this.state.showPictureEditor ? this.editPicture() : null}
-              <div className="name_box"
-              >{this.state.FirstName+" "+this.state.LastName}</div>  
-              <div className="title_box"
-              >{this.state.title}</div> 
+                <div className="name_box">
+                    {this.state.FirstName + " " + this.state.LastName}
+                </div>  
+                <div className="title_box">
+                    {this.state.title}
+                </div> 
               <div className="upper_line"></div>
               <div className="description_box"
               >{this.state.description} </div>
@@ -250,7 +270,10 @@ class Profile extends Component {
                       />
               </div>
               
-        </div>       
+                        </div>
+                    {/*</div>*/}
+                </div>
+            </div>
       )
     }        
   }  

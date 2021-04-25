@@ -1,7 +1,7 @@
 @media screen and (max-width: 767px) {
   .center {
   height: 80px;
-  width: 300px;
+  width: 100%;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -13,14 +13,23 @@
 @media (min-width: 992px) and (max-width: 1199px) {
   .center {
   height: 120px;
-  width: 600px;
+  width: 100%;
   }
 }
 @media screen and (min-width: 1200px) {
   .center {
-  height: 120px;
-  width: 750px;
+  height: 100%;
+  width: 100%;
   }
+}
+.accountsPage{
+  position: relative;
+  width: 100%;
+}
+.col-12 {
+  padding-right:0;
+  padding-left:0;
+
 }
 
 .leftText {
@@ -63,4 +72,59 @@
 
 .loanCard {
   margin: 15px;
+}
+.listButton {
+  width: 60px;
+  font-size: 15px;
+  height: 25px;
+  float:right;
+  margin-top: 5px;
+  text-align: center;
+  background-color: #027d85;
+  color: #ffff;
+  padding: 0px;
+  vertical-align: middle;
+}
+.deletePopup{
+  display:none;
+  z-index: 111; ;
+  top:20%;
+  left:20%;
+  text-align:center ;
+  width:60%;
+  height:auto;
+  background:white;
+  border:3px solid #027d85;
+  position: absolute;
+}
+.deletePopupText{
+  margin:10px;
+  font-size:20px ;
+
+}
+.heightAdd{
+  height:900%;
+}
+.SubmiteDeleteButton{
+  width: 80px;
+  font-size: 15px;
+  height: 35px;
+  
+  margin: 10px;
+  margin-bottom: 10%;
+  text-align: center;
+  background-color: #027d85;
+  color: #ffff;
+  padding: 0px;
+  vertical-align: middle;
+}
+.DeteleTypeInBox{
+  width: 50%;
+  padding: 10px 20px;
+  font-size:15px ;
+  margin: 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+    
 }
