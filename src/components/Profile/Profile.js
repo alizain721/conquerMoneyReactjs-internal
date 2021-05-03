@@ -190,9 +190,8 @@ class Profile extends Component {
                 </div>
                 
                 <button
-
+                type="button"
                   onClick={() => getLocation()}
-                
               >
                 Click Here to get the location
               </button>

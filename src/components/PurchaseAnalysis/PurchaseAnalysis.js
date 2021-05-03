@@ -46,7 +46,6 @@ function getPlaces(position){
   .catch(err => console.warn("It didnt work"));
 }
 
-
 class PurchaseAnalysis extends Component {
   constructor() {
     super();
