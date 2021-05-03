@@ -108,37 +108,39 @@ class HeaderDash extends Component {
             {/*top section*/}
             <div className="container">
               {/*container*/}
-              <div className="row  no-gutters align-items-center">
+              
+              <div className="row  no-gutters align-items-center avaliableBalance">
+                
+
                 {/*row*/}
+                
                 <div className="col-4 ">
                   <div className="balance_section">
                     <div className="available_balance">
                       <h4>
                         &#36;<span>{this.state.balance}</span>
                       </h4>
-                      <h5 className="text-capitalize">available balance</h5>
+                      <h5 className="text-capitalize margintop0" >available balance</h5>
                     </div>
                   </div>
                 </div>
                 <div className="col-4">
-                  <div className="credit_section mx-2">
+                  <div className="credit_section marginleft2 ">
                     <div className="credit_balance">
                       <h4>
                         &#36;<span>{this.state.credit}</span>
                       </h4>
-                      <h5 className="text-capitalize">credit balance</h5>
+                      <h5 className="text-capitalize margintop0">credit balance</h5>
                     </div>
                   </div>
                 </div>
-                <div className="col-4">
-                  <div className="d-flex align-items-center profile_notification_section">
-                    <div className="notification mx-4">
-                      <img
-                        className="img-fluid mx-auto d-block"
-                        src={notification}
-                        alt="notification"
-                      />
-                    </div>
+                
+                  
+                
+              </div>{" "}
+              
+              <div className="d-flex align-items-center profile_notification_section">
+                  
                     <div className="profile_img">
                       <img
                         className="img-fluid mx-auto d-block"
@@ -147,8 +149,17 @@ class HeaderDash extends Component {
                       />
                     </div>
                   </div>
-                </div>
-              </div>{" "}
+                  <div className="d-flex align-items-center profile_notification_section2">
+              <div class="notification-box">
+              <span class="notification-count">N</span>
+              <div class="notification-bell">
+            <span class="bell-top"></span>
+           <span class="bell-middle"></span>
+           <span class="bell-bottom"></span>
+           <span class="bell-rad"></span>
+            </div>
+            </div>
+            </div>
               {/*row*/}
             </div>{" "}
             {/*container*/}

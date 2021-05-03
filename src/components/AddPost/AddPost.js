@@ -102,7 +102,7 @@ class AddPost extends Component {
         <form>
         <div className="form-group">
             <textarea
-              className="form-control"
+              className="form-control100"
               type="title"
               id="title"
               placeholder="Title goes here"
@@ -114,7 +114,7 @@ class AddPost extends Component {
 
           <div className="form-group">
             <textarea
-              className="form-control"
+              className="form-control100"
               type="content"
               id="content"
               placeholder="What's happening?"
