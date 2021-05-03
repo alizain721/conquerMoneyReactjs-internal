@@ -235,7 +235,7 @@ class Tile extends Component {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <div className="titile_desc py-2 py-sm-4 margintop100">
+                <div className="titile_desc py-2 py-sm-4 ">
                   <h4 className="financial_title proxima-bold text-capitalize mb-2">
                     {" "}
                     Financial feed{" "}

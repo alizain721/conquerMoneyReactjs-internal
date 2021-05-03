@@ -220,5 +220,11 @@ img.avatar {
         bottom: 0;
         right: 0;
         z-index: 9999;
+        overflow-x: scroll;
     }
+    .footer::-webkit-scrollbar {
+        display: none;
+    }
+    
+    
 }

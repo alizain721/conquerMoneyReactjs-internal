@@ -5,6 +5,9 @@
   }
   .top_section {
     padding: 2% 3%;
+    height: 100px;
+    position: relative;
+    top: 0;
     
   }
   .header-top-sec {
@@ -19,9 +22,9 @@
   }
   .top_section {
     padding: 2% 3%;
-    height: max-content;
-    position:fixed;
-    top:0;
+    height: 100px;
+    position: relative;
+    top: 0;
   }
   .header-top-sec {
     height: max-content;
