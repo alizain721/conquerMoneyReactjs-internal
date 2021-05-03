@@ -169,14 +169,15 @@ function App() {
             hideError={updateErrorMessage}
           />
         </div>
-        <footer className="footer">
-          <BottomNav
+        
+        
+      </div>
+      <footer className="footer">
+          <BottomNav 
             showError={updateErrorMessage}
             updateTitle={updateTitle}
           ></BottomNav>
         </footer>
-        
-      </div>
     </Router>
   );
 }
