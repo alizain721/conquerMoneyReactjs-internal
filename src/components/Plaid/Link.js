@@ -255,7 +255,7 @@ class Link extends Component {
           onSuccess={this.handleOnSuccess}
           className="test"
           //link webhook to our actual domain
-          //webhook="https://www.<CM_Domain_Name>.com/api/auth/webhook"
+          webhook="https://conquermoneyosiris.azurewebsites.net/api/pub/webhook"
         >
           Click this link and connect your bank!
         </PlaidLink>
