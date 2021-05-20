@@ -77,8 +77,8 @@ function LoginForm(props) {
     props.updateTitle("Sign Up");
   };
 
-  const reditectToVerification = () => {
-    props.history.push("/resetPassword");
+  const reditectToPasswordReset = () => {
+    props.history.push("/emailverification");
     props.updateTitle("Reset Your Password");
   }
   // const redirectToLogin = () => {
@@ -141,7 +141,7 @@ function LoginForm(props) {
       </div>
       <div className="forgotMessage">
         <span>Forgot password? </span>
-        <span className="forgotText" onClick={() => reditectToVerification()}>
+        <span className="forgotText" onClick={() => reditectToPasswordReset()}>
           Click here!
         </span>
       </div>
