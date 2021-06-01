@@ -12,6 +12,7 @@ import PurchaseAnalysis from "./components/PurchaseAnalysis/PurchaseAnalysis";
 import AddCard from "./components/AddCard/AddCard";
 import Post from './components/Posts/Post';
 import ResetPassword from "./components/ResetPassword/ResetPassword";
+import EmailVerification from "./components/ResetPassword/EmailVerification";
 
 //import { makeStyles } from "@material-ui/core/styles";
 
@@ -160,7 +161,12 @@ function App() {
                 updateTitle={updateTitle}
               />
             </Route>
-            
+            <Route path="/emailVerification">
+              <EmailVerification
+                showError={updateErrorMessage}
+                updateTitle={updateTitle}
+              />
+            </Route>
 
           </Switch>
 
@@ -169,14 +175,15 @@ function App() {
             hideError={updateErrorMessage}
           />
         </div>
-        <footer className="footer">
-          <BottomNav
+        
+        
+      </div>
+      <footer className="footer">
+          <BottomNav 
             showError={updateErrorMessage}
             updateTitle={updateTitle}
           ></BottomNav>
         </footer>
-        
-      </div>
     </Router>
   );
 }

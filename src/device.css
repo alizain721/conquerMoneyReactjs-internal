@@ -291,6 +291,12 @@
         .marvel-device .App {
             justify-content: center;
             margin-top: 0;
+            overflow-y: scroll;
+            height: 800px;
+            width:100%;
+        }
+        .App::-webkit-scrollbar {
+            display: none;
         }
         .marvel-device .dashboard {
             margin-top: 0%;
@@ -299,7 +305,7 @@
             max-width: 650px !important;
         }
         .marvel-device footer {
-            position: relative !important;
+            position: absolute !important;
             left: 0 !important;
             bottom: 0% !important;
             right: 0 !important;

@@ -223,7 +223,7 @@
   letter-spacing: 0.04em;
   margin-top:15px;
   margin-bottom: 4px;
-  font-size: calc(18px + (30 - 18) * (100vw - 320px) / (1920 - 320));
+  /* font-size: calc(18px + (30 - 18) * (100vw - 320px) / (1920 - 320)); */
   color: #fff;
   padding-left: 15px;
 }
