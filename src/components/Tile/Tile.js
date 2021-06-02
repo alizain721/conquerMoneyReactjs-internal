@@ -191,7 +191,7 @@ class Tile extends Component {
       return (null)
     } else if (this.props.postType === "FIVE") {
       return (
-        <div className="spending_descreases bg-white my-2">
+        <div className="container spending_descreases bg-white my-2">
           <div className="container">
             <div className="row">
               <div className="col-12">

@@ -1,4 +1,4 @@
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @media only screen and (min-width: 768px) {
         .marvel-device {
             display: inline-block;
             position: relative;
@@ -286,17 +286,28 @@
         }
         .marvel-device .top_section {
             position: relative;
+            height:100px;
+        }
+        .marvel-device .App {
+            justify-content: center;
+            margin-top: 0;
+            overflow-y: scroll;
+            height: 800px;
+            width:100%;
+        }
+        .App::-webkit-scrollbar {
+            display: none;
         }
         .marvel-device .dashboard {
-            margin-top: 16%;
+            margin-top: 0%;
         }
         .marvel-device .container {
             max-width: 650px !important;
         }
         .marvel-device footer {
-            position: fixed !important;
+            position: absolute !important;
             left: 0 !important;
-            bottom: 10% !important;
+            bottom: 0% !important;
             right: 0 !important;
             z-index: 9999 !important;
             max-width: 480px !important;

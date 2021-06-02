@@ -57,7 +57,7 @@ function BottomNav(props) {
   };
 
   const classes = useStyles();
-  if (props.location.pathname === "/" || props.location.pathname === "/login" || props.location.pathname === "/register") {
+  if (props.location.pathname === "/" || props.location.pathname === "/login" || props.location.pathname === "/register" || props.location.pathname === "/resetPassword") {
     return null;
   } else {
 
@@ -134,6 +134,7 @@ function BottomNav(props) {
         showLabels
       >
         <BottomNavigationAction
+        
           label="Dashboard"
           value="dashboard"
           icon={<HomeIcon />}

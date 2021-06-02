@@ -33,6 +33,10 @@ code {
     max-width: 50%;
     margin: auto;
 }
+.form-control100 {
+    width: 100%;
+    margin: auto;
+}
 
 label {
     font-size: 16px;
@@ -131,7 +135,7 @@ img.avatar {
     border-radius: 20%;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 768px) {
     .smartphone {}
 }
 
@@ -211,6 +215,16 @@ img.avatar {
 
 @media only screen and (max-width: 768px) {
     .footer {
-        position: relative !important;
+        position: fixed !important;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 9999;
+        overflow-x: scroll;
     }
+    .footer::-webkit-scrollbar {
+        display: none;
+    }
+    
+    
 }

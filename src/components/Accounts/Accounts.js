@@ -62,7 +62,7 @@ class Accounts extends Component {
 
             ),
           });
-          console.log("CASH" + response.data.totalCash);
+          console.log("Cash" + response.data.totalCash);
         }
         else {
           console.log("else");
@@ -88,8 +88,7 @@ class Accounts extends Component {
           this.setState({
             cardList: response.data.cardList.map((d) => (
               <div className="largeText" key={d.id}>
-                <div className="leftText">{d.officialname}</div>
-
+                <div className="leftText">{d.officialname, console.log("Line 91 " + d.officialname)}</div>
                 <div className="rightText">-${d.currentbalance}</div>
                 <br></br>
                 <div className="leftTextMuted text-muted">
@@ -100,8 +99,7 @@ class Accounts extends Component {
             )),
             totalCardDebt: response.data.totalDebt,
           });
-
-          //console.log("CARDS" + response.data.totalCash);
+          console.log("CARDS " + response.data.cardList[1]);
         } else {
           console.log("else");
           this.props.showError("Some error ocurred");
@@ -147,9 +145,11 @@ class Accounts extends Component {
   }
 
   componentDidMount() {
+    if(Cookie.get("token")){
     this.loadCash();
     this.loadCards();
     this.loadLoans();
+  }
   }
 
 

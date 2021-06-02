@@ -1,11 +1,14 @@
 @media (min-width: 400px) {
   .dashboard {
-    margin-top: 28%;
-    width: 107%;
+    margin-top: 0%;
+    width: 100%;
   }
   .top_section {
-    padding: 2% 5%;
-    height: max-content;
+    padding: 2% 3%;
+    height: 100px;
+    position: relative;
+    top: 0;
+    
   }
   .header-top-sec {
     height: max-content;
@@ -14,12 +17,14 @@
 
 @media (max-width: 575px) {
   .dashboard {
-    margin-top: 28%;
-    width: 107%;
+    margin-top: 0%;
+    width: 100%;
   }
   .top_section {
-    padding: 2% 5%;
-    height: max-content;
+    padding: 2% 3%;
+    height: 100px;
+    position: relative;
+    top: 0;
   }
   .header-top-sec {
     height: max-content;

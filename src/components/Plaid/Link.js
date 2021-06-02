@@ -103,13 +103,20 @@ class Link extends Component {
               
               <div className = "eachAccount" key={d.id}>
                 <hr></hr>
-                <div>
-                <div style={{ display:"inline-block" }}>{d.officialname}{d.accountname} </div>
-                <div style={{ display:"inline-block", float:"right" }}>{" $"}{d.currentbalance} </div>
-                </div>
-                <div>
-                <div style={{ display:"inline-block", color:"#808080",fontSize:"15px" }}>{"xxxx-xxxx-xxxx-"}{d.mask}</div>
+                <div style={{ float:"left", width:"70%", height:"100%" }}>
+                <div style={{ display:"inline-block", width:"100%" }}>{d.bankname +": "}{d.officialname}{d.accountname}   
+                <div style={{ display:"inline-block", color:"#808080",fontSize:"15px", width:"100%" }}>{"xxxx-xxxx-xxxx-"}{d.mask}</div>
                 
+                
+                </div>
+                
+                </div>
+                <div style={{ float:"right",width:"30%",height:"100%" }}>
+                <div style={{  float:"right" }}>
+                  
+                    {" $"}{d.currentbalance} 
+                    </div>
+                <div style={{ float:"right",width:"100%" }}>
                 <button
                   type="button"
                   className="listButton"
@@ -118,7 +125,7 @@ class Link extends Component {
                 >
                   Delete
                 </button>
-                
+                </div>
                 </div>
               </div>
               
@@ -248,7 +255,7 @@ class Link extends Component {
           onSuccess={this.handleOnSuccess}
           className="test"
           //link webhook to our actual domain
-          //webhook="https://www.<CM_Domain_Name>.com/api/auth/webhook"
+          webhook="https://conquermoneyosiris.azurewebsites.net/api/pub/webhook"
         >
           Click this link and connect your bank!
         </PlaidLink>
