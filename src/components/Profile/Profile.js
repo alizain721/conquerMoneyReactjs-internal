@@ -209,6 +209,12 @@ class Profile extends Component {
               >
                 Submit
               </button>
+              <button
+                type="submit"
+                onClick={() => this.setState({showForm: false}) }
+              >
+                Cancel
+              </button>
             </form>
         );
       }
@@ -229,16 +235,20 @@ class Profile extends Component {
               // picture: this.state.profilePicture,
               // src: this.state.profilePictureSrc}} 
               // onChange={()=> this.uploadPicture}
+             >
+              </MyEditor>
+              <button
+              onClick={() => this.uploadPicture()} 
               >
-            </MyEditor>
-            <button
-            onClick={() => this.uploadPicture()} 
-            >
-              Upload
-            </button>
+                Upload
+              </button>
+              <button
+      onClick={() => this.setState({showPictureEditor: false}) }>
+        Cancel
+      </button>
+            </div>
           </div>
-        </div>
-      );
+        );
       
     }
   uploadPicture() {
@@ -291,26 +301,28 @@ class Profile extends Component {
     }
       render() {
         return (
-          <div className="container">
-          <div className="row">
-              <div className="col-12">
-    {/*<div className= "Profile">*/}
-        <div className="top_sec">
 
-          <button 
-          className= "AvatarEditor"
-          onClick={() => this.setState({showPictureEditor: true})}>
-            <img src={this.state.profilePictureSrc}
-                />
-          </button> 
+          <div className="profilePage">
+          
+              <div className="top_sec">
 
-          <div class="hover11">
+                
+
+                <div class="hover11">
                   {/*Current bug: Hover effect is applied outside of the img might be a problem with Top sec, hover 11 or img */}
-                  <figure><img src= {anonAvatar} alt ="anonAvatar" className= "anonAvatar" /></figure>
+                  <button 
+                className= "AvatarEditor"
+                onClick={() => this.setState({showPictureEditor: true})}>
+                  <img src={this.state.profilePictureSrc}
+                      />
+                </button> 
+                  {/*<figure><img src= {anonAvatar} alt ="anonAvatar" className= "anonAvatar" /></figure>*/}
                  </div> 
 
               </div> 
-               {this.state.showPictureEditor ? this.editPicture() : null}
+              
+              {this.state.showPictureEditor ? this.editPicture() : null}
+
                 <div className="name_box">
                     {this.state.FirstName + " " + this.state.LastName}
                 </div>  
@@ -344,9 +356,7 @@ class Profile extends Component {
               </div>
               
                         </div>
-                    {/*</div>*/}
-                </div>
-              </div>
+
       )
     }        
   }  

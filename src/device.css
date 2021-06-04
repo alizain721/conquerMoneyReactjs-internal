@@ -292,14 +292,15 @@
             justify-content: center;
             margin-top: 0;
             overflow-y: scroll;
-            height: 800px;
+            height: 900px;
             width:100%;
+            position:absolute;
         }
         .App::-webkit-scrollbar {
             display: none;
         }
         .marvel-device .dashboard {
-            margin-top: 0%;
+            margin-top: 100px;
         }
         .marvel-device .container {
             max-width: 650px !important;
