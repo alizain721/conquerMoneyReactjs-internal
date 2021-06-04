@@ -4,16 +4,77 @@ import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
 import  MyEditor from "./pictureeditor";
+
 import { API_GENTILES_URL, API_URL, API_PROFILE, API_GET_PROFILE, API_UPDATE_PROFILE } from "../../constants/apiConstants";
 
 import { withRouter, Link } from "react-router-dom";
 
 import anonAvatar from "../../img/anonProfilePicture.png";
+import {GoogleApiWrapper} from 'google-maps-react';
 
 function validateLocationChange(value) {
   const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
   return re.test(String(value).toLowerCase());
 }
+
+/*
+* Native HTML5 function.
+* We check if the navigator can use geolocation features.
+* The browser will call the user location.
+*/
+function getLocation() {
+  console.log("on GetLocation");
+  
+  if (navigator.geolocation) {
+    var location = navigator.geolocation.getCurrentPosition(reverseGeoLocation);
+    return location;
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+
+function reverseGeoLocation(position){
+  console.log("In ReverseGeolocation")
+  var address = "";
+  const key = "AIzaSyAcwSutjKBu4TtPpqB3ZXnuDqXn3cO-BJ0";      //Note this is my own key (Jose) Read the documentation to see how to get another
+  const lat = position.coords.latitude;
+  const lng = position.coords.longitude;
+  console.log(lng);
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`     //You can find documentation here: https://developers.google.com/maps/documentation/geocoding/start#reverse, https://developers.google.com/maps/documentation/geocoding/overview#GeocodingRequests
+
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    let parts = data.results[0].address_components;
+
+    /*
+    * Each address is broken down into types
+    * such as countries, Administrative_area_level1-5 (states, counties, etc)
+    * Since its not guarantee we will find a country or an administrative area in our search we search for them individually
+    * and add them to the return string address
+    */
+    parts.forEach( part => {
+      if(part.types.includes("locality")){
+        address = address + part.long_name + ",";
+      }
+    })
+
+    parts.forEach( part => {
+      if(part.types.includes("administrative_area_level_1")){
+        address = address + part.short_name;
+      }
+    })
+
+    console.log(address);
+    return address;
+  })
+  .catch(err => console.warn("It didnt work"));
+}
+
+
+
 class Profile extends Component {
     constructor() {
       super();
@@ -38,16 +99,17 @@ class Profile extends Component {
       this.handleTitleChange= this.handleTitleChange.bind(this);
       this.handleDescriptionChange= this.handleDescriptionChange.bind(this);
       this.handleLocationChange= this.handleLocationChange.bind(this);
-      //this.handleAvatarChange=this.handleAvatarChange.bind(this);
+            //this.handleAvatarChange=this.handleAvatarChange.bind(this);
 
-      this.myEditor= new MyEditor;
+            this.myEditor= new MyEditor;
     }
-     
+
+      
       handleClick() {
         console.log("CLICK");
       }
 
-    handleSubmitClick(e) {
+      handleSubmitClick(e) {
         debugger
         if(!validateLocationChange(this.state.location)){
           this.setState({
@@ -64,7 +126,7 @@ class Profile extends Component {
           this.sendDetailsToServer();   
         }   
       }
-      // handleAvatarChange(e){
+            // handleAvatarChange(e){
       //   this.setState({
       //     profilePictureSrc: e.target.value,
           
@@ -84,6 +146,7 @@ class Profile extends Component {
       }
 
       handleLocationChange(e){
+          console.log("HandleLocationChange" + e.target.value);
           this.setState({
             location: e.target.value,
           });
@@ -126,6 +189,13 @@ class Profile extends Component {
                   <textarea className= "form_control" type= "location" id= "location" value={this.state.location} onChange={this.handleLocationChange} maxLength= "20"></textarea>
                 </div>
                 
+                <button
+                type="button"
+                  onClick={() => getLocation()}
+              >
+                Click Here to get the location
+              </button>
+
                 <div
                   className="locationErrorMessage"
                   style= {{display: this.state.locationFalse ? "block" : "none" }}
@@ -148,24 +218,24 @@ class Profile extends Component {
             </form>
         );
       }
-    fetchPictureData=(editorData)=>{
-          this.setState({
-          profilePicture: editorData.picture,
-            profilePictureSrc: editorData.src
-        })
-      }
-      editPicture(){
-        
-        return(
-          <div className="edit_profile_form">
-            <div className="edit_profile_form_group">
-              <MyEditor
-                pictureEditorData={this.fetchPictureData}
-                // value={{
-                // picture: this.state.profilePicture,
-                // src: this.state.profilePictureSrc}} 
-                // onChange={()=> this.uploadPicture}
-                >
+      fetchPictureData=(editorData)=>{
+        this.setState({
+        profilePicture: editorData.picture,
+          profilePictureSrc: editorData.src
+      })
+    }
+    editPicture(){
+      
+      return(
+        <div className="edit_profile_form">
+          <div className="edit_profile_form_group">
+            <MyEditor
+              pictureEditorData={this.fetchPictureData}
+              // value={{
+              // picture: this.state.profilePicture,
+              // src: this.state.profilePictureSrc}} 
+              // onChange={()=> this.uploadPicture}
+             >
               </MyEditor>
               <button
               onClick={() => this.uploadPicture()} 
@@ -179,29 +249,30 @@ class Profile extends Component {
             </div>
           </div>
         );
-        
-      }
-    uploadPicture() {
-        console.log(this.state.selectedFile)
-        const token = Cookie.get("token") ? Cookie.get("token") : null;
-        const payload = {
-            token: token,
-        };
-        axios
-            .post(API_URL + API_UPDATE_PROFILE, payload)
-            .then((response) => {
-                if (response.status === 200) {
-                }
-            }).catch(() => {
-                this.props.showError("An error has occured")
-            })
+      
+    }
+  uploadPicture() {
+      console.log(this.state.selectedFile)
+      const token = Cookie.get("token") ? Cookie.get("token") : null;
+      const payload = {
+          token: token,
+      };
+      axios
+          .post(API_URL + API_UPDATE_PROFILE, payload)
+          .then((response) => {
+              if (response.status === 200) {
+              }
+          }).catch(() => {
+              this.props.showError("An error has occured")
+          })
 
-        this.setState({
-          showPictureEditor: false, 
-           //profilePicture: this.myEditor.state.picture,
-           //profilePictureSrc: this.myEditor.state.src,
-        })
-      }
+      this.setState({
+        showPictureEditor: false, 
+         //profilePicture: this.myEditor.state.picture,
+         //profilePictureSrc: this.myEditor.state.src,
+      })
+    }
+
 
       getProfile() {
         const token = Cookie.get("token") ? Cookie.get("token") : null;
@@ -230,6 +301,7 @@ class Profile extends Component {
     }
       render() {
         return (
+
           <div className="profilePage">
           
               <div className="top_sec">
@@ -250,6 +322,7 @@ class Profile extends Component {
               </div> 
               
               {this.state.showPictureEditor ? this.editPicture() : null}
+
                 <div className="name_box">
                     {this.state.FirstName + " " + this.state.LastName}
                 </div>  
@@ -268,6 +341,8 @@ class Profile extends Component {
               <div  className="lower_line"></div>
               <div>
                 <button
+                  type="button"
+                  name="edit profile"
                   className="edit_profile_button"
                   onClick={() => this.setState({showForm: true}) }
                 > Edit Profile
@@ -275,13 +350,13 @@ class Profile extends Component {
                 {this.state.showForm ? this.showForm() : null}
               </div>
               <div className= "random_container">
-                
+
               <img src={this.state.profilePictureSrc}
                       />
               </div>
               
                         </div>
-                    
+
       )
     }        
   }  
