@@ -1,8 +1,8 @@
 
 .editorForm{
   margin-top: 250px;
-  height: 500px;
-  width: 350px;
+
+  border: 1px solid;
   margin-left: auto;
   margin-right: auto;
   background-color: #ffff;;
