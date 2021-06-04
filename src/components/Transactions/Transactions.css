@@ -65,11 +65,14 @@ h1 {
 }
 .App {
   justify-content: center;
-  margin-top: 0;
+  margin-top: 0px;
   overflow-y: scroll;
-  height: 700px;
+  height: 100%;
   width: 100%;
   
+}
+.App::-webkit-scrollbar {
+  display: none;
 }
 
 .splitButton{

@@ -250,7 +250,7 @@ class Accounts extends Component {
           </Card>
             ]
           }
-        <div className="tile_no_btn bg-white my-2 heightAdd">
+        <div className="tile_no_btn bg-white my-2 ">
           <div className="container">
             <div className="row">
               <div className="col-12">

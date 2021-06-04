@@ -139,6 +139,12 @@ class Profile extends Component {
               >
                 Submit
               </button>
+              <button
+                type="submit"
+                onClick={() => this.setState({showForm: false}) }
+              >
+                Cancel
+              </button>
             </form>
         );
       }
@@ -166,6 +172,10 @@ class Profile extends Component {
               >
                 Upload
               </button>
+              <button
+      onClick={() => this.setState({showPictureEditor: false}) }>
+        Cancel
+      </button>
             </div>
           </div>
         );
@@ -220,25 +230,25 @@ class Profile extends Component {
     }
       render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-          {/*<div className= "Profile">*/}
+          <div className="profilePage">
+          
               <div className="top_sec">
 
-                <button 
+                
+
+                <div class="hover11">
+                  {/*Current bug: Hover effect is applied outside of the img might be a problem with Top sec, hover 11 or img */}
+                  <button 
                 className= "AvatarEditor"
                 onClick={() => this.setState({showPictureEditor: true})}>
                   <img src={this.state.profilePictureSrc}
                       />
                 </button> 
-
-                <div class="hover11">
-                  {/*Current bug: Hover effect is applied outside of the img might be a problem with Top sec, hover 11 or img */}
-                  <figure><img src= {anonAvatar} alt ="anonAvatar" className= "anonAvatar" /></figure>
+                  {/*<figure><img src= {anonAvatar} alt ="anonAvatar" className= "anonAvatar" /></figure>*/}
                  </div> 
 
               </div> 
+              
               {this.state.showPictureEditor ? this.editPicture() : null}
                 <div className="name_box">
                     {this.state.FirstName + " " + this.state.LastName}
@@ -271,9 +281,7 @@ class Profile extends Component {
               </div>
               
                         </div>
-                    {/*</div>*/}
-                </div>
-            </div>
+                    
       )
     }        
   }  

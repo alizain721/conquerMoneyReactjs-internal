@@ -74,6 +74,7 @@ class MyEditor extends React.Component {
       onClick={()=>this.handleSave()}>
         Save
       </button>
+      
       <img src={this.state.src}/>
     </div>
     )
