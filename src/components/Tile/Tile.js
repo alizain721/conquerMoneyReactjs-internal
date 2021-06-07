@@ -107,9 +107,23 @@ class Tile extends Component {
           <div className="container">
             <div className="row">
               <div className="col-12">
+
+                <div className="row">
+                  <div className="col-1" >
+                      
+                  </div>
+                  <div className="col-2" >
+                      <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" className="avatartilestyle"/>
+                  </div>
+                  <div className="col-9">
+                    <div>Sample UserName</div>
+                    <div>Sample User Tag Line</div>
+                  </div>
+                </div>
+
                 <div className="tile_no_btn_top">
                   <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-                    {this.props.title}
+                     {this.props.title}
                   </h4>
                   <h5 className="financial_sub_text text-capitalize mb-0 grey-color">
                     {this.props.content}
@@ -191,7 +205,7 @@ class Tile extends Component {
       return (null)
     } else if (this.props.postType === "FIVE") {
       return (
-        <div className="container spending_descreases bg-white my-2">
+        <div className="spending_descreases bg-white my-2">
           <div className="container">
             <div className="row">
               <div className="col-12">
