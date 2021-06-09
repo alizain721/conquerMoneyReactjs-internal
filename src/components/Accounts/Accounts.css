@@ -6,7 +6,7 @@
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .center {
-  height: 80px;
+  height: 100px;
   width: 502px;
   }
 }
@@ -18,14 +18,25 @@
 }
 @media screen and (min-width: 1200px) {
   .center {
-  height: 100%;
+  height: 100px;
   width: 100%;
   }
 }
 .accountsPage{
+  position: fixed;
+  width: 100%;
+  height:100%;
+  background-color: white;;
+}
+@media only screen and (min-width: 768px){
+.accountsPage{
   position: relative;
   width: 100%;
+  height:800px;
+  background-color: white;;
 }
+}
+
 .col-12 {
   padding-right:0;
   padding-left:0;

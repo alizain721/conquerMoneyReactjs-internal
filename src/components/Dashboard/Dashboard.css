@@ -33,6 +33,7 @@
 
 @media screen and (max-width: 767px) {
   .dashboard {
+    margin-top:100px;
   }
   .available_balance {
     font-size: 1.05rem;
