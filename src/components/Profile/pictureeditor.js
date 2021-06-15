@@ -49,7 +49,8 @@ class MyEditor extends React.Component {
        
       })
     }
-
+  
+    //hanyia test
   render(){
     return(
       <div className='editorForm' > 
