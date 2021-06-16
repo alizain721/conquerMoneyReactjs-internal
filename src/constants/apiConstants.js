@@ -29,3 +29,5 @@ export const API_REFRESH = "/refresh";
 export const API_UPDATE_PROFILE = "/update_profile";
 export const API_URL = "http://localhost:8080/api/auth";
 export const API_PUB_URL = "http://localhost:8080/api/pub";
+
+export const API_PASSWORD_RESET = "/passwordreset";
