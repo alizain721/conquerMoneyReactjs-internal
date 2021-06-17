@@ -12,13 +12,15 @@ function DisplayHeader(props) {
   console.log(Cookie.get("token"))
   if (!Cookie.get("token")) {
     if (props.location.pathname !== "/" && props.location.pathname !== '/login' && props.location.pathname !== '/register' && 
-        props.location.pathname !== '/resetPassword' && props.location.pathname !== "/emailverification") {
+        props.location.pathname !== '/resetPassword' && props.location.pathname !== "/emailverification" && props.location.pathname !== "/resetpassword?" &&
+        props.location.pathname !== "/resetpassword") {   //Test
       return <Redirect to={{ pathname: '/', state: { from: props.location } }} />
     }
   }
   else {
     if (props.location.pathname === "/" || props.location.pathname === '/login' || props.location.pathname === '/register' || 
-        props.location.pathname === '/resetPassword' || props.location.pathname === "/emailverification") {
+        props.location.pathname === '/resetPassword' || props.location.pathname === "/emailverification" || props.location.pathname === "/resetpassword?"
+        || props.location.pathname === '/resetpassword') {   //Test
       return <Redirect to={{ pathname: '/dashboard', state: { from: props.location } }} />
     }
   }
