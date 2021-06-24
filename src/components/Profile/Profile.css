@@ -18,6 +18,11 @@ margin-top:3%;
 width:100%;
 height:13vh;
 }
+.disable-div {
+    pointer-events: none;
+    opacity: 0.1;
+    background-color: rgba(24, 13, 13, 0.5);
+}
 .AvatarEditor {
     height: 13vh;
     width: 13vh;
@@ -31,6 +36,16 @@ height:13vh;
     align-self: center;
     z-index: 2;
 }
+.editorForm{
+  
+
+    border: 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffff;;
+    position: relative;
+    z-index: 3;
+  }
 .ProfilePic{
     height: 13vh;
     width: 13vh;
@@ -40,6 +55,7 @@ height:13vh;
     background-repeat: no-repeat;
     /* background-attachment: fixed; */
     background-size: 100%;
+    border: 4px solid #fff;
     background-position: center;
     position: absolute;
     margin:0;
@@ -52,8 +68,8 @@ height:13vh;
 }
 
 .top_sec {
+    border-bottom: 2px solid rgb(241, 241, 241);
     background: white;
-    
     padding: 5px 20px;
     position: absolute; /* instead of fixed */
     height: 40%;
@@ -103,16 +119,17 @@ height:13vh;
     word-wrap: break-word;
 }
 
-.upper_line {
-    height: 2px;
-    width: 70%;
-    top: 45%;
+.mid_sec {
+    border: 2px solid rgb(241, 241, 241);
+    background: white;
+    padding: 5px 20px;
+    position: absolute;
+    height: 20%;
+    top: 40%;
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    background-color: black;
+    z-index: 0;
+    font-size: 50px;
 }
 
 .description_box {
@@ -137,36 +154,49 @@ height:13vh;
     position: relative;
     text-align:left;
     float:left;
-    font-size: x-large;
-    font-weight: bold;
+    font-size: large;
     word-wrap: break-word;
 }
-.lower_line {
-    height: 2px;
-    width: 70%;
-    top: 55%;
+.connect_box_2{
+    position: relative;
+    width:50%;
+    height: 100%;
+    float: left;
+
+}
+.connect_text {
+    float:left;
+    width:50%;
+    text-align: center;
+}
+.bot_sec {
+    border: 2px solid rgb(241, 241, 241);
+    background: white;
+    padding: 5px 20px;
+    position: absolute;
+    height: 30%;
+    top: 60%;
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    background-color: black;
+    z-index: 0;
+    font-size: 50px;
 }
 
 .edit_profile_button {
     height: 5%;
-    width: 60%;
-    top: 75%;
-    left: 0;
-    right: 0;
+    width: 30%;
+    top: 12%;
+    /* left: 0; */
+    /* right: 10%; */
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 8%;
     border: 1px solid black;
     border-radius: 40px 40px 40px 40px;
     border-width: thin;
     background-color: rgb(8, 168, 177);
     position: relative;
-    font-size: 25px;
+    font-size: 2vh;
+    z-index: 2;
     align-items: center;
     justify-content: center;
     font-weight: bold;
@@ -200,35 +230,41 @@ height:13vh;
 
 .num_post {
     height: 30px;
-    width: 30px;
-    border: 1px solid black;
-    border-width: thin;
-    margin-right: 15%;
-    float:right;
+    width: 50%;
+    float:left;
     z-index: 1;
     position: relative;
-    font-size: large;
-    text-align: center;
+    text-align: left;
 }
 
 .num_connect {
     height: 30px;
-    width: 30px;
-    border: 1px solid black;
-    border-width: thin;
-    margin-left: 15%;
-    margin-right: auto;
-    z-index: 1;
+    width: 50%;
     float:left;
+    z-index: 1;
     position: relative;
-    font-size: large;
-    text-align: center;
+    text-align: left;
+}
+.edit_picture_close_button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 15px;
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    padding: 0;
+}
+.edit_profile_title_text{
+    width:30%;
+    font-size: 2vh;
+    font-weight:bold;
 }
 
-.edit_profile_form {
-    margin-top: 150px;
-    height: 400px;
-    width: 300px;
+.edit_picture_form {
+    margin-top: 0px;
+    height: fit-content;
+    width: min-content;
     margin-left: auto;
     margin-right: auto;
     background-color: #ffff;
@@ -237,17 +273,45 @@ height:13vh;
     z-index: 3;
 }
 
-.edit_profile_form_group {
+.edit_picture_form_group {
+    margin-top: 1rem;
     margin-bottom: 1rem;
 }
-
+.edit_profile_form {
+    margin-top: 0px;
+    height: fit-content;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #ffff;
+    position: relative;
+    z-index: 3;
+    border: 3px solid #ced4da;
+    border-radius: .25rem;
+}
+.edit_profile_form_group {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width:100%;
+    position: relative;
+    height:40px;
+    display:flex;
+}
+.edit_profile_form_group2 {
+    margin-bottom: 1rem;
+    width:100%;
+    position: relative;
+    height:100px;
+    display:flex;
+}
 .form_control {
     display: block;
-    width: 100%;
+    width: 65%;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
     color: #495057;
+    float:right;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -255,6 +319,32 @@ height:13vh;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     max-height: 100px;
 }
+.get_location_button {
+    background-color: #302df0;
+    border-radius: 40px 40px 40px 40px;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 85%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+}
+.submit_button {
+    background-color: #302df0;
+    border-radius: 40px 40px 40px 40px;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+}
+
+
 
 .locationErrorMessage {
     color: red;

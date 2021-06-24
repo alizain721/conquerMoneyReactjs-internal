@@ -1,5 +1,4 @@
 import "./Profile.css";
-import "./pictureeditor.css"
 import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
@@ -82,8 +81,6 @@ class Profile extends Component {
         
         profilePicture: null,
         picture: null,
-        croppedimg: null,
-        imageDestination:"",
         selectedFile: null ,
         FirstName : "",
         LastName : "",
@@ -111,6 +108,8 @@ class Profile extends Component {
       }
 
       handleSubmitClick(e) {
+        this.setState({showForm: false})
+      
         debugger
         if(!validateLocationChange(this.state.location)){
           this.setState({
@@ -124,20 +123,17 @@ class Profile extends Component {
             locationErrorMessage: null,
             locationFalse: false
           })
+          this.backgroundShowAgain();
           this.sendDetailsToServer();   
         }   
       }
+      handleCancelClick=()=> {
+        this.setState({showForm: false})
+        this.backgroundShowAgain()
+      }
 
       
-    handleUploadClick() {
-      
-       this.sendPictureToServer();   
-       this.setState({
-        showPictureEditor: false, 
-         
-         profilePicture: this.state.croppedimg,
-      })   
-      }
+    
       
 
 
@@ -186,7 +182,7 @@ class Profile extends Component {
         const token = Cookie.get("token") ? Cookie.get("token") : null;
         const payload = {
           token : token,
-          profilePicture: this.state.croppedimg,
+          profilePicture: this.state.profilePicture,
           
         };
         axios
@@ -205,22 +201,22 @@ class Profile extends Component {
         return(
             <form className= "edit_profile_form">
                 <div className= "edit_profile_form_group">
-                  <p>Title:</p>
+                  <p className="edit_profile_title_text" >Title:</p>
                   <textarea className= "form_control" type= "title" id = "title" value={this.state.title} onChange={this.handleTitleChange} maxLength= "50"></textarea>
                 </div>
 
-                <div className= "edit_profile_form_group">
-                  <p>Description:</p>
-                  <textarea className= "form_control" type= "description" id= "description" value={this.state.description} onChange={this.handleDescriptionChange} maxLength= "150"></textarea>
+                <div className= "edit_profile_form_group"> 
+                  <p className="edit_profile_title_text">Location:</p>
+                  <textarea className= "form_control" type= "location" id= "location" value={this.state.location} onChange={this.handleLocationChange} maxLength= "20"></textarea>
                 </div>
 
-                <div className= "edit_profile_form_group"> 
-                  <p>Location:</p>
-                  <textarea className= "form_control" type= "location" id= "location" value={this.state.location} onChange={this.handleLocationChange} maxLength= "20"></textarea>
+                <div className= "edit_profile_form_group2">
+                <p className="edit_profile_title_text">Description:</p>
+                  <textarea className= "form_control" type= "description" id= "description" value={this.state.description} onChange={this.handleDescriptionChange} maxLength= "150"></textarea>
                 </div>
                 
                 <button
-                type="button"
+                type="button" className="get_location_button"
                   onClick={() => getLocation()}
               >
                 Click Here to get the location
@@ -233,33 +229,26 @@ class Profile extends Component {
                   <p>{this.state.locationErrorMessage}</p>
                 </div>
 
-              <button
-                type="submit"
+                <button
+                type="submit" className="submit_button"
                 onClick={this.handleSubmitClick}
               >
                 Submit
               </button>
-              <button
-                type="submit"
-                onClick={() => this.setState({showForm: false}) }
+                <button
+                type="submit" className="submit_button"
+                onClick={() => this.handleCancelClick() }
               >
                 Cancel
               </button>
             </form>
         );
       }
-
-    /* fetchPictureData=(editorData)=>{
-          this.setState({
-          profilePicture: editorData.picture,
-            profilePictureSrc: editorData.src
-        })
-      } */
       editPicture(){
         
         return(
-          <div className="edit_profile_form">
-            <div className="edit_profile_form_group">
+          <div className="edit_picture_form">
+            <div className="edit_picture_form_group">
             <div className='editorForm' > 
             <input
               name= "newImage"
@@ -279,23 +268,23 @@ class Profile extends Component {
         rotate={0}
       />
 
-      <button
+      <button className="submit_button"
         onClick={()=>this.handleSave()}>
         Save
-      </button>
+        </button>
+      <button className="submit_button"
+        onClick={() => this.handleUploadClick()} >
+        Upload
+        </button>
+      <button className="edit_picture_close_button" 
+        onClick={() => this.handlePictureCloseClick()}>
+        X
+        </button>
       
-      <img src={this.state.croppedimg}/>
       </div>
-              <button onClick={() => this.handleUploadClick()} >
-
-                Upload
-              </button>
-              <button
-                onClick={() => this.setState({showPictureEditor: false}) }>
-                Cancel
-              </button>
-            </div>
-          </div>
+              
+      </div>
+      </div>
         );
 
         
@@ -305,36 +294,39 @@ class Profile extends Component {
         this.setState({ picture: e.target.files[0] })
       }
       sendData=()=>{this.props.pictureEditorData(this.state)}
-      handleSave = (data) => {
+      handleSave = () => {
         const img = this.editor.getImageScaledToCanvas().toDataURL()
-        const rect = this.editor.getCroppingRect()
-    
-        this.setState({
-          croppedimg : img,
-         
-        })
+        this.setState({profilePicture : img})
+        
       }
-    /* uploadPicture() {
-        console.log(this.state.selectedFile)
-        const token = Cookie.get("token") ? Cookie.get("token") : null;
-        const payload = {
-            token: token,
-        };
-        axios
-            .post(API_URL + API_UPDATE_PROFILE, payload)
-            .then((response) => {
-                if (response.status === 200) {
-                }
-            }).catch(() => {
-                this.props.showError("An error has occured")
-            })
-
-        this.setState({
-          showPictureEditor: false, 
-           //profilePicture: this.myEditor.state.picture,
-           //profilePictureSrc: this.myEditor.state.src,
-        })
-      } */
+      handleUploadClick = () => {
+        this.backgroundShowAgain()
+        this.setState({showPictureEditor: false})
+        this.sendPictureToServer()
+      }
+      handlePictureCloseClick=()=>{
+        this.backgroundShowAgain()
+        this.setState({showPictureEditor: false})
+      }
+      
+      editprofileEvent=()=> {
+        this.setState({showForm: true})
+        this.disableBackground()
+      }
+      editPictureEvent=()=> {
+        this.setState({ showPictureEditor: true })
+        this.disableBackground()
+      }
+      
+      
+      
+      disableBackground=()=>{
+        $(".top_sec,.edit_profile_button,.mid_sec, .bot_sec").addClass("disable-div")
+      }
+      backgroundShowAgain=()=>{
+        $(".top_sec,.edit_profile_button,.mid_sec, .bot_sec").removeClass("disable-div")
+      }
+    
 
 
       getProfile() {
@@ -353,6 +345,7 @@ class Profile extends Component {
                         description: response.data.description,
                         location:response.data.location,
                         profilePicture:response.data.profilePicture,
+                        picture:response.data.profilePicture,
                     });
                 }
             }).catch(() => {
@@ -369,10 +362,11 @@ class Profile extends Component {
         return (
 
           <div className="profilePage">
-            <div className="top_sec"> 
+            <div className="top_sec" id="top_sec"> 
               <div className="width100">
                 <div className="top_sec2"></div>       
-                <button className="AvatarEditor" onClick={() => this.setState({ showPictureEditor: true })}>
+                <button className="AvatarEditor" 
+                  onClick={() => this.editPictureEvent()}>
                   <img className="ProfilePic" src={this.state.profilePicture} />
                 </button>
               </div> 
@@ -388,20 +382,31 @@ class Profile extends Component {
               <div className="description_box" 
               >{this.state.description} </div>
               <div className="post_connect_box">
+                <div className="connect_box_2">
+                  <div className="connect_text">posts</div>
                 <div className="num_post"
                 >{this.state.num_post}</div>
+                </div>
+                <div className="connect_box_2">
+                <div className="connect_text">friends</div>
                 <div className="num_connect"
                 >{this.state.num_connection}</div>
+                </div>
             </div>
             </div>
-            {this.state.showPictureEditor ? this.editPicture() : null}
-            <div className="upper_line"></div>
-            <div  className="lower_line"></div>
+            
+            <div className="mid_sec">
+              <p>mid_sec</p>
+            </div>
+            <div  className="bot_sec">
+            <p>bot_sec</p>
+            </div>
             <button
               className="edit_profile_button"
-              onClick={() => this.setState({showForm: true}) }
+              onClick={() => this.editprofileEvent()}
               > Edit Profile
             </button>
+            {this.state.showPictureEditor ? this.editPicture() : null}
             {this.state.showForm ? this.showForm() : null}
              <div className= "random_container">
                 
