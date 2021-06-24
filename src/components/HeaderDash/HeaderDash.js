@@ -29,10 +29,10 @@ class HeaderDash extends Component {
     };
   }
 
-  redirectToAccounts() {
-    this.props.history.push("/accounts");
-    this.props.updateTitle("Accounts");
-  }
+  redirectToProfile() {
+    this.props.history.push("/profile");
+    this.props.updateTitle("Profile");
+  };
 
   getCashCardsInvest() {
     const token = Cookie.get("token") ? Cookie.get("token") : null;
@@ -101,7 +101,8 @@ class HeaderDash extends Component {
         <div
           className="header-top-sec pb-2"
           onClick={() => {
-            this.redirectToAccounts();
+            this.redirectToProfile(); //clicking on the profile picture redirects to profile page
+            
           }}
         >
           <div className="top_section">

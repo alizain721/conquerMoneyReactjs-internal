@@ -104,7 +104,7 @@ class Link extends Component {
               <div className = "eachAccount" key={d.id}>
                 <hr></hr>
                 <div style={{ float:"left", width:"70%", height:"100%" }}>
-                <div style={{ display:"inline-block", width:"100%" }}>{d.officialname}{d.accountname} 
+                <div style={{ display:"inline-block", width:"100%" }}>{d.bankname +": "}{d.officialname}{d.accountname}   
                 <div style={{ display:"inline-block", color:"#808080",fontSize:"15px", width:"100%" }}>{"xxxx-xxxx-xxxx-"}{d.mask}</div>
                 
                 
@@ -255,7 +255,7 @@ class Link extends Component {
           onSuccess={this.handleOnSuccess}
           className="test"
           //link webhook to our actual domain
-          //webhook="https://www.<CM_Domain_Name>.com/api/auth/webhook"
+          webhook="https://conquermoneyosiris.azurewebsites.net/api/pub/webhook"
         >
           Click this link and connect your bank!
         </PlaidLink>

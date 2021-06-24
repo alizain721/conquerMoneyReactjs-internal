@@ -9,6 +9,43 @@ import Cookie from "js-cookie";
 
 import { withRouter } from "react-router-dom";
 
+function getLocation() {
+  console.log("on GetLocation");
+  
+  if (navigator.geolocation) {
+    var location = navigator.geolocation.getCurrentPosition(getPlaces);
+    return location;
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+/*
+ * We can use this API for more than stores (think restaurants)
+ * Allow CORS
+ * Here are the current supported types: https://developers.google.com/maps/documentation/places/web-service/supported_types 
+ * Note however that only one type can be use at a time
+*/
+function getPlaces(position){
+  console.log("In Places");
+  var address = "";
+  const key = "AIzaSyAcwSutjKBu4TtPpqB3ZXnuDqXn3cO-BJ0";      //Note this is my (Jose's) key  Read the documentation to see how to get another
+  const lat = position.coords.latitude;
+  const lng = position.coords.longitude;
+  let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&rankBy=distance&types=restaurant&radius=500&key=${key}`     //You can find documentation here:https://developers.google.com/maps/documentation/places/web-service/search?hl=es_419
+  //let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=${key}`
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    console.log(data.results[0].name);
+    console.log(data.results[1].name);
+    console.log(data.results[2].name);
+
+  })
+  .catch(err => console.warn("It didnt work"));
+}
+
 class PurchaseAnalysis extends Component {
   constructor() {
     super();
@@ -19,6 +56,7 @@ class PurchaseAnalysis extends Component {
       cardName: "",
       cardDesc: "",
       cardList: [],
+      closeLocation: ["Stop & Shop", "CVS Pharmacy", "Test"],
       successMessage: null,
     };
 
@@ -112,6 +150,15 @@ class PurchaseAnalysis extends Component {
                   >
                     GO
                   </button>
+
+                  <button
+                    type="button"
+                    className="btn-primary"
+                    onClick={() => getLocation()}
+
+                  >
+                    Get location
+                  </button>
                 </div>
               </div>
             </div>
@@ -127,13 +174,13 @@ class PurchaseAnalysis extends Component {
               <div className="row">
                 <div className="col-4">
                   <p className="text-center name1">
-                    <b>Stop & Shop</b>
+                    <b> {this.state.closeLocation[0]} </b>
                   </p>
                   <p className="text-center name2">
-                    <b>CVS Pharmacy</b>
+                    <b> {this.state.closeLocation[1]} </b>
                   </p>
                   <p className="text-center name3">
-                    <b>Donaldsons</b>
+                    <b> {this.state.closeLocation[2]} </b>
                   </p>
                 </div>
 

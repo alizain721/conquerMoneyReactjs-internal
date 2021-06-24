@@ -6,14 +6,75 @@ import Cookie from "js-cookie";
 import $ from 'jquery';
 import AvatarEditor from 'react-avatar-editor'
 import { API_GENTILES_URL, API_URL, API_PROFILE, API_GET_PROFILE, API_UPDATE_PROFILE, API_UPDATE_PICTURE } from "../../constants/apiConstants";
+
 import { withRouter, Link } from "react-router-dom";
 
 import anonAvatar from "../../img/anonProfilePicture.png";
+import {GoogleApiWrapper} from 'google-maps-react';
 
 function validateLocationChange(value) {
   const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
   return re.test(String(value).toLowerCase());
 }
+
+/*
+* Native HTML5 function.
+* We check if the navigator can use geolocation features.
+* The browser will call the user location.
+*/
+function getLocation() {
+  console.log("on GetLocation");
+  
+  if (navigator.geolocation) {
+    var location = navigator.geolocation.getCurrentPosition(reverseGeoLocation);
+    return location;
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+
+function reverseGeoLocation(position){
+  console.log("In ReverseGeolocation")
+  var address = "";
+  const key = "AIzaSyAcwSutjKBu4TtPpqB3ZXnuDqXn3cO-BJ0";      //Note this is my own key (Jose) Read the documentation to see how to get another
+  const lat = position.coords.latitude;
+  const lng = position.coords.longitude;
+  console.log(lng);
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`     //You can find documentation here: https://developers.google.com/maps/documentation/geocoding/start#reverse, https://developers.google.com/maps/documentation/geocoding/overview#GeocodingRequests
+
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    let parts = data.results[0].address_components;
+
+    /*
+    * Each address is broken down into types
+    * such as countries, Administrative_area_level1-5 (states, counties, etc)
+    * Since its not guarantee we will find a country or an administrative area in our search we search for them individually
+    * and add them to the return string address
+    */
+    parts.forEach( part => {
+      if(part.types.includes("locality")){
+        address = address + part.long_name + ",";
+      }
+    })
+
+    parts.forEach( part => {
+      if(part.types.includes("administrative_area_level_1")){
+        address = address + part.short_name;
+      }
+    })
+
+    console.log(address);
+    return address;
+  })
+  .catch(err => console.warn("It didnt work"));
+}
+
+
+
 class Profile extends Component {
     constructor() {
       super();
@@ -41,16 +102,15 @@ class Profile extends Component {
       this.handleTitleChange= this.handleTitleChange.bind(this);
       this.handleDescriptionChange= this.handleDescriptionChange.bind(this);
       this.handleLocationChange= this.handleLocationChange.bind(this);
-      
+
+    }
 
       
-    }
-     
       handleClick() {
         console.log("CLICK");
       }
 
-    handleSubmitClick(e) {
+      handleSubmitClick(e) {
         debugger
         if(!validateLocationChange(this.state.location)){
           this.setState({
@@ -67,6 +127,7 @@ class Profile extends Component {
           this.sendDetailsToServer();   
         }   
       }
+
       
     handleUploadClick() {
       
@@ -77,11 +138,8 @@ class Profile extends Component {
          profilePicture: this.state.croppedimg,
       })   
       }
-      /* handleAvatarChange(e){
-         this.setState({
-          profilePictureSrc: e.target.value,
-         })
-       } */
+      
+
 
       handleTitleChange(e){
         this.setState({
@@ -96,6 +154,7 @@ class Profile extends Component {
       }
 
       handleLocationChange(e){
+          console.log("HandleLocationChange" + e.target.value);
           this.setState({
             location: e.target.value,
           });
@@ -160,6 +219,13 @@ class Profile extends Component {
                   <textarea className= "form_control" type= "location" id= "location" value={this.state.location} onChange={this.handleLocationChange} maxLength= "20"></textarea>
                 </div>
                 
+                <button
+                type="button"
+                  onClick={() => getLocation()}
+              >
+                Click Here to get the location
+              </button>
+
                 <div
                   className="locationErrorMessage"
                   style= {{display: this.state.locationFalse ? "block" : "none" }}
@@ -182,6 +248,7 @@ class Profile extends Component {
             </form>
         );
       }
+
     /* fetchPictureData=(editorData)=>{
           this.setState({
           profilePicture: editorData.picture,
@@ -220,6 +287,7 @@ class Profile extends Component {
       <img src={this.state.croppedimg}/>
       </div>
               <button onClick={() => this.handleUploadClick()} >
+
                 Upload
               </button>
               <button
@@ -229,6 +297,7 @@ class Profile extends Component {
             </div>
           </div>
         );
+
         
       }
       setEditorRef = (editor) => this.editor = editor
@@ -267,6 +336,7 @@ class Profile extends Component {
         })
       } */
 
+
       getProfile() {
         const token = Cookie.get("token") ? Cookie.get("token") : null;
         const payload = {
@@ -297,6 +367,7 @@ class Profile extends Component {
     }
   render() {
         return (
+
           <div className="profilePage">
             <div className="top_sec"> 
               <div className="width100">
@@ -305,6 +376,7 @@ class Profile extends Component {
                   <img className="ProfilePic" src={this.state.profilePicture} />
                 </button>
               </div> 
+
               <div className="title_box">
                 {this.state.title}
               </div>
@@ -336,6 +408,7 @@ class Profile extends Component {
               </div> 
           </div>
                     
+
       )
     }        
   }  

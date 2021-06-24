@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Cookie from "js-cookie";
 import "./ResetPassword.css";
 import {API_RESET_PASSWORD, API_PUB_URL } from "../../constants/apiConstants";
 import { withRouter } from "react-router-dom";
@@ -18,19 +17,31 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+function validatePassword(password){
+
+  /*
+  * ^ Marks beginning of the regex expression
+  * ?= LookAhead
+  * (?=.*[a-z]) Checks that there is at least one lower case character
+  * (?=.*[A-Z]) Checks that there is at least one upper case character
+  * (?=.*\d) Checks that there is at least one digit
+  * (?=.*[$-/:-?{-~!"^_`\[\]]) Checks that there is at least one symbol (needs further testing)
+  * [a-zA-z$-/:-?{-~!"^_`\[\]]{6,} Characters Allowed
+  * $ Marks the end of the expression
+  */
+  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d$-/:-?{-~!"^_`\[\]]{8,}$/;
+  return re.test(String(password));
+}
 function ResetPassword(props) {
   const minUsernameLength = 6;
   const minPasswordLength = 6;
   const [state, setState] = useState({
     password: "",
-    username: "",
     confirmPassword: "",
     successMessage: null,
-    usernameFalse: null,
     passwordFalse: null,
     confirmPasswordFalse: null,
     passWordErrorMessage: null,
-    usernameErrorMessage: null,
     confirmPasswordErrorMessage: null,
     openDialog: false,
     backendAccountTakenError: null,
@@ -72,60 +83,30 @@ function ResetPassword(props) {
         }));
       }
     }
-    if(e.target.id === "username") {
-      if(value.length < minUsernameLength) {
-        setState((prevState) => ({
-          ...prevState,
-          usernameErrorMessage:
-              `Username must be ${minUsernameLength} characters or more`,
-          usernameFalse: true
-        }));
-      }else {
-        setState((prevState) => ({
-          ...prevState,
-          usernameErrorMessage:
-              null,
-          usernameFalse: false,
-        }));
-      }
-    }
-    if(e.target.id === "email") {
-      if(!validateEmail(value)) {
-        setState((prevState) => ({
-          ...prevState,
-          emailErrorMessage:
-              `Please enter a valid email`,
-          emailFalse: true,
-        }));
-      }else {
-        setState((prevState) => ({
-          ...prevState,
-          emailErrorMessage:
-              null,
-          emailFalse: false,
-        }));
-      }
-    }
     setState((prevState) => ({
       ...prevState,
       [id]: value,
     }));
   };
-  const sendDetailsToServer = () => {
-    if (state.username.length && state.password.length) {
+  const sendDetailsToServer = (e) => {
+    if (state.confirmPassword.length && state.password.length) {
+ 
+      console.log("Current Link: " + window.location.href.substr(36));
       props.showError(null);
       const payload = {
-        username: state.username, 
+        url: window.location.href.substr(36),
         password: state.password,
       };
       axios
           .post(API_PUB_URL + API_RESET_PASSWORD, payload)
           .then(function (response) {
+            console.log(response.status);
             if (response.status === 200) {
+              console.log(response.data);
               setState((prevState) => ({
                 ...prevState,
                 successMessage:    
-                "Password Reset successful. Redirecting to login page..",
+                response.data.message + " Redirecting to login page..",
               }));
 
               setTimeout(() => {
@@ -177,17 +158,6 @@ function ResetPassword(props) {
         <h1>
           <b>Conquer Money</b>
         </h1>
-        <div className="container text-left">
-          <label htmlFor="exampleInputUsername1">Username</label>
-          <input
-            type="username"
-            className="form-control"
-            id="username"
-            placeholder="Username"
-            value={state.username}
-            onChange={handleChange}
-          />
-        </div>
         <div
             className="errorMessage mt-2"
             style={{ display: state.usernameErrorMessage && state.usernameFalse ? "block" : "none" }}

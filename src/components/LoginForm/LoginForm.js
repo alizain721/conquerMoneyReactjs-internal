@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./LoginForm.css";
-import { API_BASE_URL, API_PUB_URL} from "../../constants/apiConstants.js";
+import { API_BASE_URL, API_PUB_URL, API_PASSWORD_RESET} from "../../constants/apiConstants.js";
 import { withRouter } from "react-router-dom";
 import avatar from "../../img/Logo_v3.png";
 
@@ -14,6 +14,7 @@ function LoginForm(props) {
     username: "",
     password: "",
     successMessage: null,
+    NewPassword: "",
   });
 
   const handleChange = (e) => {
@@ -77,10 +78,15 @@ function LoginForm(props) {
     props.updateTitle("Sign Up");
   };
 
-  const reditectToVerification = () => {
-    props.history.push("/resetPassword");
-    props.updateTitle("Reset Your Password");
+  /*
+   * For some reason it doesnt redirect me to EmailVerification.js anymore
+   * Will temporarily send the email through here
+  */
+  const redirectToPasswordReset = () => {
+    props.history.push("/emailverification");
+    props.updateTitle("Reset Your Password");  
   }
+  
   // const redirectToLogin = () => {
   //   props.history.push("/login");
   //   props.updateTitle("Login");
@@ -141,7 +147,7 @@ function LoginForm(props) {
       </div>
       <div className="forgotMessage">
         <span>Forgot password? </span>
-        <span className="forgotText" onClick={() => reditectToVerification()}>
+        <span className="forgotText" onClick={() => redirectToPasswordReset()}>
           Click here!
         </span>
       </div>
