@@ -31,10 +31,10 @@ function BottomNav(props) {
     setValue(newValue);
   };
 
-  const redirectToTransactions = () => {
+  /*const redirectToTransactions = () => {
     props.history.push("/transactions");
     props.updateTitle("Transactions");
-  };
+  };*/
 
   const redirectToDash = () => {
     props.history.push("/dashboard");
@@ -51,13 +51,15 @@ function BottomNav(props) {
     props.updateTitle("Add Post");
   };
 
-  const redirectToProfile = () => {
+  /*const redirectToProfile = () => {
     props.history.push("/profile");
     props.updateTitle("Profile");
-  };
+  };*/
 
   const classes = useStyles();
-  if (props.location.pathname === "/" || props.location.pathname === "/login" || props.location.pathname === "/register" || props.location.pathname === "/resetPassword") {
+  if (props.location.pathname === "/" || props.location.pathname === "/login" || props.location.pathname === "/register" || 
+      props.location.pathname === "/resetPassword" || props.location.pathname === "/emailverification" || props.location.pathname === "/resetpassword?"
+      || props.location.pathname === "/resetpassword") {   //Test
     return null;
   } else {
 
@@ -88,26 +90,11 @@ function BottomNav(props) {
             onClick={() => redirectToAccounts()}
           />
           <BottomNavigationAction
-            label="Transactions"
-            value="transactions"
-            icon={<MoneyIcon />}
-            onClick={() => redirectToTransactions()}
-          />
-
-          <BottomNavigationAction
             label="Post"
             value="post"
             icon={<PostIcon />}
             onClick={() => redirectToPost()}
           />
-
-          <BottomNavigationAction
-            label="Profile"
-            value="profile"
-            icon={<PostIcon />}
-            onClick={() => redirectToProfile()}
-          />
-
           <SimpleMenu></SimpleMenu>
           {/*
         <BottomNavigationAction
@@ -147,24 +134,10 @@ function BottomNav(props) {
           onClick={() => redirectToAccounts()}
         />
         <BottomNavigationAction
-          label="Transactions"
-          value="transactions"
-          icon={<MoneyIcon />}
-          onClick={() => redirectToTransactions()}
-        />
-
-        <BottomNavigationAction
           label="Post"
           value="post"
           icon={<PostIcon />}
           onClick={() => redirectToPost()}
-        />
-
-        <BottomNavigationAction
-          label="Profile"
-          value="profile"
-          icon={<PersonIcon />}
-          onClick={() => redirectToProfile()}
         />
         <SimpleMenu></SimpleMenu>
         {/*
