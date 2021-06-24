@@ -293,7 +293,8 @@ class Profile extends Component {
       handleNewImage = (e) => {
         this.setState({ picture: e.target.files[0] })
       }
-      sendData=()=>{this.props.pictureEditorData(this.state)}
+      
+      
       handleSave = () => {
         const img = this.editor.getImageScaledToCanvas().toDataURL()
         this.setState({profilePicture : img})
@@ -304,6 +305,7 @@ class Profile extends Component {
         this.setState({showPictureEditor: false})
         this.sendPictureToServer()
       }
+      
       handlePictureCloseClick=()=>{
         this.backgroundShowAgain()
         this.setState({showPictureEditor: false})
