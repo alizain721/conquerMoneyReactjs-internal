@@ -2,42 +2,89 @@
     position: fixed;
     width: 100%;
     height:100%;
-    background-color:white;
+    
   }
   @media only screen and (min-width: 768px){
   .profilePage{
     position: absolute;
     width: 100%;
     height:100%;
-    background-color:white;
+    
   }
+  
   }
+.width100{
+margin-top:3%;
+width:100%;
+height:13vh;
+}
+.disable-div {
+    pointer-events: none;
+    opacity: 0.1;
+    background-color: rgba(24, 13, 13, 0.5);
+}
 .AvatarEditor {
-    height: 120px;
-    width: 120px;
+    height: 13vh;
+    width: 13vh;
+    border-radius: 50%;
+    border-color: black;
+    
+    position: relative;
+    margin:0;
+    float: left;
+    left: 10%;
+    align-self: center;
+    z-index: 2;
+}
+.editorForm{
+  
+
+    border: 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffff;;
+    position: relative;
+    z-index: 3;
+  }
+.ProfilePic{
+    height: 13vh;
+    width: 13vh;
     border-radius: 50%;
     border-color: black;
     background-image: url(/static/media/anonProfilePicture.f4e2da9f.png);
     background-repeat: no-repeat;
     /* background-attachment: fixed; */
     background-size: 100%;
+    border: 4px solid #fff;
     background-position: center;
-    position: relative;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
+    margin:0;
+    left:0;
+    top:0;
+    
    
     align-self: center;
     z-index: 2;
 }
 
 .top_sec {
+    border-bottom: 2px solid rgb(241, 241, 241);
+    background: white;
+    padding: 5px 20px;
+    position: absolute; /* instead of fixed */
+    height: 40%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-size: 50px;
+}
+.top_sec2 {
     background: transparent linear-gradient(180deg, rgb(8, 168, 177) 0%, #02777e 100%) 0% 0% no-repeat padding-box;
     border-radius: 0px 0px 40px 40px;
     padding: 5px 20px;
     position: absolute; /* instead of fixed */
-    height: 200px;
+    height: 10vh;
     top: 0;
     left: 0;
     right: 0;
@@ -45,95 +92,111 @@
     font-size: 50px;
 }
 
+
 .name_box {
-    height: 50px;
-    width: fit-content;
-    border-color: black;
-    border-width: thick;
-    top: 140px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 2;
-    position: absolute;
-    font-size: x-large;
+    height: 12%;
+    width: 100%;
+    padding-left: 10%;
+    z-index: 1;
+    position: relative;
+    text-align: left;
+    float: left;
+    font-size: 3.5vh;
     font-weight: bold;
+    word-wrap: break-word;
 }
 
 .title_box {
-    height: 30px;
-    width: auto;
-    border: 1px solid black;
-    border-width: thin;
-    top: 350px;
-    left: 25%;
-    right: 25%;
-    margin-left: auto;
-    margin-right: auto;
+    height: 8%;
+    width: 100%;
+    padding-left: 10%;
     z-index: 1;
-    position: absolute;
-    font-size: large;
+    position: relative;
+    text-align: left;
+    float: left;
+    font-size: 2.5vh;
+    font-weight: bold;
     word-wrap: break-word;
 }
 
-.upper_line {
-    height: 2px;
-    width: auto;
-    top: 400px;
-    left: 15%;
-    right: 15%;
-    margin-left: auto;
-    margin-right: auto;
+.mid_sec {
+    border: 2px solid rgb(241, 241, 241);
+    background: white;
+    padding: 5px 20px;
     position: absolute;
-    background-color: black;
+    height: 20%;
+    top: 40%;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    font-size: 50px;
 }
 
 .description_box {
-    height: 125px;
-    width: auto;
-    border: 1px solid black;
-    border-width: thin;
-    top: 425px;
-    left: 15%;
-    right: 15%;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    font-size: medium;
-    max-width: 500px;
+    height: 15%;
+    width: 100%;
+    padding-left: 10%;
+    z-index: 1;
+    position: relative;
+    text-align: left;
+    float: left;
+    font-size: 2vh;
+    
     word-wrap: break-word;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.lower_line {
-    height: 2px;
-    width: auto;
-    top: 650px;
-    left: 15%;
-    right: 15%;
-    margin-left: auto;
-    margin-right: auto;
+.post_connect_box{
+    margin-top:2%;
+    height: 10%;
+    width: 100%;
+    
+    z-index: 1;
+    position: relative;
+    text-align:left;
+    float:left;
+    font-size: large;
+    word-wrap: break-word;
+}
+.connect_box_2{
+    position: relative;
+    width:50%;
+    height: 100%;
+    float: left;
+
+}
+.connect_text {
+    float:left;
+    width:50%;
+    text-align: center;
+}
+.bot_sec {
+    border: 2px solid rgb(241, 241, 241);
+    background: white;
+    padding: 5px 20px;
     position: absolute;
-    background-color: black;
+    height: 30%;
+    top: 60%;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    font-size: 50px;
 }
 
 .edit_profile_button {
-    height: 40px;
-    width: 300px;
-    top: 675px;
-    left: 0;
-    right: 0;
+    height: 5%;
+    width: 30%;
+    top: 12%;
+    /* left: 0; */
+    /* right: 10%; */
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 8%;
     border: 1px solid black;
     border-radius: 40px 40px 40px 40px;
     border-width: thin;
     background-color: rgb(8, 168, 177);
-    position: absolute;
-    font-size: 25px;
+    position: relative;
+    font-size: 2vh;
+    z-index: 2;
     align-items: center;
     justify-content: center;
     font-weight: bold;
@@ -152,53 +215,56 @@
 }
 
 .location_box {
-    height: 30px;
-    width: auto;
-    top: 170px;
-    left: 25%;
-    right: 25%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 3%;
+    height: 8%;
+    width: 100%;
+    left: 10%;
     z-index: 1;
-    position: absolute;
-    font-size: medium;
-    font-weight: bold;
+    position: relative;
+    text-align:left;
+    float:left;
+    font-size: 2vh;
+    
     word-wrap: break-word;
 }
 
 .num_post {
     height: 30px;
-    width: 30px;
-    border: 1px solid black;
-    border-width: thin;
-    top: 600px;
-    
-    right: 25%;
-    margin-left: 0;
-    margin-right: auto;
+    width: 50%;
+    float:left;
     z-index: 1;
-    position: absolute;
-    font-size: large;
+    position: relative;
+    text-align: left;
 }
 
 .num_connect {
     height: 30px;
-    width: 30px;
-    border: 1px solid black;
-    border-width: thin;
-    top: 600px;
-    left: 25%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 50%;
+    float:left;
     z-index: 1;
+    position: relative;
+    text-align: left;
+}
+.edit_picture_close_button {
     position: absolute;
-    font-size: large;
+    top: 0px;
+    right: 0px;
+    font-size: 15px;
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    padding: 0;
+}
+.edit_profile_title_text{
+    width:30%;
+    font-size: 2vh;
+    font-weight:bold;
 }
 
-.edit_profile_form {
-    margin-top: 150px;
-    height: 400px;
-    width: 300px;
+.edit_picture_form {
+    margin-top: 0px;
+    height: fit-content;
+    width: min-content;
     margin-left: auto;
     margin-right: auto;
     background-color: #ffff;
@@ -207,17 +273,45 @@
     z-index: 3;
 }
 
-.edit_profile_form_group {
+.edit_picture_form_group {
+    margin-top: 1rem;
     margin-bottom: 1rem;
 }
-
+.edit_profile_form {
+    margin-top: 0px;
+    height: fit-content;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #ffff;
+    position: relative;
+    z-index: 3;
+    border: 3px solid #ced4da;
+    border-radius: .25rem;
+}
+.edit_profile_form_group {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width:100%;
+    position: relative;
+    height:40px;
+    display:flex;
+}
+.edit_profile_form_group2 {
+    margin-bottom: 1rem;
+    width:100%;
+    position: relative;
+    height:100px;
+    display:flex;
+}
 .form_control {
     display: block;
-    width: 100%;
+    width: 65%;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
     color: #495057;
+    float:right;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -225,6 +319,32 @@
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     max-height: 100px;
 }
+.get_location_button {
+    background-color: #302df0;
+    border-radius: 40px 40px 40px 40px;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 85%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+}
+.submit_button {
+    background-color: #302df0;
+    border-radius: 40px 40px 40px 40px;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+}
+
+
 
 .locationErrorMessage {
     color: red;
@@ -251,35 +371,33 @@ img.anonAvatar {
     
 
     .hover11 {
-        top: -132px;
+        
     }
 
     .title_box {
-        top: 220px;
+       
     }
 
     .upper_line {
-        top: 265px;
+        
     }
     .description_box {
        
-        top: 279px;
+       
         
     }
 
     .num_post {
-        top: 416px;
-        left: 60%;
+        
     }
 
     .num_connect {
-        top: 418px;
-        left:30%
+        
     }
     .lower_line {
-        top: 456px;
+       
     }
     .edit_profile_button {
-        top: 471px;
+      
     }
 }
