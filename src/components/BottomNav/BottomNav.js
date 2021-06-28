@@ -31,11 +31,6 @@ function BottomNav(props) {
     setValue(newValue);
   };
 
-  /*const redirectToTransactions = () => {
-    props.history.push("/transactions");
-    props.updateTitle("Transactions");
-  };*/
-
   const redirectToDash = () => {
     props.history.push("/dashboard");
     props.updateTitle("Dashboard");
@@ -51,11 +46,10 @@ function BottomNav(props) {
     props.updateTitle("Add Post");
   };
 
-  /*const redirectToProfile = () => {
-    props.history.push("/profile");
-    props.updateTitle("Profile");
-  };*/
-
+  const redirectToSettings = () => {
+    props.history.push("/settings");
+    props.updateTitle("Settings");
+  }
   const classes = useStyles();
   if (props.location.pathname === "/" || props.location.pathname === "/login" || props.location.pathname === "/register" || 
       props.location.pathname === "/resetPassword" || props.location.pathname === "/emailverification") {
@@ -94,14 +88,12 @@ function BottomNav(props) {
             icon={<PostIcon />}
             onClick={() => redirectToPost()}
           />
-          <SimpleMenu></SimpleMenu>
-          {/*
-        <BottomNavigationAction
+         <BottomNavigationAction
           label="Settings"
           value="settings"
           icon={<SettingsIcon />}
-          //onClick={SimpleMenu}
-        />*/ }
+          onClick={() => redirectToSettings()}
+          />
           <BottomNavigationAction
             label="Forward"
             value="forward"
@@ -120,7 +112,6 @@ function BottomNav(props) {
         showLabels
       >
         <BottomNavigationAction
-        
           label="Dashboard"
           value="dashboard"
           icon={<HomeIcon />}
@@ -138,14 +129,12 @@ function BottomNav(props) {
           icon={<PostIcon />}
           onClick={() => redirectToPost()}
         />
-        <SimpleMenu></SimpleMenu>
-        {/*
         <BottomNavigationAction
-        label="Settings"
-        value="settings"
-        icon={<SettingsIcon />}
-        //onClick={SimpleMenu}
-        />*/}
+          label="Settings"
+          value="settings"
+          icon={<SettingsIcon />}
+          onClick={() => redirectToSettings()}
+          />
         <Extendtoken/>
       </BottomNavigation>
     );
