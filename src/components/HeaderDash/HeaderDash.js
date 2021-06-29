@@ -12,6 +12,7 @@ import {
   API_GETBALANCECREDIT_URL,
   API_URL,
   API_GET_HEADERDASH,
+  API_GET_PROFILE,
 } from "../../constants/apiConstants";
 
 class HeaderDash extends Component {
@@ -26,12 +27,17 @@ class HeaderDash extends Component {
       cash: null,
       cards: null,
       investments: null,
+      profilePicture:null,
     };
   }
 
   redirectToProfile() {
     this.props.history.push("/profile");
     this.props.updateTitle("Profile");
+  };
+  redirectToAccounts() {
+    this.props.history.push("/accounts");
+    this.props.updateTitle("Accounts");
   };
 
   getCashCardsInvest() {
@@ -57,6 +63,24 @@ class HeaderDash extends Component {
       .catch(function (error) {
         console.log(error);
       });
+  }
+  getProfilePicture() {
+    const token = Cookie.get("token") ? Cookie.get("token") : null;
+    const payload = {
+      token: token,
+    };
+    axios
+        .post(API_URL + API_GET_PROFILE, payload)
+        .then((response) => {
+            if (response.status === 200) {
+                this.setState({
+                    
+                    profilePicture:response.data.profilePicture,
+                });
+            }
+        }).catch(() => {
+        this.props.showError("An error has occured")
+    })
   }
 
   getCreditAndBalance() {
@@ -93,6 +117,7 @@ class HeaderDash extends Component {
   componentDidMount() {
     this.getCreditAndBalance();
     //this.getCashCardsInvest();
+    this.getProfilePicture();
   }
 
   render() {
@@ -100,17 +125,18 @@ class HeaderDash extends Component {
       <div className="main_wrapper">
         <div
           className="header-top-sec pb-2"
-          onClick={() => {
-            this.redirectToProfile(); //clicking on the profile picture redirects to profile page
-            
-          }}
+          
         >
           <div className="top_section">
             {/*top section*/}
             <div className="container">
               {/*container*/}
               
-              <div className="row  no-gutters align-items-center avaliableBalance">
+              <div className="row  no-gutters align-items-center avaliableBalance"
+              onClick={() => {
+                this.redirectToAccounts();
+                
+              }}>
                 
 
                 {/*row*/}
@@ -142,10 +168,14 @@ class HeaderDash extends Component {
               
               <div className="d-flex align-items-center profile_notification_section">
                   
-                    <div className="profile_img">
+                    <div className="profile_img"
+                    onClick={() => {
+                      this.redirectToProfile(); //clicking on the profile picture redirects to profile page
+                      
+                    }}>
                       <img
                         className="img-fluid mx-auto d-block"
-                        src={profile}
+                        src={this.state.profilePicture}
                         alt="profile"
                       />
                     </div>

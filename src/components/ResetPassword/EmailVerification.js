@@ -50,14 +50,18 @@ function EmailVerification(props) {
     }));
   };
   const sendDetailsToServer = () => {
+    console.log(state.email);
     if (state.email) {
       props.showError(null);
       const payload = {
         email: state.email,
       };
+      console.log("Do I get here");
       axios
           .post(API_PUB_URL + API_EMAIL_VERIFICATION, payload)
           .then(function (response) {
+
+            console.log("Response status: " + response.status);
             if (response.status === 200) {
               setState((prevState) => ({
                 ...prevState,
