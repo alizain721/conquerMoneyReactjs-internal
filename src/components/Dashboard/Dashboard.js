@@ -59,7 +59,7 @@ class Dashboard extends Component {
     axios
       .post(API_URL + API_GENTILES_URL, payload)
       .then((response) => {
-        console.log("res:"+response.status);
+        //console.log("res:"+response.status);
         if (response.status === 200) {
           this.setState({
             tileList: response.data.map((tile) => (

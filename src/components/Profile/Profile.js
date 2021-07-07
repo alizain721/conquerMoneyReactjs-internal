@@ -16,7 +16,8 @@ import {
 import { withRouter, Link } from "react-router-dom";
 
 import anonAvatar from "../../img/anonProfilePicture.png";
-import { GoogleApiWrapper } from "google-maps-react";
+import {GoogleApiWrapper} from 'google-maps-react';
+import { Timer } from "@material-ui/icons";
 
 function validateLocationChange(value) {
   const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
