@@ -257,7 +257,7 @@ class Link extends Component {
           //link webhook to our actual domain
           webhook="https://conquermoneyosiris.azurewebsites.net/api/pub/webhook"
         >
-          Click this link and connect your bank!
+          + Add Account
         </PlaidLink>
         {/*
         <div>

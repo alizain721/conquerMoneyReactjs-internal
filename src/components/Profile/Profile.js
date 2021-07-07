@@ -10,6 +10,7 @@ import { withRouter, Link } from "react-router-dom";
 
 import anonAvatar from "../../img/anonProfilePicture.png";
 import {GoogleApiWrapper} from 'google-maps-react';
+import { Timer } from "@material-ui/icons";
 
 function validateLocationChange(value) {
   const re = /[A-Za-z\s\-]+,\s?[A-Za-z]{2}$/;
@@ -298,11 +299,30 @@ class Profile extends Component {
       handleSave = () => {
         const img = this.editor.getImageScaledToCanvas().toDataURL()
         this.setState({profilePicture : img})
+
+        const token = Cookie.get("token") ? Cookie.get("token") : null;
+        const payload = {
+          token : token,
+          profilePicture: this.editor.getImageScaledToCanvas().toDataURL()
+        };
+
+        axios
+        .post(API_URL + API_UPDATE_PICTURE, payload)
+        .then((response) => {
+          if (response.status === 200) {
+            this.getProfile();
+          }
+        }).catch(() => {
+          this.props.showError("An error has occured")
+        })
         
-      }
-      handleUploadClick = () => {
         this.backgroundShowAgain()
         this.setState({showPictureEditor: false})
+      }
+
+      handleUploadClick = () => {
+        this.backgroundShowAgain()
+
         this.sendPictureToServer()
       }
       
@@ -354,9 +374,7 @@ class Profile extends Component {
             this.props.showError("An error has occured")
         })
       }
-
       
-
     componentDidMount() {
         this.getProfile()
     }
@@ -368,7 +386,8 @@ class Profile extends Component {
               <div className="width100">
                 <div className="top_sec2"></div>       
                 <button className="AvatarEditor" 
-                  onClick={() => this.editPictureEvent()}>
+                  onClick={() => this.editPictureEvent()}
+                  >
                   <img className="ProfilePic" src={this.state.profilePicture} />
                 </button>
               </div> 
