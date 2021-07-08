@@ -215,7 +215,7 @@ class Accounts extends Component {
             ]
           }
           {
-            noCards ? null :
+              /*  noCards ? null :
               [
                 <Card className="creditCard text-center">
                   <Card.Header>
@@ -230,32 +230,32 @@ class Accounts extends Component {
                   <Card.Footer className="text-muted">2 days ago</Card.Footer>
                 </Card>
               ]
+              */
           }
           {
+            /*
             noLoans ? null :
             [
               <Card className="loanCard text-center">
-            <Card.Header>
+              <Card.Header>
               <div className="largeText2">
                 <div className="leftText">Loans</div>
                 <div className="rightText">{this.state.totalLoanDebt}</div>
               </div>
-            </Card.Header>
+              </Card.Header>
 
-            {this.state.loanList}
+              {this.state.loanList}
 
-            <Card.Footer className="text-muted"></Card.Footer>
-          </Card>
+              <Card.Footer className="text-muted"></Card.Footer>
+              </Card>
             ]
+            */
           }
         <div className="tile_no_btn bg-white my-2 ">
           <div className="container">
             <div className="row">
               <div className="col-12">
                 <div className="tile_no_btn_top">
-                  <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-                    Get Started with Plaid!
-                  </h4>
                   <Link updateTitle={this.props.updateTitle}></Link>
                 </div>
               </div>
