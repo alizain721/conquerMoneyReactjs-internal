@@ -35,11 +35,6 @@ test("render is the same as last snapshot", () => {
                 <div
                   className="tile_no_btn_top"
                 >
-                  <h4
-                    className="financial_title proxima-bold text-capitalize mb-2 mt-3"
-                  >
-                    Get Started with Plaid!
-                  </h4>
                   <div>
                     <button
                       className="test"
@@ -56,7 +51,7 @@ test("render is the same as last snapshot", () => {
                       }
                       type="button"
                     >
-                      Click this link and connect your bank!
+                      + Add Account
                     </button>
                     <h5>
                       <b>
