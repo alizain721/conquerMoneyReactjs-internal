@@ -88,20 +88,25 @@ function ResetPassword(props) {
       [id]: value,
     }));
   };
-  const sendDetailsToServer = () => {
-    if (state.username.length && state.password.length) {
+  const sendDetailsToServer = (e) => {
+    if (state.confirmPassword.length && state.password.length) {
+ 
+      console.log("Current Link: " + window.location.href.substr(36));
       props.showError(null);
       const payload = {
+        url: window.location.href.substr(36),
         password: state.password,
       };
       axios
           .post(API_PUB_URL + API_RESET_PASSWORD, payload)
           .then(function (response) {
+            console.log(response.status);
             if (response.status === 200) {
+              console.log(response.data);
               setState((prevState) => ({
                 ...prevState,
                 successMessage:    
-                "Password Reset successful. Redirecting to login page..",
+                response.data.message + " Redirecting to login page..",
               }));
 
               setTimeout(() => {
