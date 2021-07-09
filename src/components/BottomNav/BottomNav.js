@@ -5,6 +5,8 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import ForwardIcon from "@material-ui/icons/ArrowForward";
 import BackIcon from "@material-ui/icons/ArrowBack";
+import BuildIcon from '@material-ui/icons/Build';
+import SettingsIcon from '@material-ui/icons/Settings';
 //import FavoriteIcon from "@material-ui/icons/Favorite";
 //import LocationOnIcon from "@material-ui/icons/LocationOn";
 import MoneyIcon from "@material-ui/icons/MoneyRounded";
@@ -31,11 +33,6 @@ function BottomNav(props) {
     setValue(newValue);
   };
 
-  /*const redirectToTransactions = () => {
-    props.history.push("/transactions");
-    props.updateTitle("Transactions");
-  };*/
-
   const redirectToDash = () => {
     props.history.push("/dashboard");
     props.updateTitle("Dashboard");
@@ -51,11 +48,15 @@ function BottomNav(props) {
     props.updateTitle("Add Post");
   };
 
-  /*const redirectToProfile = () => {
-    props.history.push("/profile");
-    props.updateTitle("Profile");
-  };*/
+  const redirectToTools = () => {
+    props.history.push("/purchaseanalysis");
+    props.updateTitle("Tools");
+  };
 
+  const redirectToSettings = () => {
+    props.history.push("/settings");
+    props.updateTitle("Settings");
+  }
   const classes = useStyles();
   if (props.location.pathname === "/" || props.location.pathname === "/login" || props.location.pathname === "/register" || 
       props.location.pathname === "/resetPassword" || props.location.pathname === "/emailverification" || props.location.pathname === "/resetpassword?"
@@ -95,14 +96,18 @@ function BottomNav(props) {
             icon={<PostIcon />}
             onClick={() => redirectToPost()}
           />
-          <SimpleMenu></SimpleMenu>
-          {/*
-        <BottomNavigationAction
+          <BottomNavigationAction
+            label="Tools"
+            value="tools"
+            icon={<BuildIcon />}
+            onClick={() => redirectToTools()}
+          />
+         <BottomNavigationAction
           label="Settings"
           value="settings"
           icon={<SettingsIcon />}
-          //onClick={SimpleMenu}
-        />*/ }
+          onClick={() => redirectToSettings()}
+          />
           <BottomNavigationAction
             label="Forward"
             value="forward"
@@ -121,7 +126,6 @@ function BottomNav(props) {
         showLabels
       >
         <BottomNavigationAction
-        
           label="Dashboard"
           value="dashboard"
           icon={<HomeIcon />}
@@ -139,14 +143,18 @@ function BottomNav(props) {
           icon={<PostIcon />}
           onClick={() => redirectToPost()}
         />
-        <SimpleMenu></SimpleMenu>
-        {/*
         <BottomNavigationAction
-        label="Settings"
-        value="settings"
-        icon={<SettingsIcon />}
-        //onClick={SimpleMenu}
-        />*/}
+            label="Tools"
+            value="tools"
+            icon={<BuildIcon />}
+            onClick={() => redirectToTools()}
+          />
+        <BottomNavigationAction
+          label="Settings"
+          value="settings"
+          icon={<SettingsIcon />}
+          onClick={() => redirectToSettings()}
+          />
         <Extendtoken/>
       </BottomNavigation>
     );
