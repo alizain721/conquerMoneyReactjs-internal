@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import { API_URL } from "../../constants/apiConstants";
 import "./AddPost.css";
+import AvatarEditor from "react-avatar-editor";
 import { withRouter } from "react-router-dom";
 import { API_ADDPOST_URL } from "../../constants/apiConstants";
 
@@ -19,6 +20,8 @@ class AddPost extends Component {
       //messagetypeid: "1",
       //posttypeid: "",
       successMessage: "",
+      picture: null,
+      postPicture: null,
     };
 
     this.handleOptionChange = this.handleOptionChange.bind(this);
@@ -44,48 +47,65 @@ class AddPost extends Component {
       content: changeEvent.target.value,
     });
   }
+  setEditorRef = (editor) => (this.editor = editor);
+  handleImageChange(changeEvent) {
+    this.setState({ picture: changeEvent.target.files[0] });
+    setTimeout(() => {
+      console.log(this.state.picture);
+    }, 1000);
+    /*  var img = document.querySelector("img");
+    img.onload = () => {
+      URL.revokeObjectURL(img.src); // no longer needed, free memory
+    };
+    img.src = URL.createObjectURL(changeEvent.target.files[0]); */
+  }
 
   sendDetailsToServer() {
-    const token = Cookie.get("token") ? Cookie.get("token") : null;
-    console.log("CONTENT: " + this.state.content);
-    //console.log("POSTTYPEID: " + this.state.posttypeid);
+    var img = this.editor.getImageScaledToCanvas().toDataURL();
+    this.setState({ postPicture: img });
+    setTimeout(() => {
+      const token = Cookie.get("token") ? Cookie.get("token") : null;
+      console.log("CONTENT: " + this.state.content);
+      //console.log("POSTTYPEID: " + this.state.posttypeid);
 
-    this.props.showError(null);
-    const payload = {
-      title: this.state.title,
-      content: this.state.content,
-      postType: this.state.postType,
-      //messagetypeid: "1",
-      //posttypeid: this.state.posttypeid,
-      token: token,
-    };
-    axios
-      .post(API_URL + API_ADDPOST_URL, payload)
-      .then((response) => {
-        if (response.status === 200) {
-          this.setState({
-            successMessage:
-              "Post Added Succesfully. Redirecting to Dashboard..",
-          });
-          setTimeout(() => {
-            this.redirectToDash();
-          }, 1500);
+      this.props.showError(null);
+      const payload = {
+        title: this.state.title,
+        content: this.state.content,
+        postType: this.state.postType,
+        postPicture: this.state.postPicture,
+        //messagetypeid: "1",
+        //posttypeid: this.state.posttypeid,
+        token: token,
+      };
+      axios
+        .post(API_URL + API_ADDPOST_URL, payload)
+        .then((response) => {
+          if (response.status === 200) {
+            this.setState({
+              successMessage:
+                "Post Added Succesfully. Redirecting to Dashboard..",
+            });
+            setTimeout(() => {
+              this.redirectToDash();
+            }, 1500);
 
-          this.props.showError(null);
-        } else if (response.status == 401) {
-          this.props.showError(
-            "Token has expired you are being redirected to login..."
-          );
-          setTimeout(() => {
-            this.redirectToLogin();
-          }, 1500);
-        } else {
-          this.props.showError("Some error ocurred");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+            this.props.showError(null);
+          } else if (response.status == 401) {
+            this.props.showError(
+              "Token has expired you are being redirected to login..."
+            );
+            setTimeout(() => {
+              this.redirectToLogin();
+            }, 1500);
+          } else {
+            this.props.showError("Some error ocurred");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }, 1000);
   }
   redirectToDash() {
     this.props.updateTitle("Dashboard");
@@ -100,7 +120,7 @@ class AddPost extends Component {
     return (
       <div>
         <form>
-        <div className="form-group">
+          <div className="form-group">
             <textarea
               className="form-control100"
               type="title"
@@ -125,8 +145,28 @@ class AddPost extends Component {
               onChange={this.handleContentChange}
             ></textarea>
           </div>
+          <div className="form-group">
+            <input
+              name="newImage"
+              type="file"
+              onChange={this.handleImageChange.bind(this)}
+            />
+            {/*  <img className="uploadImg" src='#' /> */}
 
-            <div className="form-group">
+            <AvatarEditor
+              ref={this.setEditorRef}
+              image={this.state.picture}
+              width={250}
+              height={250}
+              border={30}
+              borderRadius={100}
+              color={[255, 255, 255, 0.6]}
+              scale={1.2}
+              rotate={0}
+            />
+          </div>
+
+          <div className="form-group">
             <div className="category">
               <label>
                 <input
