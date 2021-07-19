@@ -3,13 +3,12 @@ h1 {
 
 /* Split the screen in half */
 .split {
-  
   width: 100%;
   position: absolute;
 
   top: 0;
   overflow-x: hidden;
-  
+
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -18,41 +17,37 @@ h1 {
   left: 0;
   padding-top: 60px;
   z-index: 10;
-  
-  
 }
 /* Control the bottom */
 .bottom {
-  margin-top:5px;
-  width:100%;
-  top:15%;
-  left:0;
-  height:80%;
-  overflow-y:hidden;
+  margin-top: 5px;
+  width: 100%;
+  top: 15%;
+  left: 0;
+  height: 80%;
+  overflow-y: hidden;
   z-index: 1;
-  
 }
 .transdropdown {
   position: relative;
   background-color: #302df0;
-  color:white;
-  float:left;
-  padding:7px 10px 5px ;
+  color: white;
+  float: left;
+  padding: 7px 10px 5px;
   border: 2px solid;
-  margin-left:5px;
+  margin-left: 5px;
   z-index: 10;
-  font-size:15px;
-  
+  font-size: 15px;
 }
 
 .transdropdown-content {
   display: none;
   position: fixed;
   background-color: #e2ecec;
-  width:200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 5px 5px;
-  overflow-y:auto;
+  overflow-y: auto;
   overflow-x: hidden;
   height: fit-content;
   max-height: 50%;
@@ -61,7 +56,6 @@ h1 {
 
 .transdropdown:hover .transdropdown-content {
   display: block;
-  
 }
 .App {
   justify-content: center;
@@ -69,22 +63,16 @@ h1 {
   overflow-y: scroll;
   height: 100%;
   width: 100%;
-  
 }
 .App::-webkit-scrollbar {
   display: none;
 }
 
-.splitButton{
-  width:100%;
-  height:60px;
-  margin:2px;
-  background-color:#027d85;
-  font-size:15px;
-  padding:0;
-  
-  
-  
-    
- 
+.splitButton {
+  width: 100%;
+  height: 60px;
+  margin: 2px;
+  background-color: #027d85;
+  font-size: 15px;
+  padding: 0;
 }

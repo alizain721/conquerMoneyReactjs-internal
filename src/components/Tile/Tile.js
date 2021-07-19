@@ -23,10 +23,10 @@ class Tile extends Component {
     super(props);
     this.state = {
       likesCount: this.props.likesCount,
-      isLiked: this.props.isLiked, 
+      isLiked: this.props.isLiked,
     };
-    this.addLike = this.addLike.bind(this)
-    this.removeLike = this.removeLike.bind(this)
+    this.addLike = this.addLike.bind(this);
+    this.removeLike = this.removeLike.bind(this);
   }
 
   componentDidUpdate() {
@@ -49,7 +49,7 @@ class Tile extends Component {
   }
   handleClick = () => {
     this.props.history.push(`/post/${this.props.key}/${this.props.title}`);
-  }
+  };
 
   //typeid = 1 Tile with button
   //typeid = 2 Tile with no button (informational)
@@ -57,48 +57,44 @@ class Tile extends Component {
   addLike = () => {
     this.setState({
       likesCount: this.state.likesCount + 1,
-      isLiked: true
+      isLiked: true,
     });
     const token = Cookie.get("token") ? Cookie.get("token") : null;
     const payload = {
-        token: token,
-        postId: this.props.postId,
-        tileId: this.props.tileId
-      };
-    axios
-        .post(API_URL + "/addlike", payload)
-        .then((response) => {
-            if (response.status !== 200) {
-                this.setState({
-                    likesCount: this.state.likesCount - 1,
-                    isLiked: false
-                });
-            }
-        })
-  }
+      token: token,
+      postId: this.props.postId,
+      tileId: this.props.tileId,
+    };
+    axios.post(API_URL + "/addlike", payload).then((response) => {
+      if (response.status !== 200) {
+        this.setState({
+          likesCount: this.state.likesCount - 1,
+          isLiked: false,
+        });
+      }
+    });
+  };
 
   removeLike = () => {
     this.setState({
       likesCount: this.state.likesCount - 1,
-      isLiked: false
+      isLiked: false,
     });
     const token = Cookie.get("token") ? Cookie.get("token") : null;
     const payload = {
-        token: token,
-        postId: this.props.postId,
-        tileId: this.props.tileId
-      };
-    axios
-        .post(API_URL + "/deletelike", payload)
-        .then((response) => {
-            if (response.status !== 200) {
-                this.setState({
-                    likesCount: this.state.likesCount + 1,
-                    isLiked: true
-                });
-            }
-        })
-    }
+      token: token,
+      postId: this.props.postId,
+      tileId: this.props.tileId,
+    };
+    axios.post(API_URL + "/deletelike", payload).then((response) => {
+      if (response.status !== 200) {
+        this.setState({
+          likesCount: this.state.likesCount + 1,
+          isLiked: true,
+        });
+      }
+    });
+  };
 
   render() {
     if (this.props.postType === "ONE") {
@@ -107,13 +103,13 @@ class Tile extends Component {
           <div className="container">
             <div className="row">
               <div className="col-12">
-
                 <div className="row">
-                  <div className="col-1" >
-                      
-                  </div>
-                  <div className="col-2" >
-                      <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" className="avatartilestyle"/>
+                  <div className="col-1"></div>
+                  <div className="col-2">
+                    <img
+                      src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg"
+                      className="avatartilestyle"
+                    />
                   </div>
                   <div className="col-9">
                     <div>Sample UserName</div>
@@ -123,11 +119,12 @@ class Tile extends Component {
 
                 <div className="tile_no_btn_top">
                   <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-                     {this.props.title}
+                    {this.props.title}
                   </h4>
                   <h5 className="financial_sub_text text-capitalize mb-0 grey-color">
                     {this.props.content}
                   </h5>
+                  <img  src={this.props.postPicture} />
                 </div>
               </div>
             </div>
@@ -151,21 +148,23 @@ class Tile extends Component {
                   <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
                     <div onClick={this.handleClick}>{this.props.title}</div>
                   </h4>
-                  <h5 className="financial_sub_text text-capitalize mb-0 grey-color"
-                      onClick={this.handleClick}
+                  <h5
+                    className="financial_sub_text text-capitalize mb-0 grey-color"
+                    onClick={this.handleClick}
                   >
                     {this.props.content}
                   </h5>
+                  <img src={this.props.postPicture} />
                 </div>
               </div>
             </div>
-          </div>          
-          <LikeCommentShare 
-            key = {this.props.key}
-            likesCount = {this.state.likesCount}
-            isLiked = {this.state.isLiked}
-            removeLike = {this.removeLike}
-            addLike = {this.addLike}
+          </div>
+          <LikeCommentShare
+            key={this.props.key}
+            likesCount={this.state.likesCount}
+            isLiked={this.state.isLiked}
+            removeLike={this.removeLike}
+            addLike={this.addLike}
           />
         </div>
       );
@@ -191,18 +190,18 @@ class Tile extends Component {
               </div>
             </div>
           </div>
-          <LikeCommentShare 
-            key = {this.props.key}
-            likesCount = {this.state.likesCount}
-            isLiked = {this.state.isLiked}
-            removeLike = {this.removeLike}
-            addLike = {this.addLike}
+          <LikeCommentShare
+            key={this.props.key}
+            likesCount={this.state.likesCount}
+            isLiked={this.state.isLiked}
+            removeLike={this.removeLike}
+            addLike={this.addLike}
           />
         </div>
       );
     } else if (this.props.postType === "FOUR") {
       //PLAID TILE
-      return (null)
+      return null;
     } else if (this.props.postType === "FIVE") {
       return (
         <div className="spending_descreases bg-white my-2">
