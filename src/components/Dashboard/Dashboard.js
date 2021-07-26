@@ -20,6 +20,7 @@ class Dashboard extends Component {
       tiles: [],
       tileList: [],
       title: "test",
+      postPicture:null,
       description: "something",
     };
 
@@ -58,20 +59,21 @@ class Dashboard extends Component {
     axios
       .post(API_URL + API_GENTILES_URL, payload)
       .then((response) => {
-        console.log("res:"+response.status);
+        //console.log("res:"+response.status);
         if (response.status === 200) {
           this.setState({
             tileList: response.data.map((tile) => (
               <Tile
-                key = {tile.id}
-                tileId = {tile.id}
-                postId = {tile.post.id}
-                title = {tile.post.title}
-                content = {tile.post.content}
-                postType = {tile.post.postType}
-                likesCount = {tile.post.likesCount}
-                isLiked = {tile.isLiked}
-                insightId = {tile.post.postContentType}
+                key={tile.id}
+                tileId={tile.id}
+                postId={tile.post.id}
+                title={tile.post.title}
+                content={tile.post.content}
+                postPicture={tile.post.postPicture}
+                postType={tile.post.postType}
+                likesCount={tile.post.likesCount}
+                isLiked={tile.isLiked}
+                insightId={tile.post.postContentType}
                 updateTitle={this.props.updateTitle}
               />
             )),

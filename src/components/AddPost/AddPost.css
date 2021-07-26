@@ -8,3 +8,14 @@
     color: green;
     font-weight: bold;
   }
+.uploadImg{
+  
+  width:100%;
+}
+.category{
+  display:flex;
+}
+.category label{
+  width:50%;
+  padding-left: 0;
+}
