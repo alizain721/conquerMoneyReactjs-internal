@@ -13,6 +13,7 @@ import AddCard from "./components/AddCard/AddCard";
 import Post from './components/Posts/Post';
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import EmailVerification from "./components/ResetPassword/EmailVerification";
+import Settings from "./components/Settings/Settings";
 
 //import { makeStyles } from "@material-ui/core/styles";
 
@@ -31,6 +32,7 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import AddPost from "./components/AddPost/AddPost";
 import Accounts from "./components/Accounts/Accounts";
 import Profile from "./components/Profile/Profile";
+//import { Settings } from "@material-ui/icons";
 
 const LoadingIndicator = (props) => {
   const { promiseInProgress } = usePromiseTracker();
@@ -101,24 +103,28 @@ function App() {
                 updateTitle={updateTitle}
               />
             </Route>
+
             <Route path="/transactions">
               <Transactions
                 showError={updateErrorMessage}
                 updateTitle={updateTitle}
               ></Transactions>
             </Route>
+
             <Route path="/accounts">
               <Accounts
                 showError={updateErrorMessage}
                 updateTitle={updateTitle}
               ></Accounts>
             </Route>
+
             <Route path="/addpost">
               <AddPost
                 showError={updateErrorMessage}
                 updateTitle={updateTitle}
               />
             </Route>
+
             <Route path="/login">
               <LoginForm
                 showError={updateErrorMessage}
@@ -126,15 +132,18 @@ function App() {
                 updateIsLoggedIn={updateIsLoggedIn}
               />
             </Route>
+
             <Route path="/home">
               <Home showError={updateErrorMessage} updateTitle={updateTitle} />
             </Route>
+            
             <Route path="/dashboard">
               <Dashboard
                 showError={updateErrorMessage}
                 updateTitle={updateTitle}
               />
             </Route>
+
             <Route path="/purchaseanalysis">
               <PurchaseAnalysis
                 showError={updateErrorMessage}
@@ -151,16 +160,24 @@ function App() {
 
             <Route path="/profile">
               <Profile
-                showError={updateErrorMessage}
-                
+                showError={updateErrorMessage} 
               />
             </Route>
+            
+            <Route path = "/settings">
+              <Settings
+              showError={updateErrorMessage}
+              updateTitle={updateTitle}
+            />
+            </Route>
+
             <Route path="/resetPassword">
               <ResetPassword
                 showError={updateErrorMessage}
                 updateTitle={updateTitle}
               />
             </Route>
+
             <Route path="/emailVerification">
               <EmailVerification
                 showError={updateErrorMessage}
