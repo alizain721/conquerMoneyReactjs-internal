@@ -6,13 +6,12 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import { API_URL, API_LOGOUT } from "../../constants/apiConstants.js";
 import { withRouter } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 class Settings extends Component {
   constructor() {
     super();
   }
-  
+
   logoutReq = () => {
     const token = Cookie.get("token");
     const payload = {
@@ -27,20 +26,13 @@ class Settings extends Component {
           console.log("Error while attempting logout");
         }
         Cookie.remove("token");
-        window.history.push("/"); //returns to home
-        /*This is supposed to return the user to the login page once the user clicks logout
-        *There is an issue with the user being redirected to the login page
-        *Currently the user clicks logout but is not redirected to the login page until they click on some other icon in the app
-        */
+        this.props.history.push("/"); //redirect to login
       })
       .catch(function (error) {
         console.log(error);
       });
     console.log("logout complete");
   };
-
-  componentDidMount() {
-  }
 
   render() {
     return (
