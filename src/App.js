@@ -32,6 +32,9 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import AddPost from "./components/AddPost/AddPost";
 import Accounts from "./components/Accounts/Accounts";
 import Profile from "./components/Profile/Profile";
+
+import PublicProfile from "./components/PublicProfile/PublicProfile";
+import FriendPage from "./components/FriendPage/FriendPage";
 //import { Settings } from "@material-ui/icons";
 
 const LoadingIndicator = (props) => {
@@ -160,6 +163,18 @@ function App() {
 
             <Route path="/profile">
               <Profile
+                showError={updateErrorMessage} 
+              />
+            </Route>
+
+            <Route path="/publicProfile">
+              <PublicProfile
+                showError={updateErrorMessage} 
+              />
+            </Route>
+
+            <Route path="/FriendPage">
+              <FriendPage
                 showError={updateErrorMessage} 
               />
             </Route>
