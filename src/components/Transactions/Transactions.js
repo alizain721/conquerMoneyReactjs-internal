@@ -260,6 +260,7 @@ class Transactions extends Component {
                       ifpending= {list.pending}
                       date= {this.dateFormating(list.date)}
                       newDate={list.newDate}
+                      logo={"https://logo.clearbit.com/" + list.name.replace(/\s+/g, '') + ".com"}
                     />
                   );
               })}

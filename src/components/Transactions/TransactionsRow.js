@@ -30,7 +30,9 @@ class Transactions extends Component {
           </div> 
           <div className="transactionBox">
             <div className="logoBox">
-              <img className ="logoImage" src= {"https://logo.clearbit.com/" + this.props.name.replace(" ", "") + ".com"}></img>
+              <img className ="logoImage" 
+                src={this.props.logo} 
+                onerror="this.onerror=null;this.src='https://i.pinimg.com/474x/14/04/8d/14048d06bdf4c1d0f724370b7eabc45e.jpg';" />
             </div>
             <div className="main">
                 <div className="name">
@@ -57,7 +59,9 @@ class Transactions extends Component {
         <div>
           <div className="transactionBox">
             <div className="logoBox">
-              <img className ="logoImage" src= {"https://logo.clearbit.com/" + this.props.name.replace(" ", "") + ".com"}></img>
+              <img className ="logoImage" 
+                src={this.props.logo} 
+                onerror="this.onerror=null;this.src='https://i.pinimg.com/474x/14/04/8d/14048d06bdf4c1d0f724370b7eabc45e.jpg';" />
             </div>
             <div className="main">
                 <div className="name">
