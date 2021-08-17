@@ -103,7 +103,7 @@ class Tile extends Component {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <div className="row">
+                <div className="PostIdRow">
                   <div className="col-1"></div>
                   <div className="col-2">
                     <img
@@ -111,9 +111,9 @@ class Tile extends Component {
                       className="avatartilestyle"
                     />
                   </div>
-                  <div className="col-9">
-                    <div>Sample UserName</div>
-                    <div>Sample User Tag Line</div>
+                  <div className="col-9 alignLeft">
+                    <div className="IdFont">{this.props.userName}</div>
+                    <div className="TagFont">Sample User Tag Line</div>
                   </div>
                 </div>
 
@@ -124,17 +124,21 @@ class Tile extends Component {
                   <h5 className="financial_sub_text text-capitalize mb-0 grey-color">
                     {this.props.content}
                   </h5>
-                  <img  src={this.props.postPicture} />
+                  <img
+                    id="postIMGID"
+                    className="postImg"
+                    src={this.props.postPicture}
+                  />
                 </div>
               </div>
             </div>
-            <button
+            {/* <button
               type="button"
               className="btn btn-primary custom-btn"
               onClick={() => this.redirectToPA()}
             >
               Credit Card Analyzer
-            </button>
+            </button> */}
           </div>
         </div>
       );
@@ -154,7 +158,7 @@ class Tile extends Component {
                   >
                     {this.props.content}
                   </h5>
-                  <img src={this.props.postPicture} />
+                  <img className="postImg" src={this.props.postPicture} />
                 </div>
               </div>
             </div>
@@ -308,6 +312,13 @@ class Tile extends Component {
                     </div>
                   </div>
                 </div>
+                <button
+                  type="button"
+                  className="btn btn-primary custom-btn"
+                  onClick={() => this.redirectToPA()}
+                >
+                  Credit Card Analyzer
+                </button>
               </div>
             </div>
           </div>

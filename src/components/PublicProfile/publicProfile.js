@@ -1,4 +1,4 @@
-import "./PublicProfile.css";
+import "./publicProfile.css";
 import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";

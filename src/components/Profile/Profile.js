@@ -16,7 +16,7 @@ import {
 import { withRouter, Link } from "react-router-dom";
 
 import anonAvatar from "../../img/anonProfilePicture.png";
-import {GoogleApiWrapper} from 'google-maps-react';
+import { GoogleApiWrapper } from "google-maps-react";
 import { Timer } from "@material-ui/icons";
 
 function validateLocationChange(value) {
@@ -85,6 +85,7 @@ class Profile extends Component {
     this.state = {
       profilePicture: null,
       picture: null,
+      wholePicture: null,
       selectedFile: null,
       FirstName: "",
       LastName: "",
@@ -178,6 +179,7 @@ class Profile extends Component {
     const payload = {
       token: token,
       profilePicture: this.state.profilePicture,
+      wholePicture: this.state.wholePicture,
     };
     axios
 
@@ -304,17 +306,41 @@ class Profile extends Component {
   setEditorRef = (editor) => (this.editor = editor);
   handleNewImage = (e) => {
     this.setState({ picture: e.target.files[0] });
+    var wholeImg = e.target.files[0];
+    
+    
+    this.toDataUrl(URL.createObjectURL(wholeImg), (myBase64) => {
+      this.setState({ wholePicture: myBase64 });
+    });
+    
+    
   };
+  //convert
+  toDataUrl = (url, callback) => {
+  const xhr = new XMLHttpRequest();
+  xhr.onload = () => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+          callback(reader.result);
+      };
+      reader.readAsDataURL(xhr.response);
+  };
+  xhr.open('GET', url);
+  xhr.responseType = 'blob';
+  xhr.send();
+};
 
   handleSave = () => {
     var img = this.editor.getImageScaledToCanvas().toDataURL();
+    /* var img2 = this.editor.getImage().toDataURL(); */
     this.backgroundShowAgain();
     this.setState({ showPictureEditor: false });
-    this.setState({ profilePicture: img });
+    this.setState({ profilePicture: img/* , wholePicture: img2 */ });
     setTimeout(() => {
       this.sendPictureToServer();
     }, 1000);
   };
+  
 
   handlePictureCloseClick = () => {
     this.backgroundShowAgain();
@@ -357,7 +383,7 @@ class Profile extends Component {
             description: response.data.description,
             location: response.data.location,
             profilePicture: response.data.profilePicture,
-            picture: response.data.profilePicture,
+            picture: response.data.wholePicture,
           });
         }
       })

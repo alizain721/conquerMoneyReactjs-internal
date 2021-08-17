@@ -67,6 +67,8 @@ class Dashboard extends Component {
                 key={tile.id}
                 tileId={tile.id}
                 postId={tile.post.id}
+                avatarTiles={tile.post.postPicture}
+                userName={tile.post.user.username}
                 title={tile.post.title}
                 content={tile.post.content}
                 postPicture={tile.post.postPicture}
