@@ -110,6 +110,7 @@ class PurchaseAnalysis extends Component {
       this.props.showError("Please enter valid location");
     }
   }
+  
   render() {
     return (
       <div className="top">
