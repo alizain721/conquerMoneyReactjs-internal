@@ -23,6 +23,8 @@ class LikeCommentShare extends Component {
         var likeButtonIcon = this.props.isLiked
             ?<Favorite style={{color:red[500]}}/>
             :<FavoriteBorder/>;
+
+        
         
         return (
         <div>

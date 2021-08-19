@@ -74,6 +74,10 @@ class Tile extends Component {
       }
     });
   };
+  redirectToFriends() {
+    this.props.history.push("/friendPage");
+    this.props.updateTitle("FriendPage");
+  }
 
   removeLike = () => {
     this.setState({
@@ -97,113 +101,92 @@ class Tile extends Component {
   };
 
   render() {
-    if (this.props.postType === "ONE") {
-      return (
-        <div className="tile_no_btn bg-white my-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="PostIdRow">
-                  <div className="col-1"></div>
-                  <div className="col-2">
-                    <img
-                      src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg"
-                      className="avatartilestyle"
-                    />
-                  </div>
-                  <div className="col-9 alignLeft">
-                    <div className="IdFont">{this.props.userName}</div>
-                    <div className="TagFont">Sample User Tag Line</div>
-                  </div>
-                </div>
-
-                <div className="tile_no_btn_top">
-                  <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-                    {this.props.title}
-                  </h4>
-                  <h5 className="financial_sub_text text-capitalize mb-0 grey-color">
-                    {this.props.content}
-                  </h5>
-                  <img
-                    id="postIMGID"
-                    className="postImg"
-                    src={this.props.postPicture}
-                  />
-                </div>
-              </div>
-            </div>
-            {/* <button
-              type="button"
-              className="btn btn-primary custom-btn"
-              onClick={() => this.redirectToPA()}
-            >
-              Credit Card Analyzer
-            </button> */}
-          </div>
-        </div>
-      );
-    } else if (this.props.postType === "TWO") {
-      return (
-        <div className="tile_no_btn bg-white my-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="tile_no_btn_top">
-                  <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-                    <div onClick={this.handleClick}>{this.props.title}</div>
-                  </h4>
-                  <h5
-                    className="financial_sub_text text-capitalize mb-0 grey-color"
-                    onClick={this.handleClick}
-                  >
-                    {this.props.content}
-                  </h5>
-                  <img className="postImg" src={this.props.postPicture} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <LikeCommentShare
-            key={this.props.key}
-            likesCount={this.state.likesCount}
-            isLiked={this.state.isLiked}
-            removeLike={this.removeLike}
-            addLike={this.addLike}
-          />
-        </div>
-      );
-    } else if (this.props.postType === "THREE") {
-      //IMG TILE
-      return (
-        <div className="tile_no_btn bg-white my-2">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12">
-                <div className="tile_no_btn_top">
-                  <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-                    {this.props.title}
-                  </h4>
-                  <div className="tile_img_box">
-                    <img
-                      src={test_pic}
-                      className="img-fluid mx-auto d-block"
-                      alt="avatar"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <LikeCommentShare
-            key={this.props.key}
-            likesCount={this.state.likesCount}
-            isLiked={this.state.isLiked}
-            removeLike={this.removeLike}
-            addLike={this.addLike}
-          />
-        </div>
-      );
-    } else if (this.props.postType === "FOUR") {
+     if (this.props.postType === "SIX") {
+       return (
+         <div className="financial_feed mb-2">
+           <div className="container">
+             <div className="row">
+               <div className="col-12">
+                 <div className="titile_desc py-2 py-sm-4 ">
+                   <h4 className="financial_title proxima-bold text-capitalize mb-2">
+                     {" "}
+                     Financial feed{" "}
+                   </h4>
+                   <h5 className="text-capitalize mb-0 ">monthly cash flow</h5>
+                   <p className="financial_text grey-color">
+                     Here's a look where your money went this month
+                   </p>
+                 </div>
+                 <div className="percentage_progress">
+                   <div className="per_pro_dertail percentage_progress_1">
+                     <div className="set-size charts-container">
+                       <div className="pie-wrapper progress-45 style-2">
+                         <span className="label">
+                           45<span className="smaller">%</span>
+                         </span>
+                         <div className="pie">
+                           <div className="left-side half-circle"></div>
+                           <div className="right-side half-circle"></div>
+                         </div>
+                         <div className="shadow"></div>
+                       </div>
+                     </div>
+                   </div>
+                   <div className="per_pro_dertail progress_detail">
+                     <div className="progress_icon_text">
+                       <span className="income_expense_text grey-color">
+                         <img src={income} alt="income" /> Income{" "}
+                       </span>
+                       <h4>
+                         $<span>2300.45</span>
+                       </h4>
+                     </div>
+                   </div>
+                   <div className="per_pro_dertail percentage_progress_2">
+                     <div className="set-size charts-container">
+                       <div className="pie-wrapper progress-45 style-2">
+                         <span className="label">
+                           45<span className="smaller">%</span>
+                         </span>
+                         <div className="pie">
+                           <div className="left-side half-circle"></div>
+                           <div className="right-side half-circle"></div>
+                         </div>
+                         <div className="shadow"></div>
+                       </div>
+                     </div>
+                   </div>
+                   <div className="per_pro_dertail progress_detail">
+                     <div className="progress_icon_text">
+                       <span className="income_expense_text grey-color">
+                         <img src={expense} alt="expense" /> Expense
+                       </span>
+                       <h4>
+                         $<span>2300.45</span>
+                       </h4>
+                     </div>
+                   </div>
+                 </div>
+                 <button
+                   type="button"
+                   className="btn btn-primary custom-btn"
+                   onClick={() => this.redirectToPA()}
+                 >
+                   Credit Card Analyzer
+                 </button>
+                 <button
+                   type="button"
+                   className="btn btn-primary custom-btn"
+                   onClick={() => this.redirectToFriends()}
+                 >
+                   Friends
+                 </button>
+               </div>
+             </div>
+           </div>
+         </div>
+       );
+     }else if (this.props.postType === "FOUR") {
       //PLAID TILE
       return null;
     } else if (this.props.postType === "FIVE") {
@@ -246,85 +229,124 @@ class Tile extends Component {
           </div>
         </div>
       );
-    } else if (this.props.postType === "SIX") {
+    }
+     else{
+    
       return (
-        <div className="financial_feed mb-2">
+        <div className="tile_no_btn bg-white my-2">
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <div className="titile_desc py-2 py-sm-4 ">
-                  <h4 className="financial_title proxima-bold text-capitalize mb-2">
-                    {" "}
-                    Financial feed{" "}
+                <div className="PostIdRow">
+                  <div className="col-1"></div>
+                  <div className="col-2">
+                    <img
+                      src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg"
+                      className="avatartilestyle"
+                    />
+                  </div>
+                  <div className="col-9 alignLeft">
+                    <div className="IdFont">{this.props.createdBy}</div>
+                    <div className="TagFont">Sample User Tag Line</div>
+                  </div>
+                </div>
+
+                <div className="tile_no_btn_top">
+                  <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
+                    {this.props.title}
                   </h4>
-                  <h5 className="text-capitalize mb-0 ">monthly cash flow</h5>
-                  <p className="grey-color">
-                    Here's a look where your money went this month
-                  </p>
+                  <h5 className="financial_sub_text text-capitalize mb-0 grey-color">
+                    {this.props.content}
+                  </h5>
+                  <img
+                    id="postIMGID"
+                    className="postImg"
+                    src={this.props.postPicture}
+                  />
                 </div>
-                <div className="percentage_progress">
-                  <div className="per_pro_dertail percentage_progress_1">
-                    <div className="set-size charts-container">
-                      <div className="pie-wrapper progress-45 style-2">
-                        <span className="label">
-                          45<span className="smaller">%</span>
-                        </span>
-                        <div className="pie">
-                          <div className="left-side half-circle"></div>
-                          <div className="right-side half-circle"></div>
-                        </div>
-                        <div className="shadow"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="per_pro_dertail progress_detail">
-                    <div className="progress_icon_text">
-                      <span className="income_expense_text grey-color">
-                        <img src={income} alt="income" /> Income{" "}
-                      </span>
-                      <h4>
-                        $<span>2300.45</span>
-                      </h4>
-                    </div>
-                  </div>
-                  <div className="per_pro_dertail percentage_progress_2">
-                    <div className="set-size charts-container">
-                      <div className="pie-wrapper progress-45 style-2">
-                        <span className="label">
-                          45<span className="smaller">%</span>
-                        </span>
-                        <div className="pie">
-                          <div className="left-side half-circle"></div>
-                          <div className="right-side half-circle"></div>
-                        </div>
-                        <div className="shadow"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="per_pro_dertail progress_detail">
-                    <div className="progress_icon_text">
-                      <span className="income_expense_text grey-color">
-                        <img src={expense} alt="expense" /> Expense
-                      </span>
-                      <h4>
-                        $<span>2300.45</span>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-primary custom-btn"
-                  onClick={() => this.redirectToPA()}
-                >
-                  Credit Card Analyzer
-                </button>
               </div>
+            </div>
+            <div>
+              {this.props.likeable ? (
+                <LikeCommentShare
+                  key={this.props.key}
+                  likesCount={this.state.likesCount}
+                  isLiked={this.state.isLiked}
+                  removeLike={this.removeLike}
+                  addLike={this.addLike}
+                />
+              ) : null}
             </div>
           </div>
         </div>
       );
-    }
+          }
+   
+    // else if (this.props.postType === "TWO") {
+    //   return (
+    //     <div className="tile_no_btn bg-white my-2">
+    //       <div className="container">
+    //         <div className="row">
+    //           <div className="col-12">
+    //             <div className="tile_no_btn_top">
+    //               <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
+    //                 <div onClick={this.handleClick}>{this.props.title}</div>
+    //               </h4>
+    //               <h5
+    //                 className="financial_sub_text text-capitalize mb-0 grey-color"
+    //                 onClick={this.handleClick}
+    //               >
+    //                 {this.props.content}
+    //               </h5>
+    //               <img className="postImg" src={this.props.postPicture} />
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //       <LikeCommentShare
+    //         key={this.props.key}
+    //         likesCount={this.state.likesCount}
+    //         isLiked={this.state.isLiked}
+    //         removeLike={this.removeLike}
+    //         addLike={this.addLike}
+    //       />
+    //     </div>
+    //   );
+    // }
+    // else if (this.props.postType === "THREE") {
+    //   //IMG TILE
+    //   return (
+    //     <div className="tile_no_btn bg-white my-2">
+    //       <div className="container-fluid">
+    //         <div className="row">
+    //           <div className="col-12">
+    //             <div className="tile_no_btn_top">
+    //               <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
+    //                 {this.props.title}
+    //               </h4>
+    //               <div className="tile_img_box">
+    //                 <img
+    //                   src={test_pic}
+    //                   className="img-fluid mx-auto d-block"
+    //                   alt="avatar"
+    //                 />
+    //               </div>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //       <LikeCommentShare
+    //         key={this.props.key}
+    //         likesCount={this.state.likesCount}
+    //         isLiked={this.state.isLiked}
+    //         removeLike={this.removeLike}
+    //         addLike={this.addLike}
+    //       />
+    //     </div>
+    //   );
+    // }
+    
+    
   }
 }
 export default withRouter(Tile);

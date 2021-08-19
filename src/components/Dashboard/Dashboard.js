@@ -20,7 +20,7 @@ class Dashboard extends Component {
       tiles: [],
       tileList: [],
       title: "test",
-      postPicture:null,
+      postPicture: null,
       description: "something",
     };
 
@@ -36,7 +36,7 @@ class Dashboard extends Component {
     this.props.history.push("/purchaseanalysis");
     this.props.updateTitle("Purchase Analysis");
   }
-
+  
   redirectToAddCard() {
     this.props.history.push("/addcard");
     this.props.updateTitle("Add New Card");
@@ -65,17 +65,26 @@ class Dashboard extends Component {
             tileList: response.data.map((tile) => (
               <Tile
                 key={tile.id}
-                tileId={tile.id}
-                postId={tile.post.id}
-                avatarTiles={tile.post.postPicture}
-                userName={tile.post.user.username}
-                title={tile.post.title}
-                content={tile.post.content}
-                postPicture={tile.post.postPicture}
-                postType={tile.post.postType}
-                likesCount={tile.post.likesCount}
-                isLiked={tile.isLiked}
-                insightId={tile.post.postContentType}
+                Id={tile.id}
+                createdBy={tile.createdBy}
+                avatarTiles={tile.image}
+                image={tile.image}
+                insightHtml={tile.insightHtml}
+                lastUpdatedBy={tile.lastUpdatedBy}
+                lastUpdated={tile.lastuUpdated}
+                likeable={tile.likeable}
+                likesCount={tile.likes_count}
+                referenceTileId={tile.referenceTileId}
+                shareable={tile.shareable}
+                title={tile.title}
+                transactionHtml={tile.transactionHtml}
+                user_id={tile.user_id}
+                videoURL={tile.videoURL}
+                content={tile.content}
+                postPicture={tile.postPicture}
+                postType={tile.postType}
+                
+                
                 updateTitle={this.props.updateTitle}
               />
             )),
@@ -87,20 +96,18 @@ class Dashboard extends Component {
           }));
 */
           this.props.showError(null);
-        }else if(response.status === 401)
-        {
+        } else if (response.status === 401) {
           this.unauth();
-        }
-        else {
+        } else {
           console.log("else");
           this.props.showError("Some error ocurred");
         }
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
   }
-  unauth(){
+  unauth() {
     {
       console.log("UNAUTHORIZED");
       this.props.showError(
@@ -109,12 +116,12 @@ class Dashboard extends Component {
       setTimeout(() => {
         this.redirectToLogin();
       }, 1500);
-    };
+    }
   }
   componentDidMount() {
-    if(Cookie.get("token")){
-    this.generateTiles();
-  }
+    if (Cookie.get("token")) {
+      this.generateTiles();
+    }
   }
 
   render() {
@@ -160,8 +167,9 @@ class Dashboard extends Component {
         >
           {this.state.successMessage}
         </div>
-        {//<Extendtoken></Extendtoken>
-  }
+        {
+          //<Extendtoken></Extendtoken>
+        }
       </div>
     );
   }

@@ -11,6 +11,7 @@
 .credit_balance {
   color: #ffff;
   padding-top: .3rem;
+  padding-left:.5rem;
 }
 
 .available_balance_tagline {
@@ -69,13 +70,19 @@
   .available_balance {
     font-size: 2rem;
   }
+  .available_balance h4 {
+    font-size: 1.8rem;
+  }
 
   .available_balance_tagline {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .credit_balance {
     font-size: 2rem;
+  }
+  .credit_balance h4 {
+    font-size: 1.8rem;
   }
 
   .available_credit_tagline {
