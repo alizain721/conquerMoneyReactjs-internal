@@ -33,7 +33,7 @@ import AddPost from "./components/AddPost/AddPost";
 import Accounts from "./components/Accounts/Accounts";
 import Profile from "./components/Profile/Profile";
 
-import PublicProfile from "./components/PublicProfile/PublicProfile";
+import PublicProfile from "./components/PublicProfile/publicProfile";
 import FriendPage from "./components/FriendPage/FriendPage";
 //import { Settings } from "@material-ui/icons";
 

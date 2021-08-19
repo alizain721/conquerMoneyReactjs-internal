@@ -113,6 +113,10 @@
 .top {
   margin-top: 25%;
 }
+.cardList{
+  display:flex;
+  flex-direction: column;
+}
 
 .cardBodies1:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -144,10 +148,10 @@
 
 .cardBodies2 {
   border-style: solid;
-  border-color: red;
+  border-color: grey;
   background-color: white;
   min-height: 100%;
-  margin-bottom: 20%;
+  margin-bottom: 2%;
 }
 
 .input-container {

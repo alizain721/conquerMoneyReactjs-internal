@@ -146,7 +146,7 @@ class PurchaseAnalysis extends Component {
                 <div className="col-xs-6">
                   <button
                     type="button"
-                    className="btn-primary"
+                    className="btn btn-primary custom-btn"
                     onClick={() => this.getCards()}
                   >
                     GO
@@ -154,9 +154,8 @@ class PurchaseAnalysis extends Component {
 
                   <button
                     type="button"
-                    className="btn-primary"
+                    className="btn btn-primary custom-btn"
                     onClick={() => getLocation()}
-
                   >
                     Get location
                   </button>
@@ -225,7 +224,7 @@ class PurchaseAnalysis extends Component {
           </div>
         </div>
 
-        <div className="row">{this.state.cardsList}</div>
+        <div className="cardList">{this.state.cardsList}</div>
       </div>
     );
   }

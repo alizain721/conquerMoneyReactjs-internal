@@ -48,21 +48,30 @@ class AddPost extends Component {
     });
   }
   setEditorRef = (editor) => (this.editor = editor);
-  handleImageChange(changeEvent) {
-    this.setState({ picture: changeEvent.target.files[0] });
-    setTimeout(() => {
-      console.log(this.state.picture);
-    }, 1000);
-    /*  var img = document.querySelector("img");
-    img.onload = () => {
-      URL.revokeObjectURL(img.src); // no longer needed, free memory
+  handleNewImage = (e) => {
+    
+    var wholeImg = e.target.files[0];
+
+    this.toDataUrl(URL.createObjectURL(wholeImg,0.7), (myBase64) => {
+      this.setState({ postPicture: myBase64 });
+    });
+  };
+  //convert
+  toDataUrl = (url, callback) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = () => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        callback(reader.result);
+      };
+      reader.readAsDataURL(xhr.response);
     };
-    img.src = URL.createObjectURL(changeEvent.target.files[0]); */
-  }
+    xhr.open("GET", url);
+    xhr.responseType = "blob";
+    xhr.send();
+  };
 
   sendDetailsToServer() {
-    var img = this.editor.getImageScaledToCanvas().toDataURL();
-    this.setState({ postPicture: img });
     setTimeout(() => {
       const token = Cookie.get("token") ? Cookie.get("token") : null;
       console.log("CONTENT: " + this.state.content);
@@ -149,21 +158,9 @@ class AddPost extends Component {
             <input
               name="newImage"
               type="file"
-              onChange={this.handleImageChange.bind(this)}
+              onChange={this.handleNewImage.bind(this)}
             />
-            {/*  <img className="uploadImg" src='#' /> */}
-
-            <AvatarEditor
-              ref={this.setEditorRef}
-              image={this.state.picture}
-              width={250}
-              height={250}
-              border={30}
-              borderRadius={100}
-              color={[255, 255, 255, 0.6]}
-              scale={1.2}
-              rotate={0}
-            />
+            <img className="uploadImg" src={this.state.postPicture} />
           </div>
 
           <div className="form-group">

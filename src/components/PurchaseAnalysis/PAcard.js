@@ -29,7 +29,7 @@ class PAcard extends Component {
   render() {
     if (this.props.userhas === 1) {
       return (
-        <div className="col-md-4">
+        <div className="PAcardContainer">
           <div className="cardBodies1">
             <div className="row">
               <div className="col">
@@ -68,7 +68,7 @@ class PAcard extends Component {
       );
     } else {
       return (
-        <div className="col-md-4">
+        <div className="PAcardContainer">
           <div className="cardBodies2">
             <div className="row">
               <div className="col">

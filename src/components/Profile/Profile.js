@@ -16,7 +16,7 @@ import {
 import { withRouter, Link } from "react-router-dom";
 
 import anonAvatar from "../../img/anonProfilePicture.png";
-import {GoogleApiWrapper} from 'google-maps-react';
+import { GoogleApiWrapper } from "google-maps-react";
 import { Timer } from "@material-ui/icons";
 
 function validateLocationChange(value) {
@@ -85,6 +85,7 @@ class Profile extends Component {
     this.state = {
       profilePicture: null,
       picture: null,
+      wholePicture: null,
       selectedFile: null,
       FirstName: "",
       LastName: "",
@@ -178,6 +179,7 @@ class Profile extends Component {
     const payload = {
       token: token,
       profilePicture: this.state.profilePicture,
+      wholePicture: this.state.wholePicture,
     };
     axios
 
@@ -304,13 +306,33 @@ class Profile extends Component {
   setEditorRef = (editor) => (this.editor = editor);
   handleNewImage = (e) => {
     this.setState({ picture: e.target.files[0] });
+    var wholeImg = e.target.files[0];
+
+    this.toDataUrl(URL.createObjectURL(wholeImg), (myBase64) => {
+      this.setState({ wholePicture: myBase64 });
+    });
+  };
+  //convert
+  toDataUrl = (url, callback) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = () => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        callback(reader.result);
+      };
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open("GET", url);
+    xhr.responseType = "blob";
+    xhr.send();
   };
 
   handleSave = () => {
     var img = this.editor.getImageScaledToCanvas().toDataURL();
+    /* var img2 = this.editor.getImage().toDataURL(); */
     this.backgroundShowAgain();
     this.setState({ showPictureEditor: false });
-    this.setState({ profilePicture: img });
+    this.setState({ profilePicture: img /* , wholePicture: img2 */ });
     setTimeout(() => {
       this.sendPictureToServer();
     }, 1000);
@@ -331,14 +353,14 @@ class Profile extends Component {
   };
 
   disableBackground = () => {
-    $(".top_sec,.edit_profile_button,.mid_sec, .bot_sec").addClass(
-      "disable-div"
-    );
+    $(
+      ".profile_top_sec,.edit_profile_button,.profile_mid_sec, .profile_bot_sec"
+    ).addClass("disable-div");
   };
   backgroundShowAgain = () => {
-    $(".top_sec,.edit_profile_button,.mid_sec, .bot_sec").removeClass(
-      "disable-div"
-    );
+    $(
+      ".profile_top_sec,.edit_profile_button,.profile_mid_sec, .profile_bot_sec"
+    ).removeClass("disable-div");
   };
 
   getProfile() {
@@ -357,7 +379,7 @@ class Profile extends Component {
             description: response.data.description,
             location: response.data.location,
             profilePicture: response.data.profilePicture,
-            picture: response.data.profilePicture,
+            picture: response.data.wholePicture,
           });
         }
       })
@@ -372,9 +394,8 @@ class Profile extends Component {
   render() {
     return (
       <div className="profilePage">
-        <div className="top_sec" id="top_sec">
+        <div className="profile_top_sec">
           <div className="width100">
-            <div className="top_sec2"></div>
             <button
               className="AvatarEditor"
               onClick={() => this.editPictureEvent()}
@@ -382,11 +403,10 @@ class Profile extends Component {
               <img className="ProfilePic" src={this.state.profilePicture} />
             </button>
           </div>
-
-          <div className="title_box">{this.state.title}</div>
           <div className="name_box">
             {this.state.FirstName + " " + this.state.LastName}
           </div>
+          <div className="title_box">{this.state.title}</div>
           <div className="location_box">{this.state.location}</div>
           <div className="description_box">{this.state.description} </div>
           <div className="post_connect_box">
@@ -401,10 +421,10 @@ class Profile extends Component {
           </div>
         </div>
 
-        <div className="mid_sec">
+        <div className="profile_mid_sec">
           <p>mid_sec</p>
         </div>
-        <div className="bot_sec">
+        <div className="profile_bot_sec">
           <p>bot_sec</p>
         </div>
         <button
@@ -416,7 +436,6 @@ class Profile extends Component {
         </button>
         {this.state.showPictureEditor ? this.editPicture() : null}
         {this.state.showForm ? this.showForm() : null}
-        <div className="random_container"></div>
       </div>
     );
   }
