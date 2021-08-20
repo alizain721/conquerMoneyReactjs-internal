@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
-import { API_URL } from "../../constants/apiConstants";
+import { API_GET_PROFILE, API_URL } from "../../constants/apiConstants";
 import "./AddPost.css";
 import AvatarEditor from "react-avatar-editor";
 import { withRouter } from "react-router-dom";
@@ -22,12 +22,31 @@ class AddPost extends Component {
       successMessage: "",
       picture: null,
       postPicture: null,
+      profilePicture: null,
     };
 
     this.handleOptionChange = this.handleOptionChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleContentChange = this.handleContentChange.bind(this);
     this.sendDetailsToServer = this.sendDetailsToServer.bind(this);
+  }
+  getProfilePicture() {
+    const token = Cookie.get("token") ? Cookie.get("token") : null;
+    const payload = {
+      token: token,
+    };
+    axios
+      .post(API_URL + API_GET_PROFILE, payload)
+      .then((response) => {
+        if (response.status === 200) {
+          this.setState({
+            profilePicture: response.data.profilePicture,
+          });
+        }
+      })
+      .catch(() => {
+        this.props.showError("An error has occured");
+      });
   }
 
   handleOptionChange(changeEvent) {
@@ -49,10 +68,9 @@ class AddPost extends Component {
   }
   setEditorRef = (editor) => (this.editor = editor);
   handleNewImage = (e) => {
-    
     var wholeImg = e.target.files[0];
 
-    this.toDataUrl(URL.createObjectURL(wholeImg,0.7), (myBase64) => {
+    this.toDataUrl(URL.createObjectURL(wholeImg, 0.7), (myBase64) => {
       this.setState({ postPicture: myBase64 });
     });
   };
@@ -70,6 +88,9 @@ class AddPost extends Component {
     xhr.responseType = "blob";
     xhr.send();
   };
+  componentDidMount() {
+    this.getProfilePicture();
+  }
 
   sendDetailsToServer() {
     setTimeout(() => {
@@ -82,7 +103,7 @@ class AddPost extends Component {
         title: this.state.title,
         content: this.state.content,
         postType: this.state.postType,
-        postPicture: this.state.postPicture,
+        image: this.state.postPicture,
         //messagetypeid: "1",
         //posttypeid: this.state.posttypeid,
         token: token,
@@ -127,11 +148,33 @@ class AddPost extends Component {
 
   render() {
     return (
-      <div>
-        <form>
+      <div className="postPage">
+        <div className="post-header d-flex">
+          <div className="post-userinfo d-flex">
+            <div className="post-profile-img profile_img">
+              <img
+                className="img-fluid mx-auto d-block"
+                src={this.state.profilePicture}
+                alt="profile"
+              />
+            </div>
+            <div className="post-name d-flex"> Zeping Wang</div>
+          </div>
+
+          <button
+            type="button"
+            id="submit"
+            name="submit"
+            className="btn btn-primary custom-btn post-btn"
+            onClick={() => this.sendDetailsToServer()}
+          >
+            Post
+          </button>
+        </div>
+        <form className="no-border">
           <div className="form-group">
             <textarea
-              className="form-control100"
+              className="form-control100 post-text"
               type="title"
               id="title"
               placeholder="Title goes here"
@@ -143,7 +186,7 @@ class AddPost extends Component {
 
           <div className="form-group">
             <textarea
-              className="form-control100"
+              className="form-control100 post-text"
               type="content"
               id="content"
               placeholder="What's happening?"
@@ -154,9 +197,13 @@ class AddPost extends Component {
               onChange={this.handleContentChange}
             ></textarea>
           </div>
-          <div className="form-group">
+          <div className="form-group alignLeft">
+            <label for="file-upload" class="custom-file-upload">
+              <i class="material-icons">&#xe439;</i>
+            </label>
             <input
               name="newImage"
+              id="file-upload"
               type="file"
               onChange={this.handleNewImage.bind(this)}
             />
@@ -207,16 +254,6 @@ class AddPost extends Component {
               </label>
             </div>
           </div>
-
-          <button
-            type="button"
-            id="submit"
-            name="submit"
-            className="btn-primary.custom-btn"
-            onClick={() => this.sendDetailsToServer()}
-          >
-            Add Post
-          </button>
         </form>
         <div
           className="alert alert-success mt-2"

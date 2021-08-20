@@ -30,11 +30,12 @@ class PAcard extends Component {
     if (this.props.userhas === 1) {
       return (
         <div className="PAcardContainer">
-          <div className="cardBodies1">
+          <div
+            className="cardBodies1"
+           
+          >
             <div className="row">
-              <div className="col">
-                <img className="card-img-top" src={discover} alt="discover" />
-              </div>
+              <div className="col"></div>
               <div className="col">
                 <p className="rewardP">
                   {this.props.rewardsrate +
@@ -45,7 +46,7 @@ class PAcard extends Component {
               </div>
             </div>
 
-            <div className="card-body credit-cards">
+            <div className=" credit-cards">
               <h5 className="card-title">
                 <b>{this.props.officialname}</b>
               </h5>
@@ -75,6 +76,19 @@ class PAcard extends Component {
                 <img className="card-img-top" src={discover} alt="discover" />
               </div>
               <div className="col">
+                <div className="credit-cards">
+                  <h5 className="card-title">
+                    <b>{this.props.officialname}</b>
+                  </h5>
+                  <p className="card-text">
+                    {this.props.rewardsrate +
+                      " " +
+                      this.props.rewardstype +
+                      " back at "}{" "}
+                    {this.props.purchasecategory + " locations. "}{" "}
+                    {this.props.benefitname}
+                  </p>
+                </div>
                 <p className="rewardP">
                   {this.props.rewardsrate +
                     " " +
@@ -84,19 +98,6 @@ class PAcard extends Component {
               </div>
             </div>
 
-            <div className="card-body credit-cards">
-              <h5 className="card-title">
-                <b>{this.props.officialname}</b>
-              </h5>
-              <p className="card-text">
-                {this.props.rewardsrate +
-                  " " +
-                  this.props.rewardstype +
-                  " back at "}{" "}
-                {this.props.purchasecategory + " locations. "}{" "}
-                {this.props.benefitname}
-              </p>
-            </div>
             <div className="text-center">
               <button type="button" className="btn-secondary2">
                 APPLY NOW

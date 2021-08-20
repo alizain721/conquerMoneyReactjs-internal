@@ -73,7 +73,7 @@
     font-size: 1.5rem;
   }
   .selects {
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-align: justify;
   }
 }
@@ -111,10 +111,10 @@
   margin-bottom: 10%;
 }
 .top {
-  margin-top: 25%;
+  margin-top: 105px;
 }
-.cardList{
-  display:flex;
+.cardList {
+  display: flex;
   flex-direction: column;
 }
 
@@ -145,11 +145,14 @@
   max-width: 50%;
   margin-bottom: 4%;
 }
-
+.text-center-name {
+  font-size: 1rem;
+}
 .cardBodies2 {
   border-style: solid;
   border-color: grey;
   background-color: white;
+  height: fit-content;
   min-height: 100%;
   margin-bottom: 2%;
 }

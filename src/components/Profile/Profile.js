@@ -400,7 +400,11 @@ class Profile extends Component {
               className="AvatarEditor"
               onClick={() => this.editPictureEvent()}
             >
-              <img className="ProfilePic" src={this.state.profilePicture} />
+              <img
+                className="ProfilePic"
+                src={this.state.profilePicture}
+                loading="lazy"
+              />
             </button>
           </div>
           <div className="name_box">
@@ -428,7 +432,7 @@ class Profile extends Component {
           <p>bot_sec</p>
         </div>
         <button
-          className="edit_profile_button"
+          className="edit_profile_button btn btn-primary custom-btn"
           onClick={() => this.editprofileEvent()}
         >
           {" "}

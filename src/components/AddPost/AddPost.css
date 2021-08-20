@@ -1,21 +1,67 @@
+.postPage {
+  position: relative;
+  width: 100%;
+  height: 1000px;
+  background-color: white;
+}
 .btn-primary.custom-btn {
-    border-radius:20px;
-    background-color: #027d85;
-    color: rgb(255, 255, 255);
-  }
+  border-radius: 20px;
+  background: transparent linear-gradient(180deg, #08a8b1 0%, #02777e 100%) 0%
+    0% no-repeat padding-box !important;
+  color: rgb(255, 255, 255);
+}
 
-  .successMessage {
-    color: green;
-    font-weight: bold;
-  }
-.uploadImg{
-  
-  width:100%;
+.successMessage {
+  color: green;
+  font-weight: bold;
 }
-.category{
-  display:flex;
+.uploadImg {
+  width: 100%;
 }
-.category label{
-  width:50%;
+.category {
+  display: flex;
+}
+.category label {
+  width: 50%;
   padding-left: 0;
+}
+.post-btn {
+  float: right;
+  max-width: 100px;
+  margin-right:15px;
+}
+.post-header {
+  justify-content: space-between;
+}
+.post-userinfo{
+  margin-left:10px;
+}
+.post-profile-img {
+  margin: 7px 0px 7px 10px;
+}
+.post-name{
+      font-size: calc(20px + (24 - 20) * (100vw - 320px) / (1920 - 320));
+      font-weight: bold;
+      margin:10px;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin: 0px 0 0 15px;
+    font-size: 0;
+}
+.alignLeft{
+  text-align:left;
+}
+.no-border{
+  border:transparent;
+}
+.post-text{
+  padding:20px;
+  font-size:large;
 }

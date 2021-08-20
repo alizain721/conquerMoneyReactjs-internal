@@ -15,6 +15,7 @@ class Dashboard extends Component {
 
     this.state = {
       successMessage: null,
+      loading: true,
       // accountList: [],
       listItems: [],
       tiles: [],
@@ -36,7 +37,7 @@ class Dashboard extends Component {
     this.props.history.push("/purchaseanalysis");
     this.props.updateTitle("Purchase Analysis");
   }
-  
+
   redirectToAddCard() {
     this.props.history.push("/addcard");
     this.props.updateTitle("Add New Card");
@@ -62,29 +63,32 @@ class Dashboard extends Component {
         //console.log("res:"+response.status);
         if (response.status === 200) {
           this.setState({
-            tileList: response.data.map((tile) => (
+            tileList: response.data.map((GeneralTile) => (
               <Tile
-                key={tile.id}
-                Id={tile.id}
-                createdBy={tile.createdBy}
-                avatarTiles={tile.image}
-                image={tile.image}
-                insightHtml={tile.insightHtml}
-                lastUpdatedBy={tile.lastUpdatedBy}
-                lastUpdated={tile.lastuUpdated}
-                likeable={tile.likeable}
-                likesCount={tile.likes_count}
-                referenceTileId={tile.referenceTileId}
-                shareable={tile.shareable}
-                title={tile.title}
-                transactionHtml={tile.transactionHtml}
-                user_id={tile.user_id}
-                videoURL={tile.videoURL}
-                content={tile.content}
-                postPicture={tile.postPicture}
-                postType={tile.postType}
-                
-                
+                key={GeneralTile.id}
+                Id={GeneralTile.id}
+                button1Text={GeneralTile.button1Text}
+                button1URL={GeneralTile.button1URL}
+                button2Text={GeneralTile.button2Text}
+                button2URL={GeneralTile.button2URL}
+                commentable={GeneralTile.commentable}
+                content={GeneralTile.content}
+                createdBy={GeneralTile.createdBy}
+                avatarTiles={GeneralTile.image}
+                image={GeneralTile.image}
+                insightHtml={GeneralTile.insightHtml}
+                lastUpdatedBy={GeneralTile.lastUpdatedBy}
+                lastUpdated={GeneralTile.lastuUpdated}
+                likeable={GeneralTile.likeable}
+                likesCount={GeneralTile.likes_count}
+                referenceTileId={GeneralTile.referenceTileId}
+                shareable={GeneralTile.shareable}
+                title={GeneralTile.title}
+                transactionHtml={GeneralTile.transactionHtml}
+                user_id={GeneralTile.user_id}
+                videoURL={GeneralTile.videoURL}
+                postPicture={GeneralTile.postPicture}
+                postType={GeneralTile.postType}
                 updateTitle={this.props.updateTitle}
               />
             )),
@@ -123,6 +127,13 @@ class Dashboard extends Component {
       this.generateTiles();
     }
   }
+  
+  componentDidUpdate() {
+    
+   
+    var element = document.getElementById("loadinginfo");
+    element.classList.add("noDisplay");
+  }
 
   render() {
     return (
@@ -144,6 +155,12 @@ class Dashboard extends Component {
           <div className="accountListDiv">{this.state.listItems}</div>
         </div>
       */}
+        {this.state.loading ? (
+          <div id="loadinginfo" className="lds-dual-ring">
+            
+          </div>
+        ) : null}
+
         <Tile postType={"SIX"} updateTitle={this.props.updateTitle} />
         {this.state.tileList}
         <Tile postType={"ONE"} updateTitle={this.props.updateTitle} />
