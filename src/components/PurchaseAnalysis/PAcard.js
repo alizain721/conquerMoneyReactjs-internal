@@ -76,7 +76,7 @@ class PAcard extends Component {
                 <img className="card-img-top" src={discover} alt="discover" />
               </div>
               <div className="col">
-                <div className="credit-cards">
+                <div className="card-body credit-cards">
                   <h5 className="card-title">
                     <b>{this.props.officialname}</b>
                   </h5>
@@ -99,7 +99,10 @@ class PAcard extends Component {
             </div>
 
             <div className="text-center">
-              <button type="button" className="btn-secondary2">
+              <button
+                type="button"
+                className="btn btn-primary custom-btn btn-secondary2"
+              >
                 APPLY NOW
               </button>
             </div>

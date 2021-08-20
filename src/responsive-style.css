@@ -40,7 +40,7 @@
     margin-bottom: 10px;
   }
   .financial_feed .titile_desc {
-    padding-top: 0 !important;
+    padding-top: 0px !important;
   }
   .financial_title {
     margin-top: 10px !important;
@@ -79,7 +79,7 @@
     margin-bottom: 5px;
   }
   .like_comt_share {
-    padding: 5px 10px;
+    /* padding: 5px 10px; */
   }
   .spending_descreases .spending_graph .sg_img {
     height: 80px;

@@ -68,7 +68,7 @@ body {
 /* Like Share Comment */
 
 .like_comt_share {
-  padding: 10px 25px;
+  padding: 10px 25px 5px;
 }
 .like_comt_share {
   display: flex;
