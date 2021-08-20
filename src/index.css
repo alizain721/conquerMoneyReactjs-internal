@@ -36,6 +36,7 @@ code {
 .form-control100 {
     width: 100%;
     margin: auto;
+    border:transparent;
 }
 
 label {

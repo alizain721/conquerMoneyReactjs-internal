@@ -32,9 +32,7 @@ class PAcard extends Component {
         <div className="PAcardContainer">
           <div
             className="cardBodies1"
-            style={{
-              backgroundImage: "url(/static/media/Discover.9840b68e.png)",
-            }}
+           
           >
             <div className="row">
               <div className="col"></div>
@@ -48,7 +46,7 @@ class PAcard extends Component {
               </div>
             </div>
 
-            <div className="card-body credit-cards">
+            <div className=" credit-cards">
               <h5 className="card-title">
                 <b>{this.props.officialname}</b>
               </h5>
@@ -72,15 +70,25 @@ class PAcard extends Component {
     } else {
       return (
         <div className="PAcardContainer">
-          <div
-            className="cardBodies2"
-            style={{ backgroundImage: "url(/static/media/Discover.9840b68e.png)" }}
-          >
+          <div className="cardBodies2">
             <div className="row">
               <div className="col">
                 <img className="card-img-top" src={discover} alt="discover" />
               </div>
               <div className="col">
+                <div className="credit-cards">
+                  <h5 className="card-title">
+                    <b>{this.props.officialname}</b>
+                  </h5>
+                  <p className="card-text">
+                    {this.props.rewardsrate +
+                      " " +
+                      this.props.rewardstype +
+                      " back at "}{" "}
+                    {this.props.purchasecategory + " locations. "}{" "}
+                    {this.props.benefitname}
+                  </p>
+                </div>
                 <p className="rewardP">
                   {this.props.rewardsrate +
                     " " +
@@ -90,19 +98,6 @@ class PAcard extends Component {
               </div>
             </div>
 
-            <div className="card-body credit-cards">
-              <h5 className="card-title">
-                <b>{this.props.officialname}</b>
-              </h5>
-              <p className="card-text">
-                {this.props.rewardsrate +
-                  " " +
-                  this.props.rewardstype +
-                  " back at "}{" "}
-                {this.props.purchasecategory + " locations. "}{" "}
-                {this.props.benefitname}
-              </p>
-            </div>
             <div className="text-center">
               <button type="button" className="btn-secondary2">
                 APPLY NOW
