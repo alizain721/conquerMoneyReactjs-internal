@@ -103,37 +103,40 @@ class FriendPage extends Component {
 }
   render() {
     return (
-        
-        <div className = "ProfilePage">
-            {this.state.FriendList.map((friends, i) =>(
-                <div key={`Friends-${i}`}>
-                    <div className="recommended_friends">
-                        <div className="">
-
-                            <Link to={"publicProfile/"+friends}>
-                                <img src={this.state.ProfileList[i].profilePicture}  alt="loading" onError ={this.addDefaultSrc} width="64" height="64" />
-                            </Link>
-                        </div>
-                        <div className="recommended_friend">
-                            <h3>{this.state.ProfileList[i].firstName +" " + this.state.ProfileList[i].lastName}</h3>
-                            <p>                  
-                                <button
-                                className="friend_button"
-                                onClick={() => this.createFriendRequest(friends)}
-
-                                >
-                                Add as a friend
-                                </button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            ))}
-           
-           
-
-        </div>
-
+      <div className="ProfilePage">
+        {this.state.FriendList.map((friends, i) => (
+          <div key={`Friends-${i}`}>
+            <div className="recommended_friends">
+              <div className="">
+                <Link to={"publicProfile/" + friends}>
+                  <img
+                    src={this.state.ProfileList[i].profilePicture}
+                    alt="loading"
+                    onError={this.addDefaultSrc}
+                    width="64"
+                    height="64"
+                  />
+                </Link>
+              </div>
+              <div className="recommended_friend">
+                <h3>
+                  {this.state.ProfileList[i].firstName +
+                    " " +
+                    this.state.ProfileList[i].lastName}
+                </h3>
+                <p>
+                  <button
+                    className="friend_button btn btn-primary custom-btn"
+                    onClick={() => this.createFriendRequest(friends)}
+                  >
+                    Add as a friend
+                  </button>
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     );
   }
 }

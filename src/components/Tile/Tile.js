@@ -99,94 +99,108 @@ class Tile extends Component {
       }
     });
   };
+  showButton1() {
+    return (
+      <button type="button" className="btn btn-primary custom-btn">
+        {this.props.button1Text}
+      </button>
+    );
+  }
+  showButton2() {
+    return (
+      <button type="button" className="btn btn-primary custom-btn">
+        {this.props.button2Text}
+      </button>
+    );
+  }
 
   render() {
-     if (this.props.postType === "SIX") {
-       return (
-         <div className="financial_feed mb-2">
-           <div className="container">
-             <div className="row">
-               <div className="col-12">
-                 <div className="titile_desc py-2 py-sm-4 ">
-                   <h4 className="financial_title proxima-bold text-capitalize mb-2">
-                     {" "}
-                     Financial feed{" "}
-                   </h4>
-                   <h5 className="text-capitalize mb-0 ">monthly cash flow</h5>
-                   <p className="financial_text grey-color">
-                     Here's a look where your money went this month
-                   </p>
-                 </div>
-                 <div className="percentage_progress">
-                   <div className="per_pro_dertail percentage_progress_1">
-                     <div className="set-size charts-container">
-                       <div className="pie-wrapper progress-45 style-2">
-                         <span className="label">
-                           45<span className="smaller">%</span>
-                         </span>
-                         <div className="pie">
-                           <div className="left-side half-circle"></div>
-                           <div className="right-side half-circle"></div>
-                         </div>
-                         <div className="shadow"></div>
-                       </div>
-                     </div>
-                   </div>
-                   <div className="per_pro_dertail progress_detail">
-                     <div className="progress_icon_text">
-                       <span className="income_expense_text grey-color">
-                         <img src={income} alt="income" /> Income{" "}
-                       </span>
-                       <h4>
-                         $<span>2300.45</span>
-                       </h4>
-                     </div>
-                   </div>
-                   <div className="per_pro_dertail percentage_progress_2">
-                     <div className="set-size charts-container">
-                       <div className="pie-wrapper progress-45 style-2">
-                         <span className="label">
-                           45<span className="smaller">%</span>
-                         </span>
-                         <div className="pie">
-                           <div className="left-side half-circle"></div>
-                           <div className="right-side half-circle"></div>
-                         </div>
-                         <div className="shadow"></div>
-                       </div>
-                     </div>
-                   </div>
-                   <div className="per_pro_dertail progress_detail">
-                     <div className="progress_icon_text">
-                       <span className="income_expense_text grey-color">
-                         <img src={expense} alt="expense" /> Expense
-                       </span>
-                       <h4>
-                         $<span>2300.45</span>
-                       </h4>
-                     </div>
-                   </div>
-                 </div>
-                 <button
-                   type="button"
-                   className="btn btn-primary custom-btn"
-                   onClick={() => this.redirectToPA()}
-                 >
-                   Credit Card Analyzer
-                 </button>
-                 <button
-                   type="button"
-                   className="btn btn-primary custom-btn"
-                   onClick={() => this.redirectToFriends()}
-                 >
-                   Friends
-                 </button>
-               </div>
-             </div>
-           </div>
-         </div>
-       );
-     }else if (this.props.postType === "FOUR") {
+    if (this.props.postType === "SIX") {
+      return (
+        <div className="financial_feed mb-2">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="titile_desc py-2 py-sm-4 ">
+                  <h4 className="financial_title proxima-bold text-capitalize mb-2">
+                    {" "}
+                    Financial feed{" "}
+                  </h4>
+                  <h5 className="text-capitalize mb-0 ">monthly cash flow</h5>
+                  <p className="financial_text grey-color">
+                    Here's a look where your money went this month
+                  </p>
+                </div>
+                <div className="percentage_progress">
+                  <div className="per_pro_dertail percentage_progress_1">
+                    <div className="set-size charts-container">
+                      <div className="pie-wrapper progress-45 style-2">
+                        <span className="label">
+                          45<span className="smaller">%</span>
+                        </span>
+                        <div className="pie">
+                          <div className="left-side half-circle"></div>
+                          <div className="right-side half-circle"></div>
+                        </div>
+                        <div className="shadow"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="per_pro_dertail progress_detail">
+                    <div className="progress_icon_text">
+                      <span className="income_expense_text grey-color">
+                        <img src={income} alt="income" /> Income{" "}
+                      </span>
+                      <h4>
+                        $<span>2300.45</span>
+                      </h4>
+                    </div>
+                  </div>
+                  <div className="per_pro_dertail percentage_progress_2">
+                    <div className="set-size charts-container">
+                      <div className="pie-wrapper progress-45 style-2">
+                        <span className="label">
+                          45<span className="smaller">%</span>
+                        </span>
+                        <div className="pie">
+                          <div className="left-side half-circle"></div>
+                          <div className="right-side half-circle"></div>
+                        </div>
+                        <div className="shadow"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="per_pro_dertail progress_detail">
+                    <div className="progress_icon_text">
+                      <span className="income_expense_text grey-color">
+                        <img src={expense} alt="expense" /> Expense
+                      </span>
+                      <h4>
+                        $<span>2300.45</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-primary custom-btn"
+                  onClick={() => this.redirectToPA()}
+                >
+                  Credit Card Analyzer
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary custom-btn"
+                  onClick={() => this.redirectToFriends()}
+                >
+                  Friends
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else if (this.props.postType === "FOUR") {
       //PLAID TILE
       return null;
     } else if (this.props.postType === "FIVE") {
@@ -229,9 +243,7 @@ class Tile extends Component {
           </div>
         </div>
       );
-    }
-     else{
-    
+    } else {
       return (
         <div className="tile_no_btn bg-white my-2">
           <div className="container">
@@ -261,12 +273,14 @@ class Tile extends Component {
                   <img
                     id="postIMGID"
                     className="postImg"
-                    src={this.props.postPicture}
+                    src={this.props.image}
                   />
                 </div>
               </div>
             </div>
             <div>
+              {this.props.button1Text == null ? null : this.showButton1()}
+              {this.props.button2Text == null ? null : this.showButton2()}
               {this.props.likeable ? (
                 <LikeCommentShare
                   key={this.props.key}
@@ -280,8 +294,8 @@ class Tile extends Component {
           </div>
         </div>
       );
-          }
-   
+    }
+
     // else if (this.props.postType === "TWO") {
     //   return (
     //     <div className="tile_no_btn bg-white my-2">
@@ -345,8 +359,6 @@ class Tile extends Component {
     //     </div>
     //   );
     // }
-    
-    
   }
 }
 export default withRouter(Tile);

@@ -82,7 +82,7 @@ class AddPost extends Component {
         title: this.state.title,
         content: this.state.content,
         postType: this.state.postType,
-        postPicture: this.state.postPicture,
+        image: this.state.postPicture,
         //messagetypeid: "1",
         //posttypeid: this.state.posttypeid,
         token: token,
@@ -212,7 +212,7 @@ class AddPost extends Component {
             type="button"
             id="submit"
             name="submit"
-            className="btn-primary.custom-btn"
+            className="btn btn-primary custom-btn"
             onClick={() => this.sendDetailsToServer()}
           >
             Add Post

@@ -45,12 +45,12 @@
 
 @media only screen and (min-width: 768px) {
   .header-top-sec {
-    background: #fff;
+    /* background: #fff;
     height: 10%;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 90;
+    z-index: 90; */
   }
 
   .top_section {
@@ -67,12 +67,12 @@
 }
 @media only screen and (max-width: 768px) {
   .header-top-sec {
-    background: #fff;
+    /* background: #fff;
     height: 10%;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 90;
+    z-index: 90; */
   }
 
   .top_section {

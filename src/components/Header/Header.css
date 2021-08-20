@@ -14,3 +14,7 @@ img.UserIcon {
 .iconContainer {
   justify-content: right;
 }
+.bg-primary2{
+  background:transparent linear-gradient(180deg, #08a8b1 0%, #02777e 100%) 0%
+    0% no-repeat padding-box;
+}

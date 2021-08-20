@@ -1,6 +1,7 @@
 .btn-primary.custom-btn {
     border-radius:20px;
-    background-color: #027d85;
+    background: transparent linear-gradient(180deg, #08a8b1 0%, #02777e 100%) 0%
+    0% no-repeat padding-box !important;
     color: rgb(255, 255, 255);
   }
 

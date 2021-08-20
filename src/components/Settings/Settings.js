@@ -37,11 +37,10 @@ class Settings extends Component {
   render() {
     return (
       <div className="settingsPage">
-        <button onClick={this.logoutReq}>
+        <button className=" logoutButton btn btn-primary custom-btn" onClick={this.logoutReq}>
           Logout
         </button>
       </div>
-     
     );
   }
 }

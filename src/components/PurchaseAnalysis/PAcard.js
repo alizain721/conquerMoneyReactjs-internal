@@ -30,11 +30,14 @@ class PAcard extends Component {
     if (this.props.userhas === 1) {
       return (
         <div className="PAcardContainer">
-          <div className="cardBodies1">
+          <div
+            className="cardBodies1"
+            style={{
+              backgroundImage: "url(/static/media/Discover.9840b68e.png)",
+            }}
+          >
             <div className="row">
-              <div className="col">
-                <img className="card-img-top" src={discover} alt="discover" />
-              </div>
+              <div className="col"></div>
               <div className="col">
                 <p className="rewardP">
                   {this.props.rewardsrate +
@@ -69,7 +72,10 @@ class PAcard extends Component {
     } else {
       return (
         <div className="PAcardContainer">
-          <div className="cardBodies2">
+          <div
+            className="cardBodies2"
+            style={{ backgroundImage: "url(/static/media/Discover.9840b68e.png)" }}
+          >
             <div className="row">
               <div className="col">
                 <img className="card-img-top" src={discover} alt="discover" />

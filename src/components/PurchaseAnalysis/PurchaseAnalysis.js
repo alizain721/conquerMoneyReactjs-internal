@@ -173,13 +173,13 @@ class PurchaseAnalysis extends Component {
             <div className="container-fluid">
               <div className="row">
                 <div className="col-4">
-                  <p className="text-center name1">
+                  <p className="text-center-name">
                     <b> {this.state.closeLocation[0]} </b>
                   </p>
-                  <p className="text-center name2">
+                  <p className="text-center-name">
                     <b> {this.state.closeLocation[1]} </b>
                   </p>
-                  <p className="text-center name3">
+                  <p className="text-center-name">
                     <b> {this.state.closeLocation[2]} </b>
                   </p>
                 </div>
