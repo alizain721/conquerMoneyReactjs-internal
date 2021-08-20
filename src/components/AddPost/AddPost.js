@@ -7,6 +7,7 @@ import AvatarEditor from "react-avatar-editor";
 import { withRouter } from "react-router-dom";
 import { API_ADDPOST_URL } from "../../constants/apiConstants";
 
+
 class AddPost extends Component {
   constructor() {
     super();
@@ -189,7 +190,7 @@ class AddPost extends Component {
               className="form-control100 post-text"
               type="content"
               id="content"
-              placeholder="What's happening?"
+              placeholder="What do you want to talk about?"
               maxLength="140"
               rows="7"
               cols="60"

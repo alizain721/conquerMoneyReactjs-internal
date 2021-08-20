@@ -103,13 +103,13 @@ class FriendPage extends Component {
 }
   render() {
     return (
-      <div className="ProfilePage">
+      <div className="recommended_friends_Page">
         {this.state.FriendList.map((friends, i) => (
           <div key={`Friends-${i}`}>
             <div className="recommended_friends">
               <div className="">
                 <Link to={"publicProfile/" + friends}>
-                  <img
+                  <img className="recommended_friends_image"
                     src={this.state.ProfileList[i].profilePicture}
                     alt="loading"
                     onError={this.addDefaultSrc}
@@ -118,21 +118,21 @@ class FriendPage extends Component {
                   />
                 </Link>
               </div>
-              <div className="recommended_friend">
+              <div className="recommended_friends_name">
                 <h3>
                   {this.state.ProfileList[i].firstName +
                     " " +
                     this.state.ProfileList[i].lastName}
                 </h3>
-                <p>
-                  <button
-                    className="friend_button btn btn-primary custom-btn"
-                    onClick={() => this.createFriendRequest(friends)}
-                  >
-                    Add as a friend
-                  </button>
-                </p>
               </div>
+              <p>
+                <button
+                  className="friend_button btn btn-primary custom-btn"
+                  onClick={() => this.createFriendRequest(friends)}
+                >
+                  Add friend
+                </button>
+              </p>
             </div>
           </div>
         ))}

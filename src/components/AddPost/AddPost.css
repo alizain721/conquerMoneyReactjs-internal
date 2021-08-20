@@ -3,7 +3,9 @@
   width: 100%;
   height: 1000px;
   background-color: white;
+  
 }
+
 .btn-primary.custom-btn {
   border-radius: 20px;
   background: transparent linear-gradient(180deg, #08a8b1 0%, #02777e 100%) 0%
@@ -63,5 +65,5 @@ input[type="file"] {
 }
 .post-text{
   padding:20px;
-  font-size:large;
+  font-size:1.6rem;
 }
