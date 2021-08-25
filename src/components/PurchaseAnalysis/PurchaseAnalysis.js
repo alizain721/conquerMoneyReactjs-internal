@@ -146,7 +146,7 @@ class PurchaseAnalysis extends Component {
                 <div className="col-xs-6">
                   <button
                     type="button"
-                    className="btn-primary"
+                    className="btn btn-primary custom-btn"
                     onClick={() => this.getCards()}
                   >
                     GO
@@ -154,9 +154,8 @@ class PurchaseAnalysis extends Component {
 
                   <button
                     type="button"
-                    className="btn-primary"
+                    className="btn btn-primary custom-btn"
                     onClick={() => getLocation()}
-
                   >
                     Get location
                   </button>
@@ -174,13 +173,13 @@ class PurchaseAnalysis extends Component {
             <div className="container-fluid">
               <div className="row">
                 <div className="col-4">
-                  <p className="text-center name1">
+                  <p className="text-center-name">
                     <b> {this.state.closeLocation[0]} </b>
                   </p>
-                  <p className="text-center name2">
+                  <p className="text-center-name">
                     <b> {this.state.closeLocation[1]} </b>
                   </p>
-                  <p className="text-center name3">
+                  <p className="text-center-name">
                     <b> {this.state.closeLocation[2]} </b>
                   </p>
                 </div>
@@ -225,7 +224,7 @@ class PurchaseAnalysis extends Component {
           </div>
         </div>
 
-        <div className="row">{this.state.cardsList}</div>
+        <div className="cardList">{this.state.cardsList}</div>
       </div>
     );
   }

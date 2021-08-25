@@ -73,7 +73,7 @@
     font-size: 1.5rem;
   }
   .selects {
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-align: justify;
   }
 }
@@ -111,7 +111,14 @@
   margin-bottom: 10%;
 }
 .top {
-  margin-top: 25%;
+  margin-top: 105px;
+}
+.cardList {
+  display: flex;
+  flex-direction: column;
+}
+.card-title{
+  margin: 0;
 }
 
 .cardBodies1:hover {
@@ -133,21 +140,19 @@
 }
 
 .btn-secondary2 {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  margin-right: 25%;
-  background-color: darkred;
-  max-width: 50%;
-  margin-bottom: 4%;
+  margin:0 0 10px !important;
+  max-width: 400px !important;
+ 
 }
-
+.text-center-name {
+  font-size: 1rem;
+}
 .cardBodies2 {
-  border-style: solid;
-  border-color: red;
+  border: 1px solid grey;
   background-color: white;
+  height: fit-content;
   min-height: 100%;
-  margin-bottom: 20%;
+  margin-bottom: 1%;
 }
 
 .input-container {
@@ -156,5 +161,6 @@
 }
 
 .card-img-top {
-  margin-right: 65%;
+  
+  margin: 20px 0 20px 10px;
 }

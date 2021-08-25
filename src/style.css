@@ -68,7 +68,7 @@ body {
 /* Like Share Comment */
 
 .like_comt_share {
-  padding: 10px 25px;
+  padding: 10px 25px 5px;
 }
 .like_comt_share {
   display: flex;
@@ -105,7 +105,7 @@ body {
 /* All CSs */
 
 .main_wrapper {
-  background: #f5f7fa;
+  
   position:absolute;
   left:0;
   right:0;
@@ -113,7 +113,7 @@ body {
 }
 @media only screen and (max-width: 768px) {
   .main_wrapper {
-    background: #f5f7fa;
+  
     position: fixed !important;
     left: 0;
     top: 0;

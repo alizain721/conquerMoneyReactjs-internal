@@ -11,6 +11,40 @@
 .credit_balance {
   color: #ffff;
   padding-top: .3rem;
+  padding-left:.5rem;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 40px;
+  height: 50px;
+  padding-top:13px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin: 0px;
+  border-radius: 50%;
+  border: 5px solid #027d85;
+  border-color: #027d85 transparent #027d85 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+.titile_desc{
+  padding-top: 25px;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.noDisplay{
+  display:none;
 }
 
 .available_balance_tagline {
@@ -69,13 +103,19 @@
   .available_balance {
     font-size: 2rem;
   }
+  .available_balance h4 {
+    font-size: 1.8rem;
+  }
 
   .available_balance_tagline {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .credit_balance {
     font-size: 2rem;
+  }
+  .credit_balance h4 {
+    font-size: 1.8rem;
   }
 
   .available_credit_tagline {

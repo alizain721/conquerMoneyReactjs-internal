@@ -28,12 +28,15 @@
     "react-dom": "^16.14.0",
     "react-dropdown": "^1.7.0",
     "react-loader-spinner": "^3.1.14",
+    "react-native-fs": "^2.18.0",
     "react-plaid-link": "^2.2.3",
     "react-promise-tracker": "^2.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
     "react-table": "^7.5.0",
     "react-table-6": "^6.11.0",
+    "react-tiger-transition": "^4.1.2",
+    "react-transition-group": "^4.4.2",
     "styled-components": "^5.2.0"
   },
   "peerDependencies": {

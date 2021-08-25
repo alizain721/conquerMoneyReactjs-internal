@@ -7,6 +7,7 @@ import {Favorite, FavoriteBorder, AddComment, Share} from '@material-ui/icons';
 import { red} from "@material-ui/core/colors";
 
 
+
 class LikeCommentShare extends Component {
     constructor(props) {
         super(props);
@@ -23,33 +24,39 @@ class LikeCommentShare extends Component {
         var likeButtonIcon = this.props.isLiked
             ?<Favorite style={{color:red[500]}}/>
             :<FavoriteBorder/>;
+
+        
         
         return (
-        <div>
-            <div className="col-12 likes_message">
-                <span>
-                    {this.props.likesCount > 0 ? this.props.likesCount: ""}
-                </span>
-                <div className="like_comt_share_imgs">
-                    {othersLikedIndicator}
+          <div>
+            {/* <div className="col-12 likes_message">
+              <span>
+                {this.props.likesCount > 0 ? this.props.likesCount : ""}
+              </span>
+              <div className="like_comt_share_imgs">{othersLikedIndicator}</div>
+            </div> */}
+            <div className="like_comt_share d-flex">
+              {this.props.likeable ? (
+                <div className="d-flex" onClick={likeHandler}>
+                  <span> {likeButtonIcon} </span>
+                  <span className="l-c-s-text">Like</span>
                 </div>
+              ) : null}
+              {this.props.commentable ? (
+                <div className="d-flex">
+                  <span> {<AddComment />} </span>
+                  <span className="l-c-s-text">Comment</span>
+                </div>
+              ) : null}
+              {this.props.shareable ? (
+                <div className="d-flex">
+                  <span> {<Share />} </span>
+                  <span className="l-c-s-text">Share</span>
+                </div>
+              ) : null}
             </div>
-            <div className="like_comt_share">
-                <div onClick={likeHandler}>
-                    <span> {likeButtonIcon} </span>
-                    <span>Like</span>
-                </div>
-                <div>
-                    <span> {<AddComment/>} </span>
-                    <span>Comment</span>
-                </div>
-                <div>
-                    <span> {<Share/>} </span>
-                    <span>Share</span>
-                </div>
-            </div>
-        </div>
-        )
+          </div>
+        );
     }
 }
 export default withRouter(LikeCommentShare);

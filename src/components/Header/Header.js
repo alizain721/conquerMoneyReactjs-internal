@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import { withRouter } from "react-router-dom"; 
+import { withRouter } from "react-router-dom";
 
 function Header(props) {
   const capitalize = (s) => {
@@ -12,7 +12,7 @@ function Header(props) {
   );
   const title2 = "Login";
   return (
-    <nav className="navbar navbar-dark bg-primary">
+    <nav className="navbar navbar-dark bg-primary2">
       <div className="header">
         <span className="h3">{props.title || title || title2}</span>
       </div>

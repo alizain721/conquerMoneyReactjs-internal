@@ -1,4 +1,4 @@
-import "./PublicProfile.css";
+import "./publicProfile.css";
 import React, { Component } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
@@ -81,11 +81,14 @@ class PublicProfile extends Component {
   render() {
     return (
       <div className="profilePage">
-        <div className="top_sec" id="top_sec">
+        <div className="profile_top_sec">
           <div className="width100">
-            <div className="top_sec2"></div>
-
-            <img className="AvatarEditor" src={this.state.profilePicture} />
+            <button
+              className="AvatarEditor"
+              onClick={() => this.editPictureEvent()}
+            >
+              <img className="ProfilePic" src={this.state.profilePicture} />
+            </button>
           </div>
 
           <div className="title_box">{this.state.title}</div>
@@ -106,13 +109,15 @@ class PublicProfile extends Component {
           </div>
         </div>
 
-        <div className="mid_sec">
+        <div className="profile_mid_sec">
           <p>mid_sec</p>
         </div>
-        <div className="bot_sec">
+        <div className="profile_bot_sec">
           <p>bot_sec</p>
         </div>
-        <div className="random_container"></div>
+        
+        {this.state.showPictureEditor ? this.editPicture() : null}
+        {this.state.showForm ? this.showForm() : null}
       </div>
     );
   }

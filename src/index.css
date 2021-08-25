@@ -36,6 +36,7 @@ code {
 .form-control100 {
     width: 100%;
     margin: auto;
+    border:transparent;
 }
 
 label {
@@ -94,7 +95,7 @@ input[type="passwordd"] {
 /* Set a style for all buttons */
 
 button {
-    background-color: #302df0;
+    background: #027d85;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
