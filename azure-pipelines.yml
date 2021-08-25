@@ -17,7 +17,16 @@ steps:
 
 - script: |
     npm install
-    npm run build
     mv ./src/constants/apiConstants.js ./src/constants/apiConstants.local.js
     mv ./src/constants/apiConstants.prod.js ./src/constants/apiConstants.js
+    npm run build
   displayName: 'npm install and build'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'target'
+    Contents: '*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: reactjs
