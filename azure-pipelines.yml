@@ -18,8 +18,9 @@ steps:
 - script: |
     npm install
     mv src/constants/apiConstants.js src/constants/apiConstants.local.js
-    echo $(ls)
+    echo $(ls src/constants)
     mv src/constants/apiConstants.prod.js src/constants/apiConstants.js
+    echo $(ls src/constants)
     npm run build
   displayName: 'npm install and build'
 - task: CopyFiles@2
