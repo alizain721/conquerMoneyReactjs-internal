@@ -241,7 +241,7 @@ class Transactions extends Component {
         
         <div className="split topp">
         
-          <div className="transdropdown"><span>transactions</span>
+          <div className="transdropdown"><span>Accounts</span>
             <div className="transdropdown-content">
               {this.state.newAccountList}
             </div>
