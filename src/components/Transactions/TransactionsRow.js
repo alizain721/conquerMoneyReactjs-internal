@@ -33,8 +33,8 @@ class Transactions extends Component {
 
   addDefaultSrc(ev){
     var categ = this.props.category;
-    console.log(typeof(categ));
-    console.log(categ);
+    //console.log(typeof(categ));
+    //console.log(categ);
     if (categ == null){
       ev.target.src = 'https://i.pinimg.com/474x/14/04/8d/14048d06bdf4c1d0f724370b7eabc45e.jpg'
     }else if (categ.startsWith('Bank Fees')){
