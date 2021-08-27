@@ -49,6 +49,7 @@
 input[type="file"] {
     display: none;
 }
+
 .custom-file-upload {
     border: 1px solid #ccc;
     display: inline-block;
@@ -59,6 +60,7 @@ input[type="file"] {
 }
 .alignLeft{
   text-align:left;
+  padding-top:0.1rem;
 }
 .no-border{
   border:transparent;
