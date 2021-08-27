@@ -5,22 +5,30 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import "./Tile.css";
 import LikeCommentShare from "./LikeCommentShare.js";
+import CommentPage from "./CommentPage.js";
 import test_pic from "../../img/Map.png";
-
 import hollowLikePic from "../../img/ProHTML/like.png";
 import userLikedPic from "../../img/ProHTML/liked_big.png";
 import othersLikedPic from "../../img/ProHTML/liked.png";
 import comment from "../../img/ProHTML/comment.png";
 import share from "../../img/ProHTML/share.png";
 import Link from "../Plaid/Link.js";
-
+import {
+  Favorite,
+  FavoriteBorder,
+  AddComment,
+  Share,
+} from "@material-ui/icons";
+import { red } from "@material-ui/core/colors";
 
 class Tile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       likesCount: this.props.likesCount,
-      isLiked: this.props.isLiked,
+      //change it back when it's working
+      // isLiked: this.props.isLiked,
+      isLiked: false,
     };
     this.addLike = this.addLike.bind(this);
     this.removeLike = this.removeLike.bind(this);
@@ -66,7 +74,21 @@ class Tile extends Component {
       }
     });
   };
-  
+  redirectToCommentPage() {
+    this.props.history.push({
+      pathname: "/commentPage",
+      state: {
+        title: this.props.title,
+        content: this.props.content,
+        createdBy: this.props.createdBy,
+        image: this.props.image,
+        likeable: this.props.likeable,
+        commentable: this.props.commentable,
+        shareable: this.props.likeable,
+      },
+    });
+    this.props.updateTitle("CommentPage");
+  }
   removeLike = () => {
     this.setState({
       likesCount: this.state.likesCount - 1,
@@ -101,130 +123,106 @@ class Tile extends Component {
       </button>
     );
   }
+  likeHandler() {
+    this.state.isLiked ? this.removeLike() : this.addLike();
+  }
 
   render() {
-    
-      return (
-        <div className="tile_no_btn bg-white my-2">
-          <div className="tile-container">
-            <div className="row">
-              <div className="col-12">
-                <div className="PostIdRow">
-                  <div className="col-1"></div>
-                  <div className="col-2">
-                    <img
-                      src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg"
-                      className="avatartilestyle"
-                    />
-                  </div>
-                  <div className="col-9 alignLeft">
-                    <div className="IdFont">{this.props.createdBy}</div>
-                    <div className="TagFont">Sample User Tag Line</div>
-                  </div>
-                </div>
-
-                <div className="tile_no_btn_top">
-                  <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-                    {this.props.title}
-                  </h4>
-                  <h5 className="financial_sub_text text-capitalize mb-0 grey-color">
-                    {this.props.content}
-                  </h5>
+    return (
+      <div className="tile_no_btn bg-white my-2">
+        <div
+          className="tile-container"
+          onClick={() => {
+            this.redirectToCommentPage();
+          }}
+        >
+          <div className="row">
+            <div className="col-12">
+              <div className="PostIdRow">
+                <div className="col-1"></div>
+                <div className="col-2">
                   <img
-                    id="postIMGID"
-                    className="postImg"
-                    src={this.props.image}
+                    src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg"
+                    className="avatartilestyle"
                   />
                 </div>
+                <div className="col-9 alignLeft">
+                  <div className="IdFont">{this.props.createdBy}</div>
+                  <div className="TagFont">Sample User Tag Line</div>
+                </div>
+              </div>
+
+              <div className="tile_no_btn_top">
+                <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
+                  {this.props.title}
+                </h4>
+                <h5 className="financial_sub_text text-capitalize mb-0 grey-color">
+                  {this.props.content}
+                </h5>
+                <img
+                  id="postIMGID"
+                  className="postImg"
+                  src={this.props.image}
+                />
               </div>
             </div>
-            <div>
-              {this.props.button1Text == null ? null : this.showButton1()}
-              {this.props.button2Text == null ? null : this.showButton2()}
-            </div>
-            
           </div>
-          {this.props.likeable ||
-            this.props.commentable ||
-            this.props.shareable ? (
-              <LikeCommentShare
-                key={this.props.key}
-                likesCount={this.state.likesCount}
-                isLiked={this.state.isLiked}
-                removeLike={this.removeLike}
-                addLike={this.addLike}
-                likeable={this.props.likeable}
-                commentable={this.props.commentable}
-                shareable={this.props.shareable}
-              />
-            ) : null}
+          <div>
+            {this.props.button1Text == null ? null : this.showButton1()}
+            {this.props.button2Text == null ? null : this.showButton2()}
+          </div>
         </div>
-      );
-    
+        {this.props.likeable ||
+        this.props.commentable ||
+        this.props.shareable ? (
+          <div>
+            {/* <div className="col-12 likes_message">
+              <span>
+                {this.props.likesCount > 0 ? this.props.likesCount : ""}
+              </span>
+              <div className="like_comt_share_imgs">{}</div>
+            </div> */}
+            <div className="like_comt_share d-flex">
+              {this.props.likeable ? (
+                <div
+                  className="d-flex"
+                  onClick={() => {
+                    this.likeHandler();
+                  }}
+                >
+                  <span>
+                    {this.state.isLiked ? (
+                      <Favorite style={{ color: red[500] }} />
+                    ) : (
+                      <FavoriteBorder />
+                    )}
+                  </span>
 
-    // else if (this.props.postType === "TWO") {
-    //   return (
-    //     <div className="tile_no_btn bg-white my-2">
-    //       <div className="container">
-    //         <div className="row">
-    //           <div className="col-12">
-    //             <div className="tile_no_btn_top">
-    //               <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-    //                 <div onClick={this.handleClick}>{this.props.title}</div>
-    //               </h4>
-    //               <h5
-    //                 className="financial_sub_text text-capitalize mb-0 grey-color"
-    //                 onClick={this.handleClick}
-    //               >
-    //                 {this.props.content}
-    //               </h5>
-    //               <img className="postImg" src={this.props.postPicture} />
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //       <LikeCommentShare
-    //         key={this.props.key}
-    //         likesCount={this.state.likesCount}
-    //         isLiked={this.state.isLiked}
-    //         removeLike={this.removeLike}
-    //         addLike={this.addLike}
-    //       />
-    //     </div>
-    //   );
-    // }
-    // else if (this.props.postType === "THREE") {
-    //   //IMG TILE
-    //   return (
-    //     <div className="tile_no_btn bg-white my-2">
-    //       <div className="container-fluid">
-    //         <div className="row">
-    //           <div className="col-12">
-    //             <div className="tile_no_btn_top">
-    //               <h4 className="financial_title proxima-bold text-capitalize mb-2 mt-3">
-    //                 {this.props.title}
-    //               </h4>
-    //               <div className="tile_img_box">
-    //                 <img
-    //                   src={test_pic}
-    //                   className="img-fluid mx-auto d-block"
-    //                   alt="avatar"
-    //                 />
-    //               </div>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //       <LikeCommentShare
-    //         key={this.props.key}
-    //         likesCount={this.state.likesCount}
-    //         isLiked={this.state.isLiked}
-    //         removeLike={this.removeLike}
-    //         addLike={this.addLike}
-    //       />
-    //     </div>
-    //   );
-    // }
+                  <span className="l-c-s-text">Like</span>
+                </div>
+              ) : null}
+              {this.props.commentable ? (
+                <div
+                  className="d-flex"
+                  onClick={() => {
+                    this.redirectToCommentPage();
+                  }}
+                >
+                  <span> {<AddComment />} </span>
+                  <span className="l-c-s-text">Comment</span>
+                </div>
+              ) : null}
+              {this.props.shareable ? (
+                <div className="d-flex">
+                  <span> {<Share />} </span>
+                  <span className="l-c-s-text">Share</span>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    );
   }
 }
 export default withRouter(Tile);

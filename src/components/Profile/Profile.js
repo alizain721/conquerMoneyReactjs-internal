@@ -235,7 +235,7 @@ class Profile extends Component {
 
         <button
           type="button"
-          className="get_location_button"
+          className="get_location_button btn btn-primary custom-btn "
           onClick={() => getLocation()}
         >
           Click Here to get the location
@@ -250,14 +250,14 @@ class Profile extends Component {
 
         <button
           type="submit"
-          className="submit_button"
+          className="submit_button btn btn-primary custom-btn"
           onClick={this.handleSubmitClick}
         >
           Submit
         </button>
         <button
           type="submit"
-          className="submit_button"
+          className="submit_button btn btn-primary custom-btn"
           onClick={() => this.handleCancelClick()}
         >
           Cancel
@@ -270,8 +270,12 @@ class Profile extends Component {
       <div className="edit_picture_form">
         <div className="edit_picture_form_group">
           <div className="editorForm">
+            <label for="file-upload" class="custom-file-upload">
+              <i class="material-icons">&#xe439;</i>
+            </label>
             <input
               name="newImage"
+              id="file-upload"
               type="file"
               onChange={this.handleNewImage.bind(this)}
             />
@@ -288,7 +292,10 @@ class Profile extends Component {
               rotate={0}
             />
 
-            <button className="submit_button" onClick={() => this.handleSave()}>
+            <button
+              className="submit_button btn btn-primary custom-btn"
+              onClick={() => this.handleSave()}
+            >
               Upload
             </button>
 
@@ -395,16 +402,13 @@ class Profile extends Component {
     return (
       <div className="profilePage">
         <div className="profile_top_sec">
+          <div className="profile_header"></div>
           <div className="width100">
             <button
               className="AvatarEditor"
               onClick={() => this.editPictureEvent()}
             >
-              <img
-                className="ProfilePic"
-                src={this.state.profilePicture}
-                loading="lazy"
-              />
+              <img className="ProfilePic" src={this.state.profilePicture} />
             </button>
           </div>
           <div className="name_box">
@@ -425,7 +429,10 @@ class Profile extends Component {
           </div>
         </div>
 
-        <div className="profile_mid_sec">
+        <div
+          className="profile_mid_sec"
+          
+        >
           <p>mid_sec</p>
         </div>
         <div className="profile_bot_sec">

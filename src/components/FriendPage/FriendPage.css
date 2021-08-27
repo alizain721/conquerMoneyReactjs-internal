@@ -2,14 +2,7 @@
   width: 100%;
   height: 100%;
 }
-@media only screen and (min-width: 768px) {
-  .profilePage {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-  }
-}
+
 
 .friend_button {
   margin-right: 10%;

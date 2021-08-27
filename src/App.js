@@ -14,6 +14,8 @@ import Post from './components/Posts/Post';
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import EmailVerification from "./components/ResetPassword/EmailVerification";
 import Settings from "./components/Settings/Settings";
+import CommentPage from "./components/Tile/CommentPage";
+
 
 //import { makeStyles } from "@material-ui/core/styles";
 
@@ -87,11 +89,8 @@ function App() {
 
         <div className="container2 d-flex align-items-center flex-column">
           <Switch>
-            <Route  path="/post/:id/:title" exact={true}>
-              <Post
-                showError={updateErrorMessage}
-                updateTitle={updateTitle}
-              />
+            <Route path="/post/:id/:title" exact={true}>
+              <Post showError={updateErrorMessage} updateTitle={updateTitle} />
             </Route>
             <Route path="/" exact={true}>
               <LoginForm
@@ -139,7 +138,7 @@ function App() {
             <Route path="/home">
               <Home showError={updateErrorMessage} updateTitle={updateTitle} />
             </Route>
-            
+
             <Route path="/dashboard">
               <Dashboard
                 showError={updateErrorMessage}
@@ -162,29 +161,35 @@ function App() {
             </Route>
 
             <Route path="/profile">
-              <Profile
-                showError={updateErrorMessage} 
-              />
+              <Profile showError={updateErrorMessage} />
             </Route>
 
             <Route path="/publicProfile">
-              <PublicProfile
-                showError={updateErrorMessage} 
-              />
+              <PublicProfile showError={updateErrorMessage} />
             </Route>
 
             <Route path="/FriendPage">
-              <FriendPage
-                showError={updateErrorMessage} 
+              <FriendPage showError={updateErrorMessage} />
+            </Route>
+
+            <Route path="/settings">
+              <Settings
+                showError={updateErrorMessage}
+                updateTitle={updateTitle}
               />
             </Route>
-            
-            <Route path = "/settings">
-              <Settings
-              showError={updateErrorMessage}
-              updateTitle={updateTitle}
+
+            <Route
+              path="/commentPage"
+              render={(props) => (
+                <CommentPage
+                  showError={updateErrorMessage}
+                  updateTitle={updateTitle}
+                  {...props}
+                />
+              )}
             />
-            </Route>
+            
 
             <Route path="/resetPassword">
               <ResetPassword
@@ -199,7 +204,6 @@ function App() {
                 updateTitle={updateTitle}
               />
             </Route>
-
           </Switch>
 
           <AlertComponent
@@ -207,15 +211,13 @@ function App() {
             hideError={updateErrorMessage}
           />
         </div>
-        
-        
       </div>
       <footer className="footer">
-          <BottomNav 
-            showError={updateErrorMessage}
-            updateTitle={updateTitle}
-          ></BottomNav>
-        </footer>
+        <BottomNav
+          showError={updateErrorMessage}
+          updateTitle={updateTitle}
+        ></BottomNav>
+      </footer>
     </Router>
   );
 }

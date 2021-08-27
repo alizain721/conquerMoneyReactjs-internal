@@ -105,7 +105,7 @@ class Link extends Component {
                 <hr></hr>
                 <div style={{ float:"left", width:"70%", height:"100%" }}>
                 <div style={{ display:"inline-block", width:"100%" }}>{d.bankname +": "}{d.officialname}{d.accountname}   
-                <div style={{ display:"inline-block", color:"#808080",fontSize:"15px", width:"100%" }}>{"xxxx-xxxx-xxxx-"}{d.mask}</div>
+                <div style={{ display:"inline-block", color:"#808080",fontSize:"2vh", width:"100%" }}>{"xxxx-xxxx-xxxx-"}{d.mask}</div>
                 
                 
                 </div>
