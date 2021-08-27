@@ -14,15 +14,18 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-
+  
 - script: |
-    npm install
     echo 'here'
-    mv src/constants/apiConstants.js src/constants/apiConstants.local.js
+    echo $(ls src/constants)
+    rm src/constants/apiConstants.js
     echo $(ls src/constants)
     mv src/constants/apiConstants.prod.js src/constants/apiConstants.js
     echo $(ls src/constants)
     echo 'endhere'
+
+- script: |
+    npm install
     npm run build
   displayName: 'npm install and build'
 - task: CopyFiles@2
