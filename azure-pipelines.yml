@@ -29,6 +29,11 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- script: |
+    mv web.config build/web.config
+    echo $(ls build)
+  displayName: 'copy web config'
 - task: CopyFiles@2
   inputs:
     SourceFolder: 'build'
