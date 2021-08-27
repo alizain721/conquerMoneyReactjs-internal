@@ -23,6 +23,7 @@ steps:
     mv src/constants/apiConstants.prod.js src/constants/apiConstants.js
     echo $(ls src/constants)
     echo 'endhere'
+  displayName: 'swap config file'
 
 - script: |
     npm install
