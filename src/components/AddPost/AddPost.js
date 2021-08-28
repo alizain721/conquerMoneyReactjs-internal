@@ -22,6 +22,8 @@ class AddPost extends Component {
       //posttypeid: "",
       successMessage: "",
       picture: null,
+      FirstName: "",
+      LastName: "",
       postPicture: null,
       profilePicture: null,
     };
@@ -42,6 +44,8 @@ class AddPost extends Component {
         if (response.status === 200) {
           this.setState({
             profilePicture: response.data.profilePicture,
+            FirstName: response.data.firstName,
+            LastName: response.data.lastName,
           });
         }
       })
@@ -159,7 +163,10 @@ class AddPost extends Component {
                 alt="profile"
               />
             </div>
-            <div className="post-name d-flex"> Zeping Wang</div>
+            <div className="post-name d-flex">
+              
+              {this.state.FirstName + " " + this.state.LastName}
+            </div>
           </div>
 
           <button
@@ -199,8 +206,8 @@ class AddPost extends Component {
             ></textarea>
           </div>
           <div className="form-group alignLeft">
-            <label for="file-upload" class="custom-file-upload">
-              <i class="material-icons">&#xe439;</i>
+            <label for="file-upload" className="custom-file-upload">
+              <i className="material-icons">&#xe439;</i>
             </label>
             <input
               name="newImage"

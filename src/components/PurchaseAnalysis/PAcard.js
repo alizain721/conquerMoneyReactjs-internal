@@ -30,12 +30,11 @@ class PAcard extends Component {
     if (this.props.userhas === 1) {
       return (
         <div className="PAcardContainer">
-          <div
-            className="cardBodies1"
-           
-          >
+          <div className="cardBodies1">
             <div className="row">
-              <div className="col"></div>
+              <div className="col">
+                <img className="card-img-top" src={discover} alt="discover" />
+              </div>
               <div className="col">
                 <p className="rewardP">
                   {this.props.rewardsrate +
@@ -59,7 +58,10 @@ class PAcard extends Component {
                 {this.props.benefitname}
               </p>
               <div className="text-center">
-                <button type="button" className="btn-secondary">
+                <button
+                  type="button"
+                  className="btn btn-primary custom-btn btn-secondary2"
+                >
                   USE
                 </button>
               </div>

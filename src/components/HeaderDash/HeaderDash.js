@@ -182,13 +182,13 @@ class HeaderDash extends Component {
                     </div>
                   </div>
                   <div className="d-flex align-items-center profile_notification_section2">
-                    <div class="notification-box">
-                      <span class="notification-count">N</span>
-                      <div class="notification-bell">
-                        <span class="bell-top"></span>
-                        <span class="bell-middle"></span>
-                        <span class="bell-bottom"></span>
-                        <span class="bell-rad"></span>
+                    <div className="notification-box">
+                      <span className="notification-count">N</span>
+                      <div className="notification-bell">
+                        <span className="bell-top"></span>
+                        <span className="bell-middle"></span>
+                        <span className="bell-bottom"></span>
+                        <span className="bell-rad"></span>
                       </div>
                     </div>
                   </div>
