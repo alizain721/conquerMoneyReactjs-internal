@@ -28,8 +28,9 @@ class Settings extends Component {
         Cookie.remove("token");
         this.props.history.push("/"); //redirect to login
       })
-      .catch(function (error) {
+      .catch( (error) => {
         console.log(error);
+        this.props.history.push("/dashboard"); 
       });
     console.log("logout complete");
   };
