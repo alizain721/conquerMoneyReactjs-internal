@@ -29,7 +29,7 @@ function validatePassword(password){
   * [a-zA-z$-/:-?{-~!"^_`\[\]]{6,} Characters Allowed
   * $ Marks the end of the expression
   */
-  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#.~+%/-_])[A-Za-z\d$-/:-?{-~!"^_`\[\]]{8,}$/;
+  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#.~+%/-_])[A-Za-z\d$-/:-?{-~!"^_`\[\]]{6,}$/;
   return re.test(String(password));
 }
 
@@ -78,12 +78,13 @@ function RegistrationForm(props) {
           firstNameFalse: true
         }));
       }
-    }else {
+      else {
         setState((prevState) => ({
           ...prevState,
           firstNameErrorMessage: null,
           firstNameFalse: false
         }))
+    }
     }
 
     if(e.target.id === "lastName") {
@@ -94,15 +95,16 @@ function RegistrationForm(props) {
           lastNameFalse: true
         }));
       }
-    }else {
+      else {
         setState((prevState) => ({
           ...prevState,
           lastNameErrorMessage: null,           
           lastNameFalse: false
         }))
     }
+    }
 
-    /* Needs to be unique */
+    /*  Needs to be unique  */
     if(e.target.id === "username") {
       if(value.length < minUsernameLength) {
         setState((prevState) => ({
@@ -253,9 +255,10 @@ function RegistrationForm(props) {
     else if(!validatePassword(state.password)){
       props.showError("Password doesn't match the requirements");
     }
-  else {
+    else if(state.password !== state.confirmPassword){
       props.showError("Passwords do not match");
     }
+  
   };
   const handleDialogOpen = () => {
     setState((prevState) => ({
